@@ -1,0 +1,26 @@
+<!-- Relative path to layout -->
+{{!< layout/default}}
+
+{{#contentFor 'pageStyles'}}
+<style>
+  .clicker {
+    color: blue;
+  };
+</style>
+{{/contentFor}}
+
+
+{{#contentFor 'pageScripts'}}
+<script>
+  $(function() {
+    $('p').click(function() {
+      $(this).text('Hello express-hbs!');
+    });
+  });
+</script>
+{{/contentFor}}
+
+
+<h1>{{title}}</h1>
+<p class='clicker'>Click me!</p>
+<a href='/fruits'>Favorite fruits</a>

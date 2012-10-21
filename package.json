@@ -1,0 +1,22 @@
+{
+  "name": "express-hbs",
+  "version": "0.1.0",
+  "description": "Express 3 handlebars template engine complete with layout, partials and blocks.",
+  "keywords": "express3 express handlebars layout partials",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "Mario Gutierrez (mario@mgutz.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "express": "~3.0.0rc5"
+  },
+  "dependencies": {
+    "handlebars": "~1.0.7"
+  }
+}

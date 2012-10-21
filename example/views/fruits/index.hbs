@@ -1,0 +1,17 @@
+{{!< ../layout/default}}
+
+{{#contentFor "pageStyles"}}
+<style>
+  li {
+    color: #800;
+  }
+</style>
+{{/contentFor}}
+
+
+<h1>{{title}}</h1>
+<ul>
+    {{#each fruits}}
+    <li>{{this.name}}</li>
+    {{/each}}
+</ul>
