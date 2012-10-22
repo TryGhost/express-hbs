@@ -11,18 +11,19 @@ app.engine('hbs', hbs.express3({partialsDir: __dirname + '/views/partials'}));
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 
-var fruits = [];
-fruits.push({ name: 'apple' });
-fruits.push({ name: 'orange' });
-fruits.push({ name: 'pear' });
+var fruits = [
+  {name: 'apple'},
+  {name: 'orange'},
+  {name: 'pear'}
+];
 
-app.get('/', function(req, res){
+app.get('/', function(req, res) {
   res.render('index', {
     title: 'express-hbs example'
   });
 });
 
-app.get('/fruits', function(req, res){
+app.get('/fruits', function(req, res) {
   res.render('fruits/index', {
     title: 'My favorite fruits',
     fruits: fruits

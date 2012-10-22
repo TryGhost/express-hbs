@@ -11,8 +11,8 @@ To use with express 3.
 ```javascript
 var hbs = require('express-hbs');
 
-// Hook in express-hbs and tell it to use hbs for extensions and use `views/partials`
-// for partials.
+// Hook in express-hbs and tell it to use hbs for extensions and find partials
+// in `views/partials`.
 app.engine('hbs', hbs.express3({partialsDir: __dirname + '/views/partials'}));
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
@@ -20,15 +20,26 @@ app.set('views', __dirname + '/views');
 
 ## Syntax
 
-To mark where page should be inserted into a layout.
+Options for `#express3`
+
+    hbs.express3({
+        partialsDir: "{String} Path to partials templates",
+        extname: "{String} Extension for templates, defaults to `.hbs`",
+        handlebars: "{Module} Use external handlebars instead of express-hbs dependency"
+    });
+
+Partials may use any extension; better for syntax highlighting.
+
+
+To mark where layout should insert pag,
 
     {{{body}}}
 
-To use a layout, use handlebars comment. `LAYOUT` is a relative path from template.
+To declare the layout for a page, use handlebars comment. `LAYOUT` is a relative path from template.
 
     {{!< LAYOUT}}
 
-To define a block in layout.
+To define a block placeholder in layout.
 
     {{{block "pageScripts"}}}
 
@@ -41,10 +52,9 @@ To define block content in a page.
 
 ## Example
 
-
 File `views/layout/default.hbs`
 
-```html
+```
 <html>
   <head>
     <title>{{title}}</title>
@@ -64,7 +74,7 @@ File `views/layout/default.hbs`
 
 File `views/index.hbs`
 
-```html
+```
 {{!< layout/default}}
 
 {{#contentFor 'pageStyles'}}
@@ -80,10 +90,15 @@ File `views/index.hbs`
 <p class='clicker'>Click me!</p>
 ```
 
+To run example project
+
+    npm install -d
+    node example/app.js
+
 
 ## Credits
 
-Some source from [donpark/hbs](https://github.com/donpark/hbs)
+Inspiration and code from [donpark/hbs](https://github.com/donpark/hbs)
 
 
 ## License
