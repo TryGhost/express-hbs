@@ -1,6 +1,6 @@
 # express-hbs
 
-Express 3 handlebars template engine complete with multiple layouts, blocks and cached partials.
+Express 3 handlebars template engine with multiple layouts, blocks and cached partials.
 
 Open source project from [Barc](http://barc.com), instant real-time forum on any website.
 
@@ -11,27 +11,25 @@ To use with express 3.
 ```javascript
 var hbs = require('express-hbs');
 
-// Hook in express-hbs and tell it to use hbs for extensions and find partials
-// in `views/partials`.
+// Use `.hbs` for extensions and find partials in `views/partials`.
 app.engine('hbs', hbs.express3({partialsDir: __dirname + '/views/partials'}));
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 ```
 
-## Syntax
-
 Options for `#express3`
 
     hbs.express3({
-        partialsDir: "{String} Path to partials templates",
-        extname: "{String} Extension for templates, defaults to `.hbs`",
-        handlebars: "{Module} Use external handlebars instead of express-hbs dependency"
+      partialsDir: "{String} Path to partials templates",
+      extname: "{String} Extension for templates, defaults to `.hbs`",
+      handlebars: "{Module} Use external handlebars instead of express-hbs dependency"
     });
 
 Partials may use any extension; better for syntax highlighting.
 
+## Syntax
 
-To mark where layout should insert pag,
+To mark where layout should insert page,
 
     {{{body}}}
 
@@ -39,14 +37,14 @@ To declare the layout for a page, use handlebars comment. `LAYOUT` is a relative
 
     {{!< LAYOUT}}
 
-To define a block placeholder in layout.
+To declare a block placeholder in layout.
 
     {{{block "pageScripts"}}}
 
 To define block content in a page.
 
     {{contentFor "pageScripts"}}
-        CONTENT HERE
+      CONTENT HERE
     {{/contentFor}}
 
 
@@ -77,7 +75,7 @@ File `views/index.hbs`
 ```
 {{!< layout/default}}
 
-{{#contentFor 'pageStyles'}}
+{{#contentFor "pageStyles"}}
 <style>
   .clicker {
     color: blue;
@@ -85,16 +83,14 @@ File `views/index.hbs`
 </style>
 {{/contentFor}}
 
-
 <h1>{{title}}</h1>
-<p class='clicker'>Click me!</p>
+<p class="clicker">Click me!</p>
 ```
 
 To run example project
 
     npm install -d
     node example/app.js
-
 
 ## Credits
 
