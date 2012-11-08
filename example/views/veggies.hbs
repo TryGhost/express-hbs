@@ -1,6 +1,3 @@
-<!-- relative path to layout -->
-{{!< ../layout/fruits}}
-
 {{#contentFor "pageStyles"}}
 <style>
   li {
@@ -12,7 +9,7 @@
 
 <h1>{{title}}</h1>
 <ul>
-    {{#each fruits}}
+    {{#each veggies}}
     <li>{{this.name}}</li>
     {{/each}}
 </ul>
