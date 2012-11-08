@@ -20,12 +20,13 @@ app.set('views', __dirname + '/views');
 Options for `#express3`
 
     hbs.express3({
-      partialsDir: "{String} Path to partials templates",
+      defaultLayout: "{String} [Optional] Absolute path to default layout template",
       extname: "{String} Extension for templates, defaults to `.hbs`",
       handlebars: "{Module} Use external handlebars instead of express-hbs dependency"
+      partialsDir: "{String} Path to partials templates",
     });
 
-Partials may use any extension; better for syntax highlighting.
+Partials may use any extension, which is better for syntax highlighting.
 
 ## Syntax
 
@@ -36,6 +37,10 @@ To mark where layout should insert page,
 To declare the layout for a page, use handlebars comment. `LAYOUT` is a relative path from template.
 
     {{!< LAYOUT}}
+
+
+If a layout is not declared within a template, then `options.defaultLayout` is
+used if present.
 
 To declare a block placeholder in layout.
 
