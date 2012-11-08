@@ -30,17 +30,12 @@ Partials may use any extension, which is better for syntax highlighting.
 
 ## Syntax
 
+
+
 To mark where layout should insert page,
 
     {{{body}}}
 
-To declare the layout for a page, use handlebars comment. `LAYOUT` is a relative path from template.
-
-    {{!< LAYOUT}}
-
-
-If a layout is not declared within a template, then `options.defaultLayout` is
-used if present.
 
 To declare a block placeholder in layout.
 
@@ -51,6 +46,22 @@ To define block content in a page.
     {{contentFor "pageScripts"}}
       CONTENT HERE
     {{/contentFor}}
+
+There are three ways to use a layout
+
+1. Declarative within a page. Use handlebars comment. `LAYOUT` is a relative path from template.
+
+    {{!< LAYOUT}}
+
+2. As an option to render
+
+    res.render('veggies', {
+      title: 'My favorite veggies',
+      veggies: veggies,
+      layout: 'layout/veggie'
+    });
+
+3. Lastly, use `defaultLayout` if specified in hbs configuration options.
 
 
 ## Example

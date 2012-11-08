@@ -17,6 +17,13 @@ var fruits = [
   {name: 'pear'}
 ];
 
+
+var veggies = [
+  {name: 'asparagus'},
+  {name: 'carrot'},
+  {name: 'spinach'}
+];
+
 app.get('/', function(req, res) {
   res.render('index', {
     title: 'express-hbs example'
@@ -27,6 +34,14 @@ app.get('/fruits', function(req, res) {
   res.render('fruits/index', {
     title: 'My favorite fruits',
     fruits: fruits
+  });
+});
+
+app.get('/veggies', function(req, res) {
+  res.render('veggies', {
+    title: 'My favorite veggies',
+    veggies: veggies,
+    layout: 'layout/veggie'
   });
 });
 

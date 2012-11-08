@@ -10,7 +10,7 @@
 {{#contentFor 'pageScripts'}}
 <script>
   $(function() {
-    $('p').click(function() {
+    $('.clicker').click(function() {
       $(this).text('Hello express-hbs!');
     });
   });
@@ -20,4 +20,9 @@
 
 <h1>{{title}}</h1>
 <p class='clicker'>Click me!</p>
-<a href='/fruits'>Favorite fruits</a>
+<p>
+  <a href='/fruits'>Favorite fruits</a>
+</p>
+<p>
+  <a href='/veggies'>Vegetables</a>
+</p>
