@@ -64,6 +64,35 @@ There are three ways to use a layout
 3. Lastly, use `defaultLayout` if specified in hbs configuration options.
 
 
+## Extensible Template Storage
+
+For most applications, storing templates on the file system is just fine, and so the default behavior of express-hbs supports this.
+Some apps may desire for various reasons to store their templates somewhere else, for example a mongodb instance.  express-hbs
+supports this as well, through the provider option.  Currently the FileProvider is default and requires no configuration.
+If you want to store your templates in a mongodb instance, you simply have to enable that provider and configure it with a couple options
+of its own.
+
+```javascript
+
+    // somewhere in your express app
+    app.engine('hbs', hbs.express3({
+        provider : new hbs.providers.MongoProvider({
+            mongoUrl : 'mongodb://localhost:27017/your_db',  // Required to know where to connect to
+            viewPath : app.set('views')          // required b/c express passes absolute urls but we want to use relative ones internally
+        })
+    }));
+
+```
+
+Store your templates in the specified mongodb instance in a collection called hbs_templates (this may be configurable in the future).  The documents should look like:
+
+```javascript
+
+{ "_id" : ObjectId("50d474d61c129287c971ec56"), "name" : "layouts/default.hbs", "text" : "Welcome to {{title}}", "isPartial" : false }
+
+```
+
+
 ## Example
 
 File `views/layout/default.hbs`
