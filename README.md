@@ -47,7 +47,7 @@ To define block content in a page.
       CONTENT HERE
     {{/contentFor}}
 
-There are three ways to use a layout
+There are three ways to use a layout, listed in the order in which they are checked for and used:
 
 1. Declarative within a page. Use handlebars comment. `LAYOUT` is a relative path from template.
 
@@ -60,6 +60,16 @@ There are three ways to use a layout
       veggies: veggies,
       layout: 'layout/veggie'
     });
+    
+   This option also allows for default layout suppression by passing in a falsey Javascript value as the value of the `layout` property:
+
+```   
+    res.render('veggies', {
+      title: 'My favorite veggies',
+      veggies: veggies,
+      layout: null // render without using a layout template
+    });
+```
 
 3. Lastly, use `defaultLayout` if specified in hbs configuration options.
 
