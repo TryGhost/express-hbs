@@ -28,9 +28,8 @@ Options for `#express3`
 
 Partials may use any extension, which is better for syntax highlighting.
 
+
 ## Syntax
-
-
 
 To mark where layout should insert page,
 
@@ -60,10 +59,10 @@ There are three ways to use a layout, listed in the order in which they are chec
       veggies: veggies,
       layout: 'layout/veggie'
     });
-    
+
    This option also allows for default layout suppression by passing in a falsey Javascript value as the value of the `layout` property:
 
-```   
+```
     res.render('veggies', {
       title: 'My favorite veggies',
       veggies: veggies,
@@ -117,6 +116,16 @@ To run example project
 
     npm install -d
     node example/app.js
+
+
+## Testing
+
+Running tests requires [grunt](http://gruntjs.com/)
+
+    npm install -g grunt-cli
+    npm install -d
+    grunt
+
 
 ## Credits
 

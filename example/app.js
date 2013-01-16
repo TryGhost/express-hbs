@@ -45,5 +45,11 @@ app.get('/veggies', function(req, res) {
   });
 });
 
-app.listen(3000);
-console.log('Express server listening on port 3000');
+
+if (require.main === module) {
+  app.listen(3000);
+  console.log('Express server listening on port 3000');
+}
+else {
+  module.exports = app;
+}
