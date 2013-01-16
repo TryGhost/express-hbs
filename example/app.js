@@ -7,7 +7,11 @@ var hbs = require('..'); // should be `require('express-hbs')` outside of this e
 app.use(express.static(__dirname + '/public'));
 
 // Hook in express-hbs and tell it where partials are found
-app.engine('hbs', hbs.express3({partialsDir: __dirname + '/views/partials', defaultLayout: __dirname + '/views/layout/default.hbs'}));
+app.engine('hbs', hbs.express3({
+    partialsDir: __dirname + '/views/partials',
+    layoutsDir: __dirname + '/views/layout',
+    defaultLayout: __dirname + '/views/layout/default.hbs'
+}));
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 
