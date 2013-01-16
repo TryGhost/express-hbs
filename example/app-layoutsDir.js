@@ -9,6 +9,7 @@ app.use(express.static(__dirname + '/public'));
 // Hook in express-hbs and tell it where known directories reside
 app.engine('hbs', hbs.express3({
     partialsDir: __dirname + '/views/partials',
+    layoutsDir: __dirname + '/views/layout',
     defaultLayout: __dirname + '/views/layout/default.hbs'
 }));
 app.set('view engine', 'hbs');
@@ -34,7 +35,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/fruits', function(req, res) {
-  res.render('fruits/index', {
+  res.render('fruits/index-layoutsDir', {
     title: 'My favorite fruits',
     fruits: fruits
   });

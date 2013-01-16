@@ -1,9 +1,10 @@
 var request = require('supertest');
-var app = require('../example/app');
+var app;
 
 describe('express-hbs', function() {
 
-  describe('File provider', function() {
+  describe('defaults', function() {
+    app = require('../example/app');
 
     it('should render using default layout', function(done) {
       request(app)
@@ -41,6 +42,16 @@ describe('express-hbs', function() {
         .expect(/Vegetables/, done);
     });
 
+  });
+
+  describe('layoutsDir', function() {
+    var app = require('../example/app-layoutsDir');
+
+    it('should render layout declared in markup', function(done) {
+      request(app)
+        .get('/fruits')
+        .expect(/DECLARATIVE LAYOUT/, done);
+    });
   });
 
 });
