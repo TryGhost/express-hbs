@@ -51,15 +51,19 @@ There are three ways to use a layout, listed in the order in which they are chec
 
 1. Declarative within a page. Use handlebars comment. If you have declared a layoutsDir in the configuration, `LAYOUT` is a relative path from layoutsDir. Otherwise, `LAYOUT` is a relative path from the template.
 
+```
     {{!< LAYOUT}}
+```
 
 2. As an option to render
 
+```
     res.render('veggies', {
       title: 'My favorite veggies',
       veggies: veggies,
       layout: 'layout/veggie'
     });
+```
 
    This option also allows for default layout suppression by passing in a falsey Javascript value as the value of the `layout` property:
 
