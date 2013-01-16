@@ -23,7 +23,8 @@ Options for `#express3`
       defaultLayout: "{String} [Optional] Absolute path to default layout template",
       extname: "{String} Extension for templates, defaults to `.hbs`",
       handlebars: "{Module} Use external handlebars instead of express-hbs dependency",
-      partialsDir: "{String} Path to partials templates"
+      partialsDir: "{String} Path to partials templates",
+      layoutsDir: "{String} Path to layout templates"
     });
 
 Partials may use any extension, which is better for syntax highlighting.
@@ -48,7 +49,7 @@ To define block content in a page.
 
 There are three ways to use a layout, listed in the order in which they are checked for and used:
 
-1. Declarative within a page. Use handlebars comment. `LAYOUT` is a relative path from template.
+1. Declarative within a page. Use handlebars comment. If you have declared a layoutsDir in the configuration, `LAYOUT` is a relative path from layoutsDir. Otherwise, `LAYOUT` is a relative path from the template.
 
     {{!< LAYOUT}}
 
@@ -98,7 +99,7 @@ File `views/layout/default.hbs`
 File `views/index.hbs`
 
 ```
-{{!< layout/default}}
+{{!< default}}
 
 {{#contentFor "pageStyles"}}
 <style>
