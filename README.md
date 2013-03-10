@@ -43,7 +43,7 @@ To declare a block placeholder in layout.
 
 To define block content in a page.
 
-    {{contentFor "pageScripts"}}
+    {{#contentFor "pageScripts"}}
       CONTENT HERE
     {{/contentFor}}
 
