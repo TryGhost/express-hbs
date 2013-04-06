@@ -20,6 +20,7 @@
     "grunt-simple-mocha": "git://github.com/yaymukund/grunt-simple-mocha.git"
   },
   "dependencies": {
-    "handlebars": "~1.0.7"
+    "handlebars": "~1.0.7",
+    "glob": "~3.1.21"
   }
 }

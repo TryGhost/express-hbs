@@ -30,6 +30,12 @@ describe('express-hbs', function() {
         .expect(/jquery\.js/, done);
     });
 
+    it('should render sub partial', function(done) {
+      request(app)
+        .get('/veggies')
+        .expect(/just a comment/, done);
+    });
+
     it('should render block', function(done) {
       request(app)
         .get('/')
