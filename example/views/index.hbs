@@ -1,13 +1,13 @@
-{{#contentFor 'pageStyles'}}
+{{#content 'pageStyles'}}
 <style>
   .clicker {
     color: blue;
   };
 </style>
-{{/contentFor}}
+{{/content}}
 
 
-{{#contentFor 'pageScripts'}}
+{{#content 'pageScripts'}}
 <script>
   $(function() {
     $('.clicker').click(function() {
@@ -15,7 +15,7 @@
     });
   });
 </script>
-{{/contentFor}}
+{{/content}}
 
 
 <h1>{{title}}</h1>
@@ -24,5 +24,15 @@
   <a href='/fruits'>Favorite fruits</a>
 </p>
 <p>
-  <a href='/veggies'>Vegetables</a>
+  <!-- sync helper -->
+  {{{link 'Vegetables' href='/veggies'}}}
 </p>
+
+<!-- async helper -->
+<div>
+{{{readFile 'tos.txt'}}}
+</div>
+
+
+
+

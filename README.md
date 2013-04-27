@@ -43,9 +43,9 @@ To declare a block placeholder in layout.
 
 To define block content in a page.
 
-    {{#contentFor "pageScripts"}}
+    {{#content "pageScripts"}}
       CONTENT HERE
-    {{/contentFor}}
+    {{/content}}
 
 There are three ways to use a layout, listed in the order in which they are checked for and used:
 
@@ -77,6 +77,33 @@ There are three ways to use a layout, listed in the order in which they are chec
 
 3. Lastly, use `defaultLayout` if specified in hbs configuration options.
 
+## Helpers
+
+Synchronous helpers
+
+    hbs.registerHelper('link', function(text, options) {
+      var attrs = [];
+      for(var prop in options.hash) {
+        attrs.push(prop + '="' + options.hash[prop] + '"');
+      }
+      return new hbs.SafeString(
+        "<a " + attrs.join(" ") + ">" + text + "</a>"
+      );
+    });
+
+    # in markup
+    {{{link 'barc.com' href='http://barc.com'}}}
+
+Asynchronous helpers
+
+    hbs.registerAsyncHelper('readFile', function(filename, cb) {
+      fs.readFile(path.join(viewsDir, filename), 'utf8', function(err, content) {
+        cb(new hbs.SafeString(content));
+      });
+    });
+
+    # in markup
+    {{{readFile 'tos.txt'}}}
 
 ## Example
 
@@ -94,7 +121,7 @@ File `views/layout/default.hbs`
 
     {{> scripts}}
 
-    {{{block "pageScripts"}}}
+    {{{block 'pageScripts'}}}
   </body>
 </html>
 ```
@@ -105,13 +132,13 @@ File `views/index.hbs`
 ```
 {{!< default}}
 
-{{#contentFor "pageStyles"}}
+{{#content 'pageStyles'}}
 <style>
   .clicker {
     color: blue;
   };
 </style>
-{{/contentFor}}
+{{/content}}
 
 <h1>{{title}}</h1>
 <p class="clicker">Click me!</p>
