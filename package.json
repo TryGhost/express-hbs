@@ -8,7 +8,7 @@
     "example": "example"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": "",
   "author": "Mario Gutierrez (mario@mgutz.com)",
@@ -17,7 +17,8 @@
     "express": "~3.0.6",
     "supertest": "~0.5.1",
     "grunt": "~0.4.0rc5",
-    "grunt-simple-mocha": "git://github.com/yaymukund/grunt-simple-mocha.git"
+    "grunt-simple-mocha": "git://github.com/yaymukund/grunt-simple-mocha.git",
+    "mocha": "~1.9.0"
   },
   "dependencies": {
     "handlebars": "~1.0.7",

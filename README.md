@@ -8,22 +8,20 @@ Open source project from [Barc](http://barc.com), instant real-time forum on any
 
 To use with express 3.
 
-```javascript
-var hbs = require('express-hbs');
+    var hbs = require('express-hbs');
 
-// Use `.hbs` for extensions and find partials in `views/partials`.
-app.engine('hbs', hbs.express3({partialsDir: __dirname + '/views/partials'}));
-app.set('view engine', 'hbs');
-app.set('views', __dirname + '/views');
-```
+    // Use `.hbs` for extensions and find partials in `views/partials`.
+    app.engine('hbs', hbs.express3({partialsDir: __dirname + '/views/partials'}));
+    app.set('view engine', 'hbs');
+    app.set('views', __dirname + '/views');
 
 Options for `#express3`
 
     hbs.express3({
-      defaultLayout: "{String} [Optional] Absolute path to default layout template",
+      defaultLayout: "{String} Absolute path to default layout template",
       extname: "{String} Extension for templates, defaults to `.hbs`",
       handlebars: "{Module} Use external handlebars instead of express-hbs dependency",
-      partialsDir: "{String} Path to partials templates",
+      partialsDir: "{String} [Required] Path to partials templates",
       layoutsDir: "{String} Path to layout templates"
     });
 
@@ -49,33 +47,27 @@ To define block content in a page.
 
 There are three ways to use a layout, listed in the order in which they are checked for and used:
 
-1. Declarative within a page. Use handlebars comment. If you have declared a layoutsDir in the configuration, `LAYOUT` is a relative path from layoutsDir. Otherwise, `LAYOUT` is a relative path from the template.
+1.  Declarative within a page. Use handlebars comment. If you have declared a layoutsDir in the configuration, `LAYOUT` is a relative path from layoutsDir. Otherwise, `LAYOUT` is a relative path from the template.
 
-```
-    {{!< LAYOUT}}
-```
+        {{!< LAYOUT}}
 
-2. As an option to render
+2.  As an option to render
 
-```
-    res.render('veggies', {
-      title: 'My favorite veggies',
-      veggies: veggies,
-      layout: 'layout/veggie'
-    });
-```
+        res.render('veggies', {
+          title: 'My favorite veggies',
+          veggies: veggies,
+          layout: 'layout/veggie'
+        });
 
-   This option also allows for default layout suppression by passing in a falsey Javascript value as the value of the `layout` property:
+    This option also allows for default layout suppression by passing in a falsey Javascript value as the value of the `layout` property:
 
-```
-    res.render('veggies', {
-      title: 'My favorite veggies',
-      veggies: veggies,
-      layout: null // render without using a layout template
-    });
-```
+        res.render('veggies', {
+          title: 'My favorite veggies',
+          veggies: veggies,
+          layout: null // render without using a layout template
+        });
 
-3. Lastly, use `defaultLayout` if specified in hbs configuration options.
+3.  Lastly, use `defaultLayout` if specified in hbs configuration options.
 
 ## Helpers
 
@@ -149,15 +141,9 @@ To run example project
     npm install -d
     node example/app.js
 
-
 ## Testing
 
-Running tests requires [grunt](http://gruntjs.com/)
-
-    npm install -g grunt-cli
-    npm install -d
-    grunt
-
+    npm test
 
 ## Credits
 
@@ -167,7 +153,7 @@ Inspiration and code from [donpark/hbs](https://github.com/donpark/hbs)
 ## License
 
 The MIT License (MIT)
-Copyright (c) 2012 Barc, Inc.
+Copyright (c) 2012, 2013 Barc, Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
