@@ -23,7 +23,7 @@ app.set('views', viewsDir);
 // Register sync helper
 hbs.registerHelper('link', function(text, options) {
   var attrs = [];
-  for(var prop in options.hash) {
+  for (var prop in options.hash) {
     attrs.push(prop + '="' + options.hash[prop] + '"');
   }
   return new hbs.SafeString(

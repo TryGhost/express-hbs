@@ -1,13 +1,13 @@
-{{#content 'pageStyles'}}
+{{#contentFor 'pageStyles'}}
 <style>
   .clicker {
     color: blue;
   };
 </style>
-{{/content}}
+{{/contentFor}}
 
 
-{{#content 'pageScripts'}}
+{{#contentFor 'pageScripts'}}
 <script>
   $(function() {
     $('.clicker').click(function() {
@@ -15,7 +15,7 @@
     });
   });
 </script>
-{{/content}}
+{{/contentFor}}
 
 
 <h1>{{title}}</h1>

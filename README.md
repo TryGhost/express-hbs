@@ -6,22 +6,32 @@ Open source project from [Barc](http://barc.com), instant real-time forum on any
 
 ## Usage
 
+0.2 BREAKING CHANGE. The default content name has been reverted back to `contentFor`
+as it broke existing installations.  If you wish to change it, use `contentHelperName`
+option.
+
 To use with express 3.
 
     var hbs = require('express-hbs');
 
     // Use `.hbs` for extensions and find partials in `views/partials`.
-    app.engine('hbs', hbs.express3({partialsDir: __dirname + '/views/partials'}));
+    app.engine('hbs', hbs.express3({
+      partialsDir: __dirname + '/views/partials',
+      contentHelperName: 'content',
+    }));
     app.set('view engine', 'hbs');
     app.set('views', __dirname + '/views');
 
 Options for `#express3`
 
     hbs.express3({
+      partialsDir: "{String} [Required] Path to partials templates",
+
+      blockHelperName: "{String} Override 'block' helper name.",
+      contentHelperName: "{String} Override 'contentFor' helper name.",
       defaultLayout: "{String} Absolute path to default layout template",
       extname: "{String} Extension for templates, defaults to `.hbs`",
       handlebars: "{Module} Use external handlebars instead of express-hbs dependency",
-      partialsDir: "{String} [Required] Path to partials templates",
       layoutsDir: "{String} Path to layout templates"
     });
 
