@@ -32,7 +32,8 @@ Options for `#express3`
       defaultLayout: "{String} Absolute path to default layout template",
       extname: "{String} Extension for templates, defaults to `.hbs`",
       handlebars: "{Module} Use external handlebars instead of express-hbs dependency",
-      layoutsDir: "{String} Path to layout templates"
+      layoutsDir: "{String} Path to layout templates",
+      templateOptions: "{Object} options to pass to template()"
     });
 
 Partials may use any extension, which is better for syntax highlighting.
