@@ -20,6 +20,6 @@
   },
   "dependencies": {
     "handlebars": "~1.0.10",
-    "glob": "~3.1.21"
+    "readdirp": "~0.3.1"
   }
 }
