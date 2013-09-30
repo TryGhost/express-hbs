@@ -6,6 +6,9 @@ Open source project from [Barc](http://barc.com), instant real-time forum on any
 
 ## Usage
 
+0.3 BREAKING CHANGE. This version replaces a library dependency. Be
+sure to run `npm install` to install `readdirp` dependency.
+
 0.2 BREAKING CHANGE. The default content name has been reverted back to `contentFor`
 as it broke existing installations.  If you wish to change it, use `contentHelperName`
 option.
