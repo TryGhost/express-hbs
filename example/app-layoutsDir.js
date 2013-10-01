@@ -45,6 +45,14 @@ app.get('/veggies', function(req, res) {
   res.render('veggies', {
     title: 'My favorite veggies',
     veggies: veggies,
+    layout: 'veggie'
+  });
+});
+
+app.get('/veggies/explicit-dir', function(req, res) {
+  res.render('veggies', {
+    title: 'My favorite veggies',
+    veggies: veggies,
     layout: 'layout/veggie'
   });
 });

@@ -4,7 +4,10 @@ var app;
 describe('express-hbs', function() {
 
   describe('defaults', function() {
-    app = require('../example/app');
+
+    beforeEach(function() {
+      app = require('../example/app');
+    });
 
     it('should render using default layout', function(done) {
       request(app)
@@ -51,13 +54,28 @@ describe('express-hbs', function() {
   });
 
   describe('layoutsDir', function() {
-    var app = require('../example/app-layoutsDir');
+    beforeEach(function() {
+      app = require('../example/app-layoutsDir');
+    });
 
     it('should render layout declared in markup', function(done) {
       request(app)
         .get('/fruits')
         .expect(/DECLARATIVE LAYOUT/, done);
     });
+
+    it('should allow specifying layout in locals without dir', function(done) {
+      request(app)
+        .get('/veggies')
+        .expect(/PROGRAMMATIC LAYOUT/, done);
+    });
+
+    it('should still allow specifying layout in locals with dir', function(done) {
+      request(app)
+        .get('/veggies/explicit-dir')
+        .expect(/PROGRAMMATIC LAYOUT/, done);
+    });
+
   });
 
 });
