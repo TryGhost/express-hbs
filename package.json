@@ -8,7 +8,7 @@
     "example": "example"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "grunt"
   },
   "repository": "https://github.com/barc/express-hbs",
   "author": "Mario Gutierrez (mario@barc.com)",
@@ -16,7 +16,9 @@
   "devDependencies": {
     "express": "~3.0.6",
     "supertest": "~0.5.1",
-    "mocha": "~1.9.0"
+    "mocha": "~1.9.0",
+    "grunt": "~0.4.1",
+    "grunt-mocha-cli": "~1.0.6"
   },
   "dependencies": {
     "handlebars": "~1.0.10",
