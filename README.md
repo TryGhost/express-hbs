@@ -113,6 +113,11 @@ Asynchronous helpers
 
 ## Example
 
+in File `app.js`
+```
+app.set('PROD_MODE', ('production' === app.get('env')));
+```
+
 File `views/layout/default.hbs`
 
 ```
@@ -127,7 +132,10 @@ File `views/layout/default.hbs`
 
     {{> scripts}}
 
-    {{{block 'pageScripts'}}}
+    {{#if settings.PROD_MODE}}
+    {{{block 'googleAnalyticsScripts'}}}
+    {{/if}}
+    
   </body>
 </html>
 ```
