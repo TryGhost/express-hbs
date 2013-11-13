@@ -55,9 +55,9 @@ To declare a block placeholder in layout.
 
 To define block content in a page.
 
-    {{#content "pageScripts"}}
+    {{#contentFor "pageScripts"}}
       CONTENT HERE
-    {{/content}}
+    {{/contentFor}}
 
 There are three ways to use a layout, listed in the order in which they are checked for and used:
 
@@ -146,13 +146,13 @@ File `views/index.hbs`
 ```
 {{!< default}}
 
-{{#content 'pageStyles'}}
+{{#contentFor 'pageStyles'}}
 <style>
   .clicker {
     color: blue;
   };
 </style>
-{{/content}}
+{{/contentFor}}
 
 <h1>{{title}}</h1>
 <p class="clicker">Click me!</p>
