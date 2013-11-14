@@ -111,6 +111,17 @@ Asynchronous helpers
     # in markup
     {{{readFile 'tos.txt'}}}
 
+## Methods
+
+### Create multiple instance
+
+    var hbs = require('express-hbs');
+
+    var instance1 = hbs.create();
+    var instance2 = hbs.create();
+
+    This allows you to create isolated instances with their own cache system and handlebars engine.
+
 ## Example
 
 in File `app.js`
