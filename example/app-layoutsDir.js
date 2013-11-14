@@ -3,6 +3,9 @@
 var express = require('express');
 var app = express();
 var hbs = require('..'); // should be `require('express-hbs')` outside of this example
+var fs = require('fs');
+var path = require('path');
+var viewsDir = __dirname + '/views';
 
 app.use(express.static(__dirname + '/public'));
 
@@ -14,6 +17,25 @@ app.engine('hbs', hbs.express3({
 }));
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
+
+
+// Register sync helper
+hbs.registerHelper('link', function(text, options) {
+  var attrs = [];
+  for (var prop in options.hash) {
+    attrs.push(prop + '="' + options.hash[prop] + '"');
+  }
+  return new hbs.SafeString(
+    "<a " + attrs.join(" ") + ">" + text + "</a>"
+  );
+});
+
+// Register Async helpers
+hbs.registerAsyncHelper('readFile', function(filename, cb) {
+  fs.readFile(path.join(viewsDir, filename), 'utf8', function(err, content) {
+    cb(new hbs.SafeString(content));
+  });
+});
 
 var fruits = [
   {name: 'apple'},
