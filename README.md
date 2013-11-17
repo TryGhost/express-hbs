@@ -83,6 +83,11 @@ There are three ways to use a layout, listed in the order in which they are chec
 
 3.  Lastly, use `defaultLayout` if specified in hbs configuration options.
 
+
+Layouts can be nested: just include a declarative layout tag within any layout template to have its content included in the declared "parent" layout.
+Be aware that too much nesting can impact performances, and stay away from infinite loops!
+
+
 ## Helpers
 
 Synchronous helpers
@@ -135,7 +140,7 @@ File `views/layout/default.hbs`
     {{#if settings.PROD_MODE}}
     {{{block 'googleAnalyticsScripts'}}}
     {{/if}}
-    
+
   </body>
 </html>
 ```
