@@ -5,3 +5,13 @@
 h1, h2 {
   font-family: Helvetica, Arial, sans;
 }
+
+.veggie-details {
+    border: 5px solid green;
+    padding: 10px;
+}
+
+.fruit-details {
+    border: 5px solid red;
+    padding: 10px;
+}
