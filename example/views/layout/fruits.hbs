@@ -1,18 +1,5 @@
-<html>
-  <head>
-    <title>{{title}}</title>
-    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
-    {{{block "pageStyles"}}}
-  </head>
-  <body>
-    <h2>DECLARATIVE LAYOUT</h2>
-    <!-- Placeholder for page content. -->
-    {{{body}}}
+{{!< html-struct}}
 
-    <!-- Partials are common snippets to be used 1 or more pages. -->
-    {{> scripts}}
-
-    <!-- A block is placeholder for pieces of content defined in a page. -->
-    {{{block 'pageScripts'}}}
-  </body>
-</html>
+<h2>DECLARATIVE LAYOUT</h2>
+<!-- Placeholder for page content. -->
+{{{body}}}
