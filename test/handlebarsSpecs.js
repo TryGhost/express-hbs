@@ -21,10 +21,24 @@ describe('express-hbs', function() {
         .expect(/DECLARATIVE LAYOUT/, done);
     });
 
+    it('should render nested declarative layouts correctly', function(done) {
+      request(app)
+        .get('/fruits/apple')
+        .expect(/DECLARATIVE LAYOUT/)
+        .expect(/NESTED LAYOUT/, done);
+    });
+
     it('should render layout specified as locals', function(done) {
       request(app)
         .get('/veggies')
         .expect(/PROGRAMMATIC LAYOUT/, done);
+    });
+
+    it('should render nested layouts correctly when first layout is specified as locals', function(done) {
+      request(app)
+        .get('/veggies/carrot')
+        .expect(/PROGRAMMATIC LAYOUT/)
+        .expect(/NESTED LAYOUT/, done);
     });
 
     it('should render partial', function(done) {
