@@ -135,7 +135,7 @@ File `views/layout/default.hbs`
     {{#if settings.PROD_MODE}}
     {{{block 'googleAnalyticsScripts'}}}
     {{/if}}
-    
+
   </body>
 </html>
 ```
@@ -164,6 +164,13 @@ To run example project
     node example/app.js
 
 ## Testing
+
+The test suite requires the `grunt-cli` package:
+
+    npm install -g grunt-cli
+    npm install
+
+Once everything's installed, just run:
 
     npm test
 
