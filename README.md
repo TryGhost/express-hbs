@@ -196,6 +196,7 @@ Big thanks!
 - Karl Johan Kleist
 - Mario Gutierrez
 - Norman Chen
+- Olivier Lance
 - Peter deHaan
 - Seb Gotvitch
 - williamcoates
