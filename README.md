@@ -179,7 +179,7 @@ Inspiration and code from [donpark/hbs](https://github.com/donpark/hbs)
 
 ## Contributors
 
-Thanks for the pull requests!
+Big thanks!
 
 - Erin Noe-Payne
 - Hannah Wolfe
@@ -190,6 +190,7 @@ Thanks for the pull requests!
 - Mario Gutierrez
 - Norman Chen
 - Peter deHaan
+- Seb Gotvitch
 - williamcoates
 - William Dibbern
 
