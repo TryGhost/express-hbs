@@ -171,6 +171,13 @@ To run example project
 
 ## Testing
 
+The test suite requires the `grunt-cli` package:
+
+    npm install -g grunt-cli
+    npm install
+
+Once everything's installed, just run:
+
     npm test
 
 ## Credits
