@@ -6,13 +6,6 @@ Open source project from [Barc](http://barc.com), instant real-time forum on any
 
 ## Usage
 
-0.3 BREAKING CHANGE. This version replaces a library dependency. Be
-sure to run `npm install` to install `readdirp` dependency.
-
-0.2 BREAKING CHANGE. The default content name has been reverted back to `contentFor`
-as it broke existing installations.  If you wish to change it, use `contentHelperName`
-option.
-
 To use with express 3.
 
     var hbs = require('express-hbs');
@@ -29,6 +22,8 @@ Options for `#express3`
 
     hbs.express3({
       partialsDir: "{String} [Required] Path to partials templates",
+
+      // OPTIONAL settings
 
       blockHelperName: "{String} Override 'block' helper name.",
       contentHelperName: "{String} Override 'contentFor' helper name.",
@@ -111,6 +106,17 @@ Asynchronous helpers
     # in markup
     {{{readFile 'tos.txt'}}}
 
+## Methods
+
+### Create multiple instance
+
+    var hbs = require('express-hbs');
+
+    var instance1 = hbs.create();
+    var instance2 = hbs.create();
+
+    This allows you to create isolated instances with their own cache system and handlebars engine.
+
 ## Example
 
 in File `app.js`
@@ -135,7 +141,7 @@ File `views/layout/default.hbs`
     {{#if settings.PROD_MODE}}
     {{{block 'googleAnalyticsScripts'}}}
     {{/if}}
-    
+
   </body>
 </html>
 ```
@@ -170,6 +176,22 @@ To run example project
 ## Credits
 
 Inspiration and code from [donpark/hbs](https://github.com/donpark/hbs)
+
+## Contributors
+
+Thanks for the pull requests!
+
+- Erin Noe-Payne
+- Hannah Wolfe
+- Ivan Stojic
+- Jacob Gable
+- John Lindal
+- Karl Johan Kleist
+- Mario Gutierrez
+- Norman Chen
+- Peter deHaan
+- williamcoates
+- William Dibbern
 
 
 ## License

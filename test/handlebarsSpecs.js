@@ -1,13 +1,60 @@
 var request = require('supertest');
-var app;
+var path = require('path');
+var rewire = require('rewire');
+var assert = require('assert');
+var fs = require('fs');
+
+
+/**
+ * Creates instance of example app using an injected version of express-hbs to track the number of times a
+ * file is read. Additionally, the $NODE_ENV environment variable may be set.
+ *
+ * @param env
+ * @returns {{app: hbs, readCounts: {}}}
+ */
+function createApp(env) {
+  var readCounts = {};
+  var hbs = rewire('../lib/hbs');
+  hbs.__set__('fs', {
+    readFileSync: function(filename, encoding) {
+      if (typeof readCounts[filename] === 'undefined') {
+        readCounts[filename] = 1;
+      } else {
+        readCounts[filename] += 1;
+      }
+
+      return fs.readFileSync(filename, encoding);
+    },
+
+    readFile: function(filename, encoding, cb) {
+      if (typeof readCounts[filename] === 'undefined') {
+        readCounts[filename] = 1;
+      } else {
+        readCounts[filename] += 1;
+      }
+
+      fs.readFile(filename, encoding, cb);
+    }
+  });
+
+  // used mocked hbs in example
+  var example = require('../example/app');
+  var app = example.create(hbs, env);
+  return {app: app, readCounts: readCounts};
+}
+
 
 describe('express-hbs', function() {
 
   describe('defaults', function() {
+    var app;
 
     beforeEach(function() {
-      app = require('../example/app');
+      var example = require('../example/app');
+      var hbs = require('..');
+      app = example.create(hbs);
     });
+
 
     it('should render using default layout', function(done) {
       request(app)
@@ -54,6 +101,8 @@ describe('express-hbs', function() {
   });
 
   describe('layoutsDir', function() {
+    var app;
+
     beforeEach(function() {
       app = require('../example/app-layoutsDir');
     });
@@ -77,5 +126,4 @@ describe('express-hbs', function() {
     });
 
   });
-
 });

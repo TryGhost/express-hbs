@@ -1,14 +1,20 @@
 {
   "name": "express-hbs",
-  "version": "0.5.1",
+  "version": "0.5.2-pre",
   "description": "Express 3 handlebars template engine complete with multiple layouts, partials and blocks.",
-  "keywords": ["express3", "express", "handlebars", "layout", "partials"],
+  "keywords": [
+    "express3",
+    "express",
+    "handlebars",
+    "layout",
+    "partials"
+  ],
   "main": "index.js",
   "directories": {
     "example": "example"
   },
   "scripts": {
-    "test": "grunt"
+    "test": "mocha --ui bdd --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -19,13 +25,14 @@
   "license": "MIT",
   "devDependencies": {
     "express": "~3.0.6",
-    "supertest": "~0.5.1",
+    "supertest": "~0.8.1",
     "mocha": "~1.9.0",
     "grunt": "~0.4.1",
-    "grunt-mocha-cli": "~1.0.6"
+    "grunt-mocha-cli": "~1.0.6",
+    "rewire": "~2.0.0"
   },
   "dependencies": {
-    "handlebars": "~1.0.10",
+    "handlebars": "~1.1.2",
     "readdirp": "~0.3.1"
   }
 }
