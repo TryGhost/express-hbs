@@ -174,7 +174,7 @@ To run example project
 The test suite requires the `grunt-cli` package:
 
     npm install -g grunt-cli
-    npm install
+    npm install -d
 
 Once everything's installed, just run:
 
