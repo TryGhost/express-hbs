@@ -126,4 +126,14 @@ describe('express-hbs', function() {
     });
 
   });
+
+  describe('instances', function() {
+    it('should create isolated instances', function() {
+      var hbs = require('..');
+      var hbs2 = hbs.create();
+      var hbs3 = hbs.create();
+
+      assert(hbs !== hbs2 && hbs !== hbs3 && hbs2 !== hbs3);
+    });
+  });
 });
