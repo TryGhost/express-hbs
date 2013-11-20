@@ -15,7 +15,7 @@ function create(hbs, env) {
 
 // Hook in express-hbs and tell it where known directories reside
   app.engine('hbs', hbs.express3({
-    partialsDir: __dirname + '/views/partials',
+    partialsDir: [__dirname + '/views/partials', __dirname + '/views/partials-other'],
     defaultLayout: __dirname + '/views/layout/default.hbs'
   }));
   app.set('view engine', 'hbs');
