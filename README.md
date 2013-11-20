@@ -21,7 +21,7 @@ To use with express 3.
 Options for `#express3`
 
     hbs.express3({
-      partialsDir: "{String} [Required] Path to partials templates",
+      partialsDir: "{String/Array} [Required] Path to partials templates, one or several directories",
 
       // OPTIONAL settings
 

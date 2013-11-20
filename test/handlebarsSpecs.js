@@ -77,7 +77,8 @@ describe('express-hbs', function() {
     it('should render partial', function(done) {
       request(app)
         .get('/veggies')
-        .expect(/jquery\.js/, done);
+        .expect(/jquery\.js/)
+        .expect(/Other partial/, done);
     });
 
     it('should render sub partial', function(done) {
