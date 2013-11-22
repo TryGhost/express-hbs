@@ -67,12 +67,25 @@ function create(hbs, env) {
     });
   });
 
+  app.get('/fruits/:name', function(req, res) {
+    res.render('fruits/details', {
+      fruit: req.params.name
+    })
+  });
+
   app.get('/veggies', function(req, res) {
     res.render('veggies', {
       title: 'My favorite veggies',
       veggies: veggies,
       layout: 'layout/veggie'
     });
+  });
+
+  app.get('/veggies/:name', function(req, res) {
+    res.render('veggies/details', {
+      veggie: req.params.name,
+      layout: '../layout/veggie-details'
+    })
   });
 
   return app;
