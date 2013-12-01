@@ -51,6 +51,18 @@ describe('express-hbs', function() {
         .expect(/color: blue/, done);
     });
 
+	it('should render block default content', function(done) {
+		request(app)
+			.get('/')
+			.expect(/Default block content/, done);
+	});
+	  
+	it('should render block content instead of default content when contentFor is declared', function(done) {
+		request(app)
+			.get('/')
+			.expect(/Non-default block content/, done);
+	});
+	  
     it('should replace {{body}}', function(done) {
       request(app)
         .get('/')
