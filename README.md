@@ -222,24 +222,7 @@ Once everything's installed, just run:
 
 Inspiration and code from [donpark/hbs](https://github.com/donpark/hbs)
 
-## Contributors
-
-Big thanks!
-
-- Erin Noe-Payne
-- Hannah Wolfe
-- Ivan Stojic
-- Jacob Gable
-- John Lindal
-- Karl Johan Kleist
-- Mario Gutierrez
-- Norman Chen
-- Olivier Lance
-- Peter deHaan
-- Seb Gotvitch
-- williamcoates
-- William Dibbern
-
+Big thanks to all [CONTRIBUTORS](https://github.com/barc/express-hbs/contributors)
 
 ## License
 
