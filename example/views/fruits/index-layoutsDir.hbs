@@ -3,7 +3,7 @@
 
 {{#contentFor 'pageStyles'}}
 <style>
-  li {
+  li a {
     color: #800;
   }
 </style>
@@ -13,6 +13,8 @@
 <h1>{{title}}</h1>
 <ul>
     {{#each fruits}}
-    <li>{{this.name}}</li>
+      <li>
+        <a href="/fruits/{{this.name}}">{{this.name}}</a>
+      </li>
     {{/each}}
 </ul>
