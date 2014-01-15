@@ -8,9 +8,7 @@ function stripWs(s) {
 }
 
 describe('issue-23', function() {
-
-  it('should not pass an empty or missing partial to handlebars', function(done) {
-    var dirname =  path.join(__dirname, 'issues/23');
+  it('should not pass an empty or missing partial to handlebars', function(done) { var dirname =  path.join(__dirname, 'issues/23');
     var render = hbs.create().express3({
       partialsDir: [dirname + '/partials']
     });
@@ -23,6 +21,18 @@ describe('issue-23', function() {
     var result = render(dirname + '/index.hbs', {cache: true, settings: {views: dirname + '/views'}}, check);
   });
 
+  it('should handle empty string', function(done) { var dirname =  path.join(__dirname, 'issues/23');
+    var render = hbs.create().express3({
+      partialsDir: [dirname + '/partials']
+    });
+
+    function check(err, html) {
+      assert.ifError(err);
+      assert.equal('', stripWs(html));
+      done();
+    }
+    var result = render(dirname + '/empty.hbs', {cache: true, settings: {views: dirname + '/views'}}, check);
+  });
 });
 
 
@@ -88,7 +98,6 @@ describe('issue-21', function() {
     var options = {cache: true, layout: 'layouts/sub/child', settings: {views: dirname + '/views'}};
     var result = render(dirname + '/views/sub/sub.hbs', options, check);
   });
-
 });
 
 

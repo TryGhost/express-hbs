@@ -4,11 +4,9 @@ Express 3 handlebars template engine with multiple layouts, blocks and cached pa
 
 Open source project from [Barc](http://barc.com), instant real-time forum on any website.
 
-
-BREAKING CHANGES IN 0.7: The logic for layout resolution for layoutsDir,
+**0.7 BREAKING CHANGES**: The logic for layout resolution for layoutsDir,
 layout and declarative layouts in previous versions stepped on each other.
-Often times, it didn't make sense. Please read Layouts section below.
-
+Read Layouts section below on how layouts are resolved.
 
 ## Usage
 
@@ -18,8 +16,7 @@ To use with express 3.
 
     // Use `.hbs` for extensions and find partials in `views/partials`.
     app.engine('hbs', hbs.express3({
-      partialsDir: __dirname + '/views/partials',
-      contentHelperName: 'content',
+      partialsDir: __dirname + '/views/partials'
     }));
     app.set('view engine', 'hbs');
     app.set('views', __dirname + '/views');
@@ -30,7 +27,6 @@ Options for `#express3`
       partialsDir: "{String/Array} [Required] Path to partials templates, one or several directories",
 
       // OPTIONAL settings
-
       blockHelperName: "{String} Override 'block' helper name.",
       contentHelperName: "{String} Override 'contentFor' helper name.",
       defaultLayout: "{String} Absolute path to default layout template",
@@ -45,16 +41,15 @@ Partials may use any extension, which is better for syntax highlighting.
 
 ## Syntax
 
-To mark where layout should insert page,
+To mark where layout should insert page
 
     {{{body}}}
 
-
-To declare a block placeholder in layout.
+To declare a block placeholder in layout
 
     {{{block "pageScripts"}}}
 
-To define block content in a page.
+To define block content in a page
 
     {{#contentFor "pageScripts"}}
       CONTENT HERE
@@ -62,10 +57,9 @@ To define block content in a page.
 
 ## Layouts
 
-There are three ways to use a layout, listed in the order in which they are
-checked for and used:
+There are three ways to use a layout, listed in precedence order
 
-1.  Declarative within a page. Use handlebars comment.
+1.  Declarative within a page. Use handlebars comment
 
         {{!< LAYOUT}}
 
@@ -76,7 +70,7 @@ checked for and used:
         Else If `layoutsDir` is set
             LAYOUT is relative to `layoutsDir`
         Else
-            LAYOUT is resolved by path.resolve(dirname(template), LAYOUT)
+            LAYOUT from path.resolve(dirname(template), LAYOUT)
 
 2.  As an option to render
 
@@ -97,11 +91,11 @@ checked for and used:
     Layout file resolution:
 
         If path starts with '.'
-            layout is relative to template.
+            layout is relative to template
         Else If `layoutsDir` is set
             layout is relative to `layoutsDir`
         Else
-            layout is resolved by path.resolve(viewsDir, LAYOUT)
+            layout from path.resolve(viewsDir, layout)
 
 3.  Lastly, use `defaultLayout` if specified in hbs configuration options.
 
@@ -140,16 +134,15 @@ Asynchronous helpers
     # in markup
     {{{readFile 'tos.txt'}}}
 
-## Methods
 
-### Create multiple instance
+## Engine Instances
+
+Create isolated engine instances with their own cache system and handlebars engine.
 
     var hbs = require('express-hbs');
-
     var instance1 = hbs.create();
     var instance2 = hbs.create();
 
-    This allows you to create isolated instances with their own cache system and handlebars engine.
 
 ## Example
 
@@ -207,6 +200,7 @@ To run example project
     npm install -d
     node example/app.js
 
+
 ## Testing
 
 The test suite requires the `grunt-cli` package:
@@ -218,19 +212,19 @@ Once everything's installed, just run:
 
     npm test
 
+
 ## Credits
 
 Inspiration and code from [donpark/hbs](https://github.com/donpark/hbs)
 
 Big thanks to all [CONTRIBUTORS](https://github.com/barc/express-hbs/contributors)
 
+
 ## License
 
 The MIT License (MIT)
-Copyright (c) 2012, 2013 Barc, Inc.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Copyright (c) 2012-2014 Barc, Inc.
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+See file LICENSE for copying permissions.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
