@@ -4,6 +4,12 @@ Express 3 handlebars template engine with multiple layouts, blocks and cached pa
 
 Open source project from [Barc](http://barc.com), instant real-time forum on any website.
 
+
+BREAKING CHANGES IN 0.7: The logic for layout resolution for layoutsDir,
+layout and declarative layouts in previous versions stepped on each other.
+Often times, it didn't make sense. Please read Layouts section below.
+
+
 ## Usage
 
 To use with express 3.
@@ -54,11 +60,23 @@ To define block content in a page.
       CONTENT HERE
     {{/contentFor}}
 
-There are three ways to use a layout, listed in the order in which they are checked for and used:
+## Layouts
 
-1.  Declarative within a page. Use handlebars comment. If you have declared a layoutsDir in the configuration, `LAYOUT` is a relative path from layoutsDir. Otherwise, `LAYOUT` is a relative path from the template.
+There are three ways to use a layout, listed in the order in which they are
+checked for and used:
+
+1.  Declarative within a page. Use handlebars comment.
 
         {{!< LAYOUT}}
+
+    Layout file resolution:
+
+    If path starts with '.'
+        LAYOUT is relative to template
+    Else If `layoutsDir` is set
+        LAYOUT is relative to `layoutsDir`
+    Else
+        LAYOUT is resolved by path.resolve(dirname(template), LAYOUT)
 
 2.  As an option to render
 
@@ -76,11 +94,22 @@ There are three ways to use a layout, listed in the order in which they are chec
           layout: null // render without using a layout template
         });
 
+    Layout file resolution:
+
+    If path starts with '.'
+        layout is relative to template.
+    Else If `layoutsDir` is set
+        layout is relative to `layoutsDir`
+    Else
+        layout is resolved by path.resolve(viewsDir, LAYOUT)
+
 3.  Lastly, use `defaultLayout` if specified in hbs configuration options.
 
 
-Layouts can be nested: just include a declarative layout tag within any layout template to have its content included in the declared "parent" layout.
-Be aware that too much nesting can impact performances, and stay away from infinite loops!
+Layouts can be nested: just include a declarative layout tag within any layout
+template to have its content included in the declared "parent" layout.  Be
+aware that too much nesting can impact performances, and stay away from
+infinite loops!
 
 
 ## Helpers

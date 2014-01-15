@@ -79,7 +79,7 @@ app.get('/veggies/explicit-dir', function(req, res) {
   res.render('veggies', {
     title: 'My favorite veggies',
     veggies: veggies,
-    layout: 'layout/veggie'
+    layout: __dirname + '/views/layout/veggie'
   });
 });
 

@@ -84,7 +84,7 @@ function create(hbs, env) {
   app.get('/veggies/:name', function(req, res) {
     res.render('veggies/details', {
       veggie: req.params.name,
-      layout: '../layout/veggie-details'
+      layout: 'layout/veggie-details'
     })
   });
 
