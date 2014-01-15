@@ -126,7 +126,11 @@ Asynchronous helpers
 
 in File `app.js`
 ```
-app.set('PROD_MODE', ('production' === app.get('env')));
+// http://expressjs.com/api.html#app.locals
+app.locals({
+    'PROD_MODE': 'production' === app.get('env')
+});
+
 ```
 
 File `views/layout/default.hbs`
@@ -143,7 +147,7 @@ File `views/layout/default.hbs`
 
     {{> scripts}}
 
-    {{#if settings.PROD_MODE}}
+    {{#if PROD_MODE}}
     {{{block 'googleAnalyticsScripts'}}}
     {{/if}}
 
