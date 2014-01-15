@@ -71,12 +71,12 @@ checked for and used:
 
     Layout file resolution:
 
-    If path starts with '.'
-        LAYOUT is relative to template
-    Else If `layoutsDir` is set
-        LAYOUT is relative to `layoutsDir`
-    Else
-        LAYOUT is resolved by path.resolve(dirname(template), LAYOUT)
+        If path starts with '.'
+            LAYOUT is relative to template
+        Else If `layoutsDir` is set
+            LAYOUT is relative to `layoutsDir`
+        Else
+            LAYOUT is resolved by path.resolve(dirname(template), LAYOUT)
 
 2.  As an option to render
 
@@ -96,12 +96,12 @@ checked for and used:
 
     Layout file resolution:
 
-    If path starts with '.'
-        layout is relative to template.
-    Else If `layoutsDir` is set
-        layout is relative to `layoutsDir`
-    Else
-        layout is resolved by path.resolve(viewsDir, LAYOUT)
+        If path starts with '.'
+            layout is relative to template.
+        Else If `layoutsDir` is set
+            layout is relative to `layoutsDir`
+        Else
+            layout is resolved by path.resolve(viewsDir, LAYOUT)
 
 3.  Lastly, use `defaultLayout` if specified in hbs configuration options.
 
