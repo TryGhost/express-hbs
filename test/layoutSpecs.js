@@ -12,7 +12,7 @@ function createLocals(which, viewsDir, locals) {
   var opts = {};
   if (which === 'express3') {
     opts.settings = {
-      views: viewsDir,
+      views: viewsDir
     };
     opts.cache = process.env.NODE_ENV === 'production';
     opts.settings.views = viewsDir;
@@ -78,6 +78,43 @@ describe('layouts', function() {
         disableLayoutDirective: true
       });
       var locals = createLocals('express3', dirname);
+      render(dirname + '/index.hbs', locals, function(err, html) {
+        assert.equal('dld', stripWs(html));
+        done();
+      });
+    });
+  });
+
+  describe('options.layout', function() {
+    var dirname = __dirname + '/views/disableLayoutDirective';
+
+    it ('should process template-specified layout without option', function(done) {
+      var render = hbs.create().express3({
+      });
+      var locals = createLocals('express3', dirname);
+
+      render(dirname + '/index.hbs', locals, function(err, html) {
+        assert.equal('<dld>dld</dld>', stripWs(html));
+        done();
+      });
+    });
+
+    it ('should allow options.layout to be specified', function(done) {
+      var render = hbs.create().express3({
+      });
+      var locals = createLocals('express3', dirname, { layout: 'layouts/default' });
+
+      render(dirname + '/aside.hbs', locals, function(err, html) {
+        assert.equal('<dld>aside</dld>', stripWs(html));
+        done();
+      });
+    });
+
+    it ('should not process template-specified layout when options.layout is falsy', function(done) {
+      var render = hbs.create().express3({
+      });
+      var locals = createLocals('express3', dirname, { layout: false });
+
       render(dirname + '/index.hbs', locals, function(err, html) {
         assert.equal('dld', stripWs(html));
         done();
