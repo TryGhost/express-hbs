@@ -59,31 +59,6 @@ describe('layouts', function() {
     });
   });
 
-  describe('disableLayoutDirective', function() {
-    var dirname = __dirname + '/views/disableLayoutDirective';
-
-    it ('should process directive without option', function(done) {
-      var render = hbs.create().express3({
-      });
-      var locals = createLocals('express3', dirname);
-
-      render(dirname + '/index.hbs', locals, function(err, html) {
-        assert.equal('<dld>dld</dld>', stripWs(html));
-        done();
-      });
-    });
-
-    it ('should not process directive with option set', function(done) {
-      var render = hbs.create().express3({
-        disableLayoutDirective: true
-      });
-      var locals = createLocals('express3', dirname);
-      render(dirname + '/index.hbs', locals, function(err, html) {
-        assert.equal('dld', stripWs(html));
-        done();
-      });
-    });
-  });
 
   describe('options.layout', function() {
     var dirname = __dirname + '/views/disableLayoutDirective';
