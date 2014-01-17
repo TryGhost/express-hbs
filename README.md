@@ -33,6 +33,7 @@ Options for `#express3`
       extname: "{String} Extension for templates, defaults to `.hbs`",
       handlebars: "{Module} Use external handlebars instead of express-hbs dependency",
       layoutsDir: "{String} Path to layout templates",
+      disableLayoutDirective: "{Boolean} Disables comment-based layout directives",
       templateOptions: "{Object} options to pass to template()"
     });
 

@@ -1,6 +1,6 @@
 var request = require('supertest');
 var assert = require('assert');
-
+var hbs = require('..');
 
 describe('express-hbs', function() {
 
@@ -9,8 +9,7 @@ describe('express-hbs', function() {
 
     beforeEach(function() {
       var example = require('../example/app');
-      var hbs = require('..');
-      app = example.create(hbs);
+      app = example.create(hbs.create());
     });
 
 
@@ -85,36 +84,8 @@ describe('express-hbs', function() {
 
   });
 
-  describe('layoutsDir', function() {
-    var app;
-
-    beforeEach(function() {
-      app = require('../example/app-layoutsDir');
-    });
-
-    it('should render layout declared in markup', function(done) {
-      request(app)
-        .get('/fruits')
-        .expect(/DECLARATIVE LAYOUT/, done);
-    });
-
-    it('should allow specifying layout in locals without dir', function(done) {
-      request(app)
-        .get('/veggies')
-        .expect(/PROGRAMMATIC LAYOUT/, done);
-    });
-
-    it('should still allow specifying layout in locals with dir', function(done) {
-      request(app)
-        .get('/veggies/explicit-dir')
-        .expect(/PROGRAMMATIC LAYOUT/, done);
-    });
-
-  });
-
   describe('instances', function() {
     it('should create isolated instances', function() {
-      var hbs = require('..');
       var hbs2 = hbs.create();
       var hbs3 = hbs.create();
 

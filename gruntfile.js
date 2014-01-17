@@ -1,26 +1,26 @@
 module.exports = function configureGrunt(grunt) {
-    grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
+  grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
 
-        mochacli: {
-            options: {
-                ui: 'bdd',
-                reporter: 'spec'
-            },
+    mochacli: {
+      options: {
+        ui: 'bdd',
+        reporter: 'spec'
+      },
 
-            all: {
-                src: ['test/*.js']
-            }
-        }
-    });
+      all: {
+        src: ['test/*.js']
+      }
+    }
+  });
 
-    grunt.registerTask('setProductionEnv', function () {
-        // Use 'production' config
-        process.env.NODE_ENV = 'production';
-    });
+  grunt.registerTask('setProductionEnv', function () {
+    // Use 'production' config
+    process.env.NODE_ENV = 'production';
+  });
 
-    grunt.loadNpmTasks('grunt-mocha-cli');
+  grunt.loadNpmTasks('grunt-mocha-cli');
 
-    // Run tests
-    grunt.registerTask('default', ['mochacli:all', 'setProductionEnv', 'mochacli:all']);
+  // Run tests
+  grunt.registerTask('default', ['mochacli:all', 'setProductionEnv', 'mochacli:all']);
 };
