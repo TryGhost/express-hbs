@@ -8,7 +8,9 @@ function stripWs(s) {
 }
 
 describe('issue-23', function() {
-  it('should not pass an empty or missing partial to handlebars', function(done) { var dirname =  path.join(__dirname, 'issues/23');
+  var dirname =  path.join(__dirname, 'issues/23');
+
+  it('should not pass an empty or missing partial to handlebars', function(done) {
     var render = hbs.create().express3({
       partialsDir: [dirname + '/partials']
     });
@@ -21,7 +23,7 @@ describe('issue-23', function() {
     var result = render(dirname + '/index.hbs', {cache: true, settings: {views: dirname + '/views'}}, check);
   });
 
-  it('should handle empty string', function(done) { var dirname =  path.join(__dirname, 'issues/23');
+  it('should handle empty string', function(done) {
     var render = hbs.create().express3({
       partialsDir: [dirname + '/partials']
     });
@@ -32,6 +34,57 @@ describe('issue-23', function() {
       done();
     }
     var result = render(dirname + '/empty.hbs', {cache: true, settings: {views: dirname + '/views'}}, check);
+  });
+
+
+  it('should register empty partial', function(done) {
+    var hb = hbs.create();
+    var render = hb.express3({
+      partialsDir: [dirname + '/partials']
+    });
+    hb.handlebars.registerPartial('emptyPartial', '');
+
+    var pass = 0;
+    function check(err, html) {
+      pass++;
+      assert.ifError(err);
+      assert.equal('foo', stripWs(html));
+      if (pass < 3) {
+        doIt();
+      } else {
+        done();
+      }
+    }
+    function doIt() {
+      render(dirname + '/emptyPartial.hbs', {cache: true, settings: {views: dirname + '/views'}}, check);
+    }
+    doIt();
+  });
+
+  it('should register partial that results in empty string (comment)', function(done) {
+    var hb = hbs.create();
+    var render = hb.express3({
+      partialsDir: [dirname + '/partials']
+    });
+    // this fails
+    //hb.handlebars.registerPartial('emptyComment', '{{! just a comment}}');
+    hb.registerPartial('emptyComment', '{{! just a comment}}');
+
+    var pass = 0;
+    function check(err, html) {
+      pass++;
+      assert.ifError(err);
+      assert.equal('foo', stripWs(html));
+      if (pass < 3) {
+        doIt();
+      } else {
+        done();
+      }
+    }
+    function doIt() {
+      render(dirname + '/emptyComment.hbs', {cache: true, settings: {views: dirname + '/views'}}, check);
+    }
+    doIt();
   });
 });
 
