@@ -1,11 +1,28 @@
 var assert = require('assert');
 var hbs = require('..');
 var path = require('path');
+var H = require('./helpers');
 
 
-function stripWs(s) {
-  return s.replace(/\s+/g, '');
-}
+describe('issue-22 template', function() {
+  var dirname =  path.join(__dirname, 'issues/22');
+
+  it('should use multiple layouts with caching', function(done) {
+    var render = hbs.create().express3({});
+    var locals1 = H.createLocals('express3', dirname, { layout: 'layout1', cache: true });
+    var locals2 = H.createLocals('express3', dirname, { layout: 'layout2', cache: true });
+
+    render(dirname + '/template.hbs', locals1, function(err, html) {
+      assert.ifError(err);
+      assert.equal('<layout1>template</layout1>', H.stripWs(html));
+      render(dirname + '/template.hbs', locals2, function(err, html) {
+        assert.ifError(err);
+        assert.equal('<layout2>template</layout2>', H.stripWs(html));
+        done();
+      });
+    });
+  });
+});
 
 describe('issue-23', function() {
   var dirname =  path.join(__dirname, 'issues/23');
@@ -17,7 +34,7 @@ describe('issue-23', function() {
 
     function check(err, html) {
       assert.ifError(err);
-      assert.equal('<html>Hello</html>', stripWs(html));
+      assert.equal('<html>Hello</html>', H.stripWs(html));
       done();
     }
     var result = render(dirname + '/index.hbs', {cache: true, settings: {views: dirname + '/views'}}, check);
@@ -30,7 +47,7 @@ describe('issue-23', function() {
 
     function check(err, html) {
       assert.ifError(err);
-      assert.equal('', stripWs(html));
+      assert.equal('', H.stripWs(html));
       done();
     }
     var result = render(dirname + '/empty.hbs', {cache: true, settings: {views: dirname + '/views'}}, check);
@@ -48,7 +65,7 @@ describe('issue-23', function() {
     function check(err, html) {
       pass++;
       assert.ifError(err);
-      assert.equal('foo', stripWs(html));
+      assert.equal('foo', H.stripWs(html));
       if (pass < 3) {
         doIt();
       } else {
@@ -74,7 +91,7 @@ describe('issue-23', function() {
     function check(err, html) {
       pass++;
       assert.ifError(err);
-      assert.equal('foo', stripWs(html));
+      assert.equal('foo', H.stripWs(html));
       if (pass < 3) {
         doIt();
       } else {
@@ -98,7 +115,7 @@ describe('issue-21', function() {
   it('should allow specifying layouts without the parent dir', function(done) {
     function check(err, html) {
       assert.ifError(err);
-      assert.equal('<html>index</html>', stripWs(html));
+      assert.equal('<html>index</html>', H.stripWs(html));
       done();
     }
 
@@ -109,7 +126,7 @@ describe('issue-21', function() {
 
   it('should allow specifying layouts without the parent dir in a sub view', function(done) { function check(err, html) {
       assert.ifError(err);
-      assert.equal('<html>sub</html>', stripWs(html));
+      assert.equal('<html>sub</html>', H.stripWs(html));
       done();
     }
 
@@ -119,7 +136,7 @@ describe('issue-21', function() {
 
   it('should treat layouts that start with "." relative to template', function(done) { function check(err, html) {
       assert.ifError(err);
-      assert.equal('<relative>sub</relative>', stripWs(html));
+      assert.equal('<relative>sub</relative>', H.stripWs(html));
       done();
     }
 
@@ -130,7 +147,7 @@ describe('issue-21', function() {
   it('should allow layouts in subfolders', function(done) {
     function check(err, html) {
       assert.ifError(err);
-      assert.equal('<sub>useLayoutInDir</sub>', stripWs(html));
+      assert.equal('<sub>useLayoutInDir</sub>', H.stripWs(html));
       done();
     }
 
@@ -144,7 +161,7 @@ describe('issue-21', function() {
 
     function check(err, html) {
       assert.ifError(err);
-      assert.equal('<sub>sub</sub>', stripWs(html));
+      assert.equal('<sub>sub</sub>', H.stripWs(html));
       done();
     }
 
