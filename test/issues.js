@@ -171,3 +171,19 @@ describe('issue-21', function() {
 });
 
 
+describe('issue-49', function() {
+  var dirname =  path.join(__dirname, 'issues/49');
+
+  it('should report filename with error', function(done) {
+    var hb = hbs.create()
+    var render = hb.express3({});
+    var locals = H.createLocals('express3', dirname, {});
+
+    render(dirname + '/error.hbs', locals, function(err, html) {
+      assert(err.stack.indexOf('/issues/49/error.hbs') > 0);
+      done();
+    });
+  });
+});
+
+
