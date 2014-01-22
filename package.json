@@ -1,6 +1,6 @@
 {
   "name": "express-hbs",
-  "version": "0.7.3-pre",
+  "version": "0.7.4-pre",
   "description": "Express 3 handlebars template engine complete with multiple layouts, partials and blocks.",
   "keywords": [
     "express3",
