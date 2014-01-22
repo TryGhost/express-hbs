@@ -82,7 +82,7 @@ There are three ways to use a layout, listed in precedence order
           layout: 'layout/veggie'
         });
 
-    This option also allows for default layout suppression by passing in a falsey Javascript value as the value of the `layout` property:
+    This option also allows for layout suppression (both the default layout and when specified declaratively in a page) by passing in a falsey Javascript value as the value of the `layout` property:
 
         res.render('veggies', {
           title: 'My favorite veggies',
