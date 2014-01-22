@@ -33,8 +33,10 @@ Options for `#express3`
       extname: "{String} Extension for templates, defaults to `.hbs`",
       handlebars: "{Module} Use external handlebars instead of express-hbs dependency",
       layoutsDir: "{String} Path to layout templates",
-      templateOptions: "{Object} options to pass to template()"
+      templateOptions: "{Object} options to pass to template()",
+      beautify: "{Boolean} whether to pretty print HTML, see github.com/einars/js-beautify .jsbeautifyrc
     });
+
 
 Partials may use any extension, which is better for syntax highlighting.
 
