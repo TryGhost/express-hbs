@@ -180,6 +180,7 @@ describe('issue-49', function() {
     var locals = H.createLocals('express3', dirname, {});
 
     render(dirname + '/error.hbs', locals, function(err, html) {
+      console.error(err.stack);
       assert(err.stack.indexOf('/issues/49/error.hbs') > 0);
       done();
     });
