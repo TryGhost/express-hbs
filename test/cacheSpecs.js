@@ -34,6 +34,9 @@ function createApp(env) {
       }
 
       fs.readFile(filename, encoding, cb);
+    },
+    existsSync: function(filename, encoding) {
+      return fs.existsSync(filename, encoding);
     }
   });
 
