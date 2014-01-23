@@ -183,6 +183,28 @@ describe('issue-49', function() {
       done();
     });
   });
+
+  it('should report relative filename with error', function(done) {
+    var hb = hbs.create()
+    var render = hb.express3({});
+    var locals = H.createLocals('express3', dirname, {});
+    render(dirname + '/front/error.hbs', locals, function(err, html) {
+      assert(err.stack.indexOf('front/error.hbs') > 0);
+      done();
+    });
+  });
+
+  it('should report filename with partial error', function(done) {
+    var hb = hbs.create()
+    var render = hb.express3({
+      partialsDir: dirname + '/partials'
+    });
+    var locals = H.createLocals('express3', dirname, {});
+    render(dirname + '/partial.hbs', locals, function(err, html) {
+      assert(err.stack.indexOf('partial.hbs') > 0);
+      done();
+    });
+  });
 });
 
 
