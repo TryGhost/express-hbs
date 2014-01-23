@@ -179,7 +179,7 @@ describe('issue-49', function() {
     var render = hb.express3({});
     var locals = H.createLocals('express3', dirname, {});
     render(dirname + '/error.hbs', locals, function(err, html) {
-      assert(err.stack.indexOf('/issues/49/error.hbs') > 0);
+      assert(err.stack.indexOf('error.hbs') > 0);
       done();
     });
   });
