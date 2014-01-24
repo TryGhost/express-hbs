@@ -29,7 +29,8 @@
     "mocha": "~1.9.0",
     "grunt": "~0.4.1",
     "grunt-mocha-cli": "~1.0.6",
-    "rewire": "~2.0.0"
+    "rewire": "~2.0.0",
+    "i18n": "~0.4.1"
   },
   "dependencies": {
     "handlebars": "~1.3",

@@ -32,6 +32,7 @@ Options for `#express3`
       defaultLayout: "{String} Absolute path to default layout template",
       extname: "{String} Extension for templates, defaults to `.hbs`",
       handlebars: "{Module} Use external handlebars instead of express-hbs dependency",
+      i18n: "{Object} i18n object",
       layoutsDir: "{String} Path to layout templates",
       templateOptions: "{Object} options to pass to template()",
       beautify: "{Boolean} whether to pretty print HTML, see github.com/einars/js-beautify .jsbeautifyrc
@@ -137,6 +138,33 @@ Asynchronous helpers
     {{{readFile 'tos.txt'}}}
 
 
+## i18n support
+
+Express-hbs supports [i18n](https://github.com/mashpie/i18n-node)
+
+    var i18n = require('i18n');
+
+    // minimal config
+    i18n.configure({
+        locales: ['en', 'fr'],
+        cookie: 'locale',
+        directory: __dirname + "/locales"
+    });
+
+    app.engine('hbs', hbs.express3({
+        // ... options from above
+        i18n: i18n,  // registers __ and __n helpers
+    }));
+    app.set('view engine', 'hbs');
+    app.set('views', viewsDir);
+
+    // cookies are needed
+    app.use(express.cookieParser());
+
+    // init i18n module
+    app.use(i18n.init);
+
+
 ## Engine Instances
 
 Create isolated engine instances with their own cache system and handlebars engine.
@@ -144,7 +172,6 @@ Create isolated engine instances with their own cache system and handlebars engi
     var hbs = require('express-hbs');
     var instance1 = hbs.create();
     var instance2 = hbs.create();
-
 
 ## Example
 
