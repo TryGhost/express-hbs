@@ -205,6 +205,18 @@ describe('issue-49', function() {
       done();
     });
   });
+
+  it('should report filename with layout error', function(done) {
+    var hb = hbs.create()
+    var render = hb.express3({
+      partialsDir: dirname + '/partials'
+    });
+    var locals = H.createLocals('express3', dirname, {});
+    render(dirname + '/index.hbs', locals, function(err, html) {
+      assert(err.stack.indexOf('layouts/default.hbs') > 0);
+      done();
+    });
+  });
 });
 
 
