@@ -179,7 +179,7 @@ describe('issue-49', function() {
     var render = hb.express3({});
     var locals = H.createLocals('express3', dirname, {});
     render(dirname + '/error.hbs', locals, function(err, html) {
-      assert(err.stack.indexOf('error.hbs') > 0);
+      assert(err.stack.indexOf('[error.hbs]') > 0);
       done();
     });
   });
@@ -189,7 +189,7 @@ describe('issue-49', function() {
     var render = hb.express3({});
     var locals = H.createLocals('express3', dirname, {});
     render(dirname + '/front/error.hbs', locals, function(err, html) {
-      assert(err.stack.indexOf('front/error.hbs') > 0);
+      assert(err.stack.indexOf('[front/error.hbs]') > 0);
       done();
     });
   });
@@ -201,7 +201,7 @@ describe('issue-49', function() {
     });
     var locals = H.createLocals('express3', dirname, {});
     render(dirname + '/partial.hbs', locals, function(err, html) {
-      assert(err.stack.indexOf('partial.hbs') > 0);
+      assert(err.stack.indexOf('[partial.hbs]') > 0);
       done();
     });
   });
@@ -213,10 +213,9 @@ describe('issue-49', function() {
     });
     var locals = H.createLocals('express3', dirname, {});
     render(dirname + '/index.hbs', locals, function(err, html) {
-      assert(err.stack.indexOf('layouts/default.hbs') > 0);
+      assert(err.stack.indexOf('[layouts/default.hbs]') > 0);
       done();
     });
   });
 });
-
 
