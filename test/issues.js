@@ -219,3 +219,29 @@ describe('issue-49', function() {
   });
 });
 
+describe('issue-53', function() {
+  var dirname =  path.join(__dirname, 'issues/53');
+
+  it('should use block with async helpers', function(done) {
+    var hb = hbs.create()
+    var res = 0;
+    hb.registerAsyncHelper('weird', function(_, resultcb) {
+      setTimeout(function() {
+        resultcb(++res);
+      }, 1)
+    });
+    var render = hb.express3({});
+    var locals = H.createLocals('express3', dirname, {});
+    render(dirname + '/index.hbs', locals, function(err, html) {
+      assert.ok(html.indexOf('__aSyNcId_') < 0);
+      done();
+    });
+  });
+});
+
+
+
+
+
+
+
