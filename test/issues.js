@@ -239,7 +239,47 @@ describe('issue-53', function() {
   });
 });
 
+describe('issue-59', function() {
+    var dirname = __dirname + '/issues/59';
+    it('should escape or not', function (done) {
+        var hb = hbs.create();
 
+        function async(s, cb) {
+            cb('<strong>' + s + '</strong>');
+        }
+
+        hb.registerAsyncHelper("async", async);
+
+        var render = hb.express3({
+            viewsDir: dirname
+        });
+        var locals = H.createLocals('express3', dirname);
+
+        render(dirname + '/index.hbs', locals, function (err, html) {
+            assert.equal(H.stripWs(html), '&lt;strong&gt;foo&lt;/strong&gt;<strong>foo</strong>');
+            done();
+        });
+    });
+    it('should not escape SafeString', function (done) {
+        var hb = hbs.create();
+
+        function async(s, cb) {
+            cb(new hb.SafeString('<em>' + s + '</em>'));
+        }
+
+        hb.registerAsyncHelper("async", async);
+
+        var render = hb.express3({
+            viewsDir: dirname
+        });
+        var locals = H.createLocals('express3', dirname);
+
+        render(dirname + '/index.hbs', locals, function (err, html) {
+            assert.equal(H.stripWs(html), '<em>foo</em><em>foo</em>');
+            done();
+        });
+    });
+});
 
 
 
