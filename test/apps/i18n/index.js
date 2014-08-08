@@ -42,7 +42,9 @@ function create(hbs, env) {
   app.use(i18n.init);
 
   app.get('/', function (req, res) {
-    res.render('index');
+    res.render('index', {
+      array: [1, 2]
+    });
   });
 
   return app;

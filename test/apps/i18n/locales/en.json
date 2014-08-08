@@ -3,5 +3,6 @@
 	"%d cat": {
 		"one": "%d cat",
 		"other": "%d cats"
-	}
+	},
+	"each": "each"
 }

@@ -15,7 +15,7 @@ describe('i18n', function() {
       .get('/')
       .set('Cookie', 'locale=en')
       .end(function(req, res) {
-        var expected = '<span id="text">text to test</span>\n<br>\n<span id="onecat">1 cat</span>\n<br>\n<span id="twocats">2 cats</span>\n';
+        var expected = '<span id="text">text to test</span>\n<br>\n<span class="each">1 cat</span><span class="each">2 cats</span>';
         assert.equal(res.text, expected);
         done();
       });
@@ -26,7 +26,7 @@ describe('i18n', function() {
       .get('/')
       .set('Cookie', 'locale=fr')
       .end(function(req, res) {
-        var expected = '<span id="text">Texte à tester</span>\n<br>\n<span id="onecat">1 chat</span>\n<br>\n<span id="twocats">2 chats</span>\n';
+        var expected = '<span id="text">Texte à tester</span>\n<br>\n<span class="chaque">1 chat</span><span class="chaque">2 chats</span>';
         assert.equal(res.text, expected);
         done();
       });
