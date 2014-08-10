@@ -3,5 +3,6 @@
     "%d cat": {
         "one": "%d chat",
         "other": "%d chats"
-    }
+    },
+    "each": "chaque"
 }
