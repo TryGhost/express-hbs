@@ -1,29 +1,31 @@
 # express-hbs
 
-Express 3 handlebars template engine with multiple layouts, blocks and cached partials.
+Express handlebars template engine with multiple layouts, blocks and cached partials.
 
 Open source project from [Barc](http://barc.com), instant real-time forum on any website.
 
-**0.7 BREAKING CHANGES**: The logic for layout resolution for layoutsDir,
-layout and declarative layouts in previous versions stepped on each other.
-Read Layouts section below on how layouts are resolved.
-
 ## Usage
 
-To use with express 3.
+To use with express 4.
 
     var hbs = require('express-hbs');
 
     // Use `.hbs` for extensions and find partials in `views/partials`.
-    app.engine('hbs', hbs.express3({
+    app.engine('hbs', hbs.express4({
       partialsDir: __dirname + '/views/partials'
     }));
     app.set('view engine', 'hbs');
     app.set('views', __dirname + '/views');
 
-Options for `#express3`
+To use with express 3 is the same as above, except use hbs.express3
 
-    hbs.express3({
+    app.engine('hbs', hbs.express3({
+      partialsDir: __dirname + '/views/partials'
+    }));
+
+Options for `#express3` and `#express4`
+
+    hbs.express4({
       partialsDir: "{String/Array} [Required] Path to partials templates, one or several directories",
 
       // OPTIONAL settings
@@ -40,7 +42,6 @@ Options for `#express3`
 
 
 Partials may use any extension, which is better for syntax highlighting.
-
 
 ## Syntax
 
@@ -102,12 +103,10 @@ There are three ways to use a layout, listed in precedence order
 
 3.  Lastly, use `defaultLayout` if specified in hbs configuration options.
 
-
 Layouts can be nested: just include a declarative layout tag within any layout
 template to have its content included in the declared "parent" layout.  Be
 aware that too much nesting can impact performances, and stay away from
 infinite loops!
-
 
 ## Helpers
 
