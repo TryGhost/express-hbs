@@ -24,17 +24,18 @@
   "author": "Mario Gutierrez <mario@barc.com>",
   "license": "MIT",
   "devDependencies": {
-    "express": "~3.0.6",
-    "supertest": "~0.8.1",
-    "mocha": "~1.9.0",
+    "express": "~4.11.2",
+    "cookie-parser": "~1.3.3",
+    "supertest": "~0.15.0",
+    "mocha": "~2.1.0",
     "grunt": "~0.4.1",
-    "grunt-mocha-cli": "~1.0.6",
-    "rewire": "~2.0.0",
+    "grunt-mocha-cli": "~1.12.0",
+    "rewire": "~2.2.0",
     "i18n": "~0.4.1"
   },
   "dependencies": {
-    "handlebars": "^2.0.0",
-    "js-beautify": "~1.4.2",
-    "readdirp": "~0.3.1"
+    "handlebars": "^3.0.0",
+    "js-beautify": "~1.5.4",
+    "readdirp": "~1.3.0"
   }
 }

@@ -14,6 +14,7 @@ function create(hbs, env) {
   if (env) process.env.NODE_ENV = env;
 
   var express = require('express');
+  var cookieParser = require('cookie-parser');
   var app = express();
   var fs = require('fs');
   var path = require('path');
@@ -36,7 +37,7 @@ function create(hbs, env) {
   app.set('views', viewsDir);
 
   // you'll need cookies
-  app.use(express.cookieParser());
+  app.use(cookieParser());
 
   // init i18n module for this loop
   app.use(i18n.init);
