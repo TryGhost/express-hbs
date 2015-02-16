@@ -1,3 +1,5 @@
+'use strict';
+
 var request = require('supertest');
 var assert = require('assert');
 var express = require('express');
@@ -19,6 +21,9 @@ describe('multiple directories', function() {
     app.get('/collide', function (req, res) {
       res.render('collide');
     });
+    app.get('/error', function (req, res) {
+      res.render('error');
+    });
   });
 
   it('should handle single folder', function(done) {
@@ -26,6 +31,7 @@ describe('multiple directories', function() {
     request(app)
       .get('/test1')
       .end(function (err, res) {
+        assert.ifError(err);
         var expected = '<h1>test1</h1>\n';
         assert.equal(res.text, expected);
         done();
@@ -37,6 +43,7 @@ describe('multiple directories', function() {
     request(app)
       .get('/test2')
       .end(function (err, res) {
+        assert.ifError(err);
         var expected = '<h1>test2</h1>\n';
         assert.equal(res.text, expected);
         done();
@@ -50,6 +57,7 @@ describe('multiple directories', function() {
       request(app)
         .get('/collide')
         .end(function (err, res) {
+          assert.ifError(err);
           var expected = '<h1>collide1</h1>\n';
           assert.equal(res.text, expected);
           done();
@@ -61,6 +69,7 @@ describe('multiple directories', function() {
       request(app)
         .get('/collide')
         .end(function (err, res) {
+          assert.ifError(err);
           var expected = '<h1>collide2</h1>\n';
           assert.equal(res.text, expected);
           done();
@@ -68,5 +77,41 @@ describe('multiple directories', function() {
     });
 
   });
+
+  /* eslint-disable no-unused-vars */
+  describe('should report the filename in error', function() {
+
+    it('should report from first folder', function(done) {
+      app.set('views', ['./test/views/multiple/views1', './test/views/multiple/views2']);
+      app.use(function(err, req, res, next) {
+        res.status(500).send(err.stack);
+      });
+
+      request(app)
+      .get('/error')
+      .end(function(err, res) {
+        assert.ifError(err);
+        assert(res.error.text.indexOf('views1/error.hbs]') > 0);
+        done();
+      });
+    });
+
+
+    it('should report from second folder', function(done) {
+      app.set('views', ['./test/views/multiple/views2', './test/views/multiple/views1']);
+      app.use(function(err, req, res, next) {
+        res.status(500).send(err.stack);
+      });
+
+      request(app)
+      .get('/error')
+      .end(function(err, res) {
+        assert.ifError(err);
+        assert(res.error.text.indexOf('views2/error.hbs]') > 0);
+        done();
+      });
+    });
+  });
+  /* eslint-enable no-unused-vars */
 
 });

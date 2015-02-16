@@ -3,6 +3,12 @@
     "node": true
   },
 
+  "globals": {
+    "describe": true,
+    "beforeEach": true,
+    "it": true
+  },
+
   "rules": {
     "brace-style": [1, "1tbs"],
     "curly": [0, "multi"],
