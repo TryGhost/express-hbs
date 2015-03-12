@@ -1,3 +1,4 @@
+'use strict';
 var assert = require('assert');
 var hbs = require('..');
 var path = require('path');
@@ -5,7 +6,7 @@ var H = require('./helpers');
 
 
 describe('issue-22 template', function() {
-  var dirname =  path.join(__dirname, 'issues/22');
+  var dirname = path.join(__dirname, 'issues/22');
 
   it('should use multiple layouts with caching', function(done) {
     var render = hbs.create().express3({});
@@ -125,23 +126,23 @@ describe('issue-21', function() {
 
 
   it('should allow specifying layouts without the parent dir in a sub view', function(done) { function check(err, html) {
-      assert.ifError(err);
-      assert.equal('<html>sub</html>', H.stripWs(html));
-      done();
-    }
+    assert.ifError(err);
+    assert.equal('<html>sub</html>', H.stripWs(html));
+    done();
+  }
 
-    var options = {cache: true, layout: 'default', settings: {views: dirname + '/views'}};
-    var result = render(dirname + '/views/sub/sub.hbs', options, check);
+  var options = {cache: true, layout: 'default', settings: {views: dirname + '/views'}};
+  var result = render(dirname + '/views/sub/sub.hbs', options, check);
   });
 
   it('should treat layouts that start with "." relative to template', function(done) { function check(err, html) {
-      assert.ifError(err);
-      assert.equal('<relative>sub</relative>', H.stripWs(html));
-      done();
-    }
+    assert.ifError(err);
+    assert.equal('<relative>sub</relative>', H.stripWs(html));
+    done();
+  }
 
-    var options = {cache: true, layout: './relativeLayout', settings: {views: dirname + '/views'}};
-    var result = render(dirname + '/views/sub/sub.hbs', options, check);
+  var options = {cache: true, layout: './relativeLayout', settings: {views: dirname + '/views'}};
+  var result = render(dirname + '/views/sub/sub.hbs', options, check);
   });
 
   it('should allow layouts in subfolders', function(done) {
@@ -240,45 +241,73 @@ describe('issue-53', function() {
 });
 
 describe('issue-59', function() {
-    var dirname = __dirname + '/issues/59';
-    it('should escape or not', function (done) {
-        var hb = hbs.create();
+  var dirname = __dirname + '/issues/59';
+  it('should escape or not', function (done) {
+    var hb = hbs.create();
 
-        function async(s, cb) {
-            cb('<strong>' + s + '</strong>');
-        }
+    function async(s, cb) {
+      cb('<strong>' + s + '</strong>');
+    }
 
-        hb.registerAsyncHelper("async", async);
+    hb.registerAsyncHelper("async", async);
 
-        var render = hb.express3({
-            viewsDir: dirname
-        });
-        var locals = H.createLocals('express3', dirname);
-
-        render(dirname + '/index.hbs', locals, function (err, html) {
-            assert.equal(H.stripWs(html), '&lt;strong&gt;foo&lt;/strong&gt;<strong>foo</strong>');
-            done();
-        });
+    var render = hb.express3({
+      viewsDir: dirname
     });
-    it('should not escape SafeString', function (done) {
-        var hb = hbs.create();
+    var locals = H.createLocals('express3', dirname);
 
-        function async(s, cb) {
-            cb(new hb.SafeString('<em>' + s + '</em>'));
-        }
-
-        hb.registerAsyncHelper("async", async);
-
-        var render = hb.express3({
-            viewsDir: dirname
-        });
-        var locals = H.createLocals('express3', dirname);
-
-        render(dirname + '/index.hbs', locals, function (err, html) {
-            assert.equal(H.stripWs(html), '<em>foo</em><em>foo</em>');
-            done();
-        });
+    render(dirname + '/index.hbs', locals, function (err, html) {
+      assert.equal(H.stripWs(html), '&lt;strong&gt;foo&lt;/strong&gt;<strong>foo</strong>');
+      done();
     });
+  });
+  it('should not escape SafeString', function (done) {
+    var hb = hbs.create();
+
+    function async(s, cb) {
+      cb(new hb.SafeString('<em>' + s + '</em>'));
+    }
+
+    hb.registerAsyncHelper('async', async);
+
+    var render = hb.express3({
+      viewsDir: dirname
+    });
+    var locals = H.createLocals('express3', dirname);
+
+    render(dirname + '/index.hbs', locals, function (err, html) {
+      assert.equal(H.stripWs(html), '<em>foo</em><em>foo</em>');
+      done();
+    });
+  });
+});
+
+describe('issue-73', function() {
+  var dirname = path.join(__dirname, 'issues/73');
+  it('should allow compile options', function(done){
+    var hb = hbs.create();
+    var render = hb.express3({
+      viewsDir: dirname,
+      partialsDir: dirname + '/partials',
+      onCompile: function(eh, source, filename) {
+        var options;
+        if (filename && filename.indexOf('partials')) {
+          options = {preventIndent: true};
+        }
+        return eh.handlebars.compile(source, options);
+      }
+    });
+
+    var locals = H.createLocals('express3', dirname);
+    render(dirname + '/index.hbs', locals, function (err, html) {
+      if (err) return console.log('error', err);
+
+      assert.ifError(err);
+      assert.ok(html.match(/^Hello/m));
+      assert.ok(html.match(/^second line/m));
+      done();
+    });
+  });
 });
 
 

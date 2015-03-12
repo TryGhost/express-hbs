@@ -37,7 +37,16 @@ Options for `#express3` and `#express4`
       i18n: "{Object} i18n object",
       layoutsDir: "{String} Path to layout templates",
       templateOptions: "{Object} options to pass to template()",
-      beautify: "{Boolean} whether to pretty print HTML, see github.com/einars/js-beautify .jsbeautifyrc
+      beautify: "{Boolean} whether to pretty print HTML, see github.com/einars/js-beautify .jsbeautifyrc,
+
+      // override the default compile
+      onCompile: function(exhbs, source, filename) {
+        var options;
+        if (filename && filename.indexOf('partials') > -1) {
+          options = {preventIndent: true};
+        }
+        return exhbs.handlebars.compile(source, options);
+      }
     });
 
 
