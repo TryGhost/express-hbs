@@ -311,6 +311,63 @@ describe('issue-73', function() {
 });
 
 
+describe('issue-62', function() {
+  var dirname =  path.join(__dirname, 'issues/62');
 
+  it('should provide options for async helpers', function(done) {
+    var hb = hbs.create();
 
+    function async(c, o, cb) {
+      if (o.hash.type === 'em') {
+        cb('<em>' + c + '</em>');
+      } else {
+        cb('<strong>' + c + '</strong>');
+      }
+    }
 
+    hb.registerAsyncHelper("async", async);
+
+    var render = hb.express3({
+      viewsDir: dirname
+    });
+    var locals = H.createLocals('express3', dirname);
+
+    render(dirname + '/basic.hbs', locals, function (err, html) {
+      assert.equal(
+        H.stripWs(html),
+        '&lt;strong&gt;foo&lt;/strong&gt;&lt;em&gt;foo&lt;/em&gt;'
+      );
+      done();
+    });
+  });
+
+  it('should allow for block async helpers', function(done) {
+    var hb = hbs.create();
+
+    function async(c, o, cb) {
+      var self = this;
+      self.output = c;
+
+      if (o.hash.inverse === 'true') {
+        cb(o.inverse(self));
+      } else {
+        cb(o.fn(self));
+      }
+    }
+
+    hb.registerAsyncHelper("async", async);
+
+    var render = hb.express3({
+      viewsDir: dirname
+    });
+    var locals = H.createLocals('express3', dirname);
+
+    render(dirname + '/block.hbs', locals, function (err, html) {
+      assert.equal(
+        H.stripWs(html),
+        '<p>GoodbyeWorld</p><p>HelloHandlebars</p>'
+      );
+      done();
+    });
+  });
+});
