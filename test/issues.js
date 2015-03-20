@@ -370,4 +370,22 @@ describe('issue-62', function() {
       done();
     });
   });
+
+  describe('issue-76', function() {
+    var dirname =  path.join(__dirname, 'issues/76');
+
+    it('should allow cachePartials to be called independently of render', function (done) {
+      var hb = hbs.create();
+
+      var render = hb.express3({
+        partialsDir: dirname
+      });
+
+      hbs.cachePartials(function (err) {
+        assert.ifError(err);
+        assert.ok(true);
+        done();
+      });
+    });
+  });
 });
