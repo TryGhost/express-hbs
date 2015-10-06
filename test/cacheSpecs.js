@@ -107,7 +107,7 @@ describe('express-hbs', function() {
             .end(function(err) {
               assert.ifError(err);
 
-              var filename = path.resolve(__dirname, '../example/views/partials/sub/comment.html');
+              var filename = path.resolve(__dirname, '../example/views/partials/sub/comment.hbs');
               assert.equal(mock.readCounts[filename], 2);
               done();
             });
@@ -128,7 +128,7 @@ describe('express-hbs', function() {
             .end(function(err) {
               assert.ifError(err);
 
-              var filename = path.resolve(__dirname, '../example/views/partials/sub/comment.html');
+              var filename = path.resolve(__dirname, '../example/views/partials/sub/comment.hbs');
               assert.equal(mock.readCounts[filename], 1);
               done();
             });

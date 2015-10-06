@@ -381,7 +381,7 @@ describe('issue-62', function() {
         partialsDir: dirname
       });
 
-      hbs.cachePartials(function (err) {
+      hb.cachePartials(function (err) {
         assert.ifError(err);
         assert.ok(true);
         done();
