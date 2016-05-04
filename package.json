@@ -24,14 +24,15 @@
   "author": "Mario Gutierrez <mario@barc.com>",
   "license": "MIT",
   "devDependencies": {
-    "express": "~4.11.2",
     "cookie-parser": "~1.3.3",
-    "supertest": "~0.15.0",
-    "mocha": "~2.1.0",
+    "express": "~4.11.2",
     "grunt": "~0.4.1",
     "grunt-mocha-cli": "~1.12.0",
+    "grunt-release": "^0.13.1",
+    "i18n": "~0.4.1",
+    "mocha": "~2.1.0",
     "rewire": "~2.2.0",
-    "i18n": "~0.4.1"
+    "supertest": "~0.15.0"
   },
   "dependencies": {
     "handlebars": "^4.0.5",
