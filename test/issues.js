@@ -312,9 +312,9 @@ describe('issue-73', function() {
 
 
 describe('issue-62', function() {
-  var dirname =  path.join(__dirname, 'issues/62');
+  var dirname = path.join(__dirname, 'issues/62');
 
-  it('should provide options for async helpers', function(done) {
+  it('should provide options for async helpers', function (done) {
     var hb = hbs.create();
 
     function async(c, o, cb) {
@@ -341,7 +341,7 @@ describe('issue-62', function() {
     });
   });
 
-  it('should allow for block async helpers', function(done) {
+  it('should allow for block async helpers', function (done) {
     var hb = hbs.create();
 
     function async(c, o, cb) {
@@ -370,22 +370,42 @@ describe('issue-62', function() {
       done();
     });
   });
+});
 
-  describe('issue-76', function() {
-    var dirname =  path.join(__dirname, 'issues/76');
+describe('issue-76', function() {
+  var dirname =  path.join(__dirname, 'issues/76');
 
-    it('should allow cachePartials to be called independently of render', function (done) {
-      var hb = hbs.create();
+  it('should allow cachePartials to be called independently of render', function (done) {
+    var hb = hbs.create();
 
-      var render = hb.express3({
-        partialsDir: dirname
-      });
-
-      hb.cachePartials(function (err) {
-        assert.ifError(err);
-        assert.ok(true);
-        done();
-      });
+    var render = hb.express3({
+      partialsDir: dirname
     });
+
+    hb.cachePartials(function (err) {
+      assert.ifError(err);
+      assert.ok(true);
+      done();
+    });
+  });
+});
+
+describe('issue-84', function () {
+  var dirname =  path.join(__dirname, 'issues/84');
+
+  it('should render deeply nested partials', function (done) {
+    var render = hbs.create().express3({
+      partialsDir: [dirname + '/partials']
+    });
+
+    function check(err, html) {
+      if (err) {
+        done(err);
+      }
+      assert.equal('<div>Testing3levelsdown</div>', H.stripWs(html));
+      done();
+    }
+
+    render(dirname + '/index.hbs', {cache: true, settings: {views: dirname + '/views'}}, check);
   });
 });
