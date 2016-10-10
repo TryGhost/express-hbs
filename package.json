@@ -32,7 +32,7 @@
     "grunt-release": "0.14.0",
     "i18n": "0.8.3",
     "istanbul": "0.4.5",
-    "mocha": "3.0.2",
+    "mocha": "3.1.1",
     "rewire": "2.5.2",
     "supertest": "2.0.0"
   },
