@@ -28,7 +28,7 @@
     "cookie-parser": "1.4.3",
     "express": "4.14.0",
     "grunt": "1.0.1",
-    "grunt-mocha-cli": "2.1.0",
+    "grunt-mocha-cli": "3.0.0",
     "grunt-release": "0.14.0",
     "i18n": "0.8.3",
     "istanbul": "0.4.5",
