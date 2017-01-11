@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "handlebars": "^4.0.5",
-    "js-beautify": "1.6.4",
+    "js-beautify": "1.6.7",
     "readdirp": "2.1.0"
   }
 }
