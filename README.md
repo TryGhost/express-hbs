@@ -8,7 +8,7 @@ Open source project from [Barc](http://barc.com), instant real-time forum on any
 
 If you're upgrading from v0.8.4 to v1.0.0 there are some potentially breaking changes to be aware of:
 
-1. Handlebars @v4.0.5 - please see the [handlbears v4.0 compatibility notes](https://github.com/wycats/handlebars.js/blob/master/release-notes.md#v400---september-1st-2015)   
+1. Handlebars @v4.0.5 - please see the [handlebars v4.0 compatibility notes](https://github.com/wycats/handlebars.js/blob/master/release-notes.md#v400---september-1st-2015)   
 2. The file extension for partial files must now match the extension configured in `extname` - please see [the PR](https://github.com/barc/express-hbs/pull/88)
 
 ## Usage
