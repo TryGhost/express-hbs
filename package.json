@@ -37,7 +37,7 @@
     "supertest": "2.0.1"
   },
   "dependencies": {
-    "handlebars": "4.0.6",
+    "handlebars": "4.0.9",
     "js-beautify": "1.6.8",
     "readdirp": "2.1.0"
   }
