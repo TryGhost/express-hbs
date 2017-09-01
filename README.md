@@ -14,47 +14,51 @@ If you're upgrading from v0.8.4 to v1.0.0 there are some potentially breaking ch
 ## Usage
 
 To use with express 4.
+```js
+var hbs = require('express-hbs');
 
-    var hbs = require('express-hbs');
-
-    // Use `.hbs` for extensions and find partials in `views/partials`.
-    app.engine('hbs', hbs.express4({
-      partialsDir: __dirname + '/views/partials'
-    }));
-    app.set('view engine', 'hbs');
-    app.set('views', __dirname + '/views');
-
+// Use `.hbs` for extensions and find partials in `views/partials`.
+app.engine('hbs', hbs.express4({
+  partialsDir: __dirname + '/views/partials'
+}));
+app.set('view engine', 'hbs');
+app.set('views', __dirname + '/views');
+```
 To use with express 3 is the same as above, except use hbs.express3
 
-    app.engine('hbs', hbs.express3({
-      partialsDir: __dirname + '/views/partials'
-    }));
+```js
+app.engine('hbs', hbs.express3({
+  partialsDir: __dirname + '/views/partials'
+}));
+```
 
 Options for `#express3` and `#express4`
 
-    hbs.express4({
-      partialsDir: "{String/Array} [Required] Path to partials templates, one or several directories",
+```js
+hbs.express4({
+  partialsDir: "{String/Array} [Required] Path to partials templates, one or several directories",
 
-      // OPTIONAL settings
-      blockHelperName: "{String} Override 'block' helper name.",
-      contentHelperName: "{String} Override 'contentFor' helper name.",
-      defaultLayout: "{String} Absolute path to default layout template",
-      extname: "{String} Extension for templates & partials, defaults to `.hbs`",
-      handlebars: "{Module} Use external handlebars instead of express-hbs dependency",
-      i18n: "{Object} i18n object",
-      layoutsDir: "{String} Path to layout templates",
-      templateOptions: "{Object} options to pass to template()",
-      beautify: "{Boolean} whether to pretty print HTML, see github.com/einars/js-beautify .jsbeautifyrc,
+  // OPTIONAL settings
+  blockHelperName: "{String} Override 'block' helper name.",
+  contentHelperName: "{String} Override 'contentFor' helper name.",
+  defaultLayout: "{String} Absolute path to default layout template",
+  extname: "{String} Extension for templates & partials, defaults to `.hbs`",
+  handlebars: "{Module} Use external handlebars instead of express-hbs dependency",
+  i18n: "{Object} i18n object",
+  layoutsDir: "{String} Path to layout templates",
+  templateOptions: "{Object} options to pass to template()",
+  beautify: "{Boolean} whether to pretty print HTML, see github.com/einars/js-beautify .jsbeautifyrc",
 
-      // override the default compile
-      onCompile: function(exhbs, source, filename) {
-        var options;
-        if (filename && filename.indexOf('partials') > -1) {
-          options = {preventIndent: true};
-        }
-        return exhbs.handlebars.compile(source, options);
-      }
-    });
+  // override the default compile
+  onCompile: function(exhbs, source, filename) {
+    var options;
+    if (filename && filename.indexOf('partials') > -1) {
+      options = {preventIndent: true};
+    }
+    return exhbs.handlebars.compile(source, options);
+  }
+});
+```
 
 ## Syntax
 
@@ -91,19 +95,23 @@ There are three ways to use a layout, listed in precedence order
 
 2.  As an option to render
 
-        res.render('veggies', {
-          title: 'My favorite veggies',
-          veggies: veggies,
-          layout: 'layout/veggie'
-        });
+    ```js
+    res.render('veggies', {
+      title: 'My favorite veggies',
+      veggies: veggies,
+      layout: 'layout/veggie'
+    });
+    ```
 
     This option also allows for layout suppression (both the default layout and when specified declaratively in a page) by passing in a falsey Javascript value as the value of the `layout` property:
 
-        res.render('veggies', {
-          title: 'My favorite veggies',
-          veggies: veggies,
-          layout: null // render without using a layout template
-        });
+    ```js
+    res.render('veggies', {
+      title: 'My favorite veggies',
+      veggies: veggies,
+      layout: null // render without using a layout template
+    });
+    ```
 
     Layout file resolution:
 
@@ -123,72 +131,84 @@ infinite loops!
 
 ## Helpers
 
-Synchronous helpers
+### Synchronous helpers
 
-    hbs.registerHelper('link', function(text, options) {
-      var attrs = [];
-      for(var prop in options.hash) {
-        attrs.push(prop + '="' + options.hash[prop] + '"');
-      }
-      return new hbs.SafeString(
-        "<a " + attrs.join(" ") + ">" + text + "</a>"
-      );
-    });
+```js
+hbs.registerHelper('link', function(text, options) {
+  var attrs = [];
+  for(var prop in options.hash) {
+    attrs.push(prop + '="' + options.hash[prop] + '"');
+  }
+  return new hbs.SafeString(
+    "<a " + attrs.join(" ") + ">" + text + "</a>"
+  );
+});
+```
 
-    # in markup
-    {{{link 'barc.com' href='http://barc.com'}}}
+in markup
+```
+{{{link 'barc.com' href='http://barc.com'}}}
+```
 
-Asynchronous helpers
+### Asynchronous helpers
 
-    hbs.registerAsyncHelper('readFile', function(filename, cb) {
-      fs.readFile(path.join(viewsDir, filename), 'utf8', function(err, content) {
-        cb(new hbs.SafeString(content));
-      });
-    });
+```js
+hbs.registerAsyncHelper('readFile', function(filename, cb) {
+  fs.readFile(path.join(viewsDir, filename), 'utf8', function(err, content) {
+    cb(new hbs.SafeString(content));
+  });
+});
+```
 
-    # in markup
-    {{{readFile 'tos.txt'}}}
+in markup
+```
+{{{readFile 'tos.txt'}}}
+```
 
 
 ## i18n support
 
 Express-hbs supports [i18n](https://github.com/mashpie/i18n-node)
 
-    var i18n = require('i18n');
+```js
+var i18n = require('i18n');
 
-    // minimal config
-    i18n.configure({
-        locales: ['en', 'fr'],
-        cookie: 'locale',
-        directory: __dirname + "/locales"
-    });
+// minimal config
+i18n.configure({
+    locales: ['en', 'fr'],
+    cookie: 'locale',
+    directory: __dirname + "/locales"
+});
 
-    app.engine('hbs', hbs.express3({
-        // ... options from above
-        i18n: i18n,  // registers __ and __n helpers
-    }));
-    app.set('view engine', 'hbs');
-    app.set('views', viewsDir);
+app.engine('hbs', hbs.express3({
+    // ... options from above
+    i18n: i18n,  // registers __ and __n helpers
+}));
+app.set('view engine', 'hbs');
+app.set('views', viewsDir);
 
-    // cookies are needed
-    app.use(express.cookieParser());
+// cookies are needed
+app.use(express.cookieParser());
 
-    // init i18n module
-    app.use(i18n.init);
-
+// init i18n module
+app.use(i18n.init);
+```
 
 ## Engine Instances
 
 Create isolated engine instances with their own cache system and handlebars engine.
 
-    var hbs = require('express-hbs');
-    var instance1 = hbs.create();
-    var instance2 = hbs.create();
+```js
+var hbs = require('express-hbs');
+var instance1 = hbs.create();
+var instance2 = hbs.create();
+```
 
 ## Example
 
 in File `app.js`
-```
+
+```js
 // http://expressjs.com/api.html#app.locals
 app.locals({
     'PROD_MODE': 'production' === app.get('env')
@@ -198,7 +218,7 @@ app.locals({
 
 File `views/layout/default.hbs`
 
-```
+```html
 <html>
   <head>
     <title>{{title}}</title>
@@ -221,7 +241,7 @@ File `views/layout/default.hbs`
 
 File `views/index.hbs`
 
-```
+```html
 {{!< default}}
 
 {{#contentFor 'pageStyles'}}
