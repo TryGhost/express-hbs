@@ -37,8 +37,10 @@
     "supertest": "2.0.1"
   },
   "dependencies": {
+    "bluebird": "^3.5.1",
     "handlebars": "4.0.11",
     "js-beautify": "1.7.5",
+    "lodash": "^4.17.10",
     "readdirp": "2.1.0"
   }
 }

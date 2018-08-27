@@ -1,7 +1,10 @@
+'use stirct';
+
 var request = require('supertest');
 var assert = require('assert');
 var hbs = require('..');
 var asyncApp = require('./apps/async');
+var resolver = require('../lib/resolver');
 
 function makeUserRequest(app, user, cb) {
   request(app)
@@ -12,12 +15,12 @@ function makeUserRequest(app, user, cb) {
       if (res.text.search('Hello, ' + user) <= 0) {
         return cb(new Error('Wrong template send for user ' + user + ': ' + res.text), user);
       }
-      return cb(null, user);
+      return cb(null, user, res.text);
     });
 }
 
 function requestAll(app, users, cb) {
-  const status = {};
+  var status = {};
   for(var i = 0; i < users.length; i++) {
     status[users[i]] = 'Pending';
     makeUserRequest(app, users[i], function(err, user) {
@@ -48,6 +51,18 @@ describe('async', function() {
       assert.equal(results.joe, 'Completed');
       assert.equal(results.jeff, 'Completed');
       assert.equal(results.jane, 'Completed');
+      done();
+    });
+  });
+
+  it('should render nested async helpers', function(done) {
+    var app = asyncApp.create(hbs.create(), 'production');
+    makeUserRequest(app, 'jt', function(err, user, results) {
+      if (err) {
+        return done(err);
+      }
+      assert.equal(false, resolver.hasResolvers(results));
+      assert.equal(-1, results.search('This should not show!'))
       done();
     });
   });
