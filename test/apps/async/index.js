@@ -13,10 +13,12 @@ function getRandomNumber(min, max) {
 function create(hbs, env) {
   if (env) process.env.NODE_ENV = env;
   var app = express();
-  var viewsDir = __dirname + '/views';
+  var viewsDir = path.join(__dirname, 'views');
 
   // Hook in express-hbs and tell it where known directories reside
-  app.engine('hbs', hbs.express4());
+  app.engine('hbs', hbs.express4({
+    defaultLayout: path.join(viewsDir, "layout.hbs")
+  }));
   app.set('view engine', 'hbs');
   app.set('views', viewsDir);
 

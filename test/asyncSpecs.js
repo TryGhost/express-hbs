@@ -10,9 +10,9 @@ function makeUserRequest(app, user, cb) {
     .end(function(err, res) {
       if (err) cb(err);
       if (res.text.search('Hello, ' + user) <= 0) {
-        cb(new Error('Wrong template send for user ' + user + ': ' + res.text), user);
+        return cb(new Error('Wrong template send for user ' + user + ': ' + res.text), user);
       }
-      cb(null, user);
+      return cb(null, user);
     });
 }
 
@@ -40,14 +40,14 @@ function requestAll(app, users, cb) {
 }
 
 describe('async', function() {
-  it('should render all async helpers', function(done) {
+  it.only('should render all async helpers', function(done) {
     var app = asyncApp.create(hbs.create(), 'production');
     requestAll(app, ['jt','anna','joe','jeff','jane'], function(results) {
-      assert(results.jt, 'Completed');
-      assert(results.anna, 'Completed');
-      assert(results.joe, 'Completed');
-      assert(results.jeff, 'Completed');
-      assert(results.jane, 'Completed');
+      assert.equal(results.jt, 'Completed');
+      assert.equal(results.anna, 'Completed');
+      assert.equal(results.joe, 'Completed');
+      assert.equal(results.jeff, 'Completed');
+      assert.equal(results.jane, 'Completed');
       done();
     });
   });
