@@ -234,6 +234,7 @@ describe('issue-53', function() {
     var render = hb.express3({});
     var locals = H.createLocals('express3', dirname, {});
     render(dirname + '/index.hbs', locals, function(err, html) {
+      assert.ifError(err);
       assert.ok(html.indexOf('__aSyNcId_') < 0);
       done();
     });
