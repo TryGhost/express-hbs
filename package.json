@@ -1,9 +1,9 @@
 {
   "name": "express-hbs",
-  "version": "1.0.4",
-  "description": "Express 3 handlebars template engine complete with multiple layouts, partials and blocks.",
+  "version": "2.0.0",
+  "description": "Express handlebars template engine complete with multiple layouts, partials and blocks.",
   "keywords": [
-    "express3",
+    "express4",
     "express",
     "handlebars",
     "layout",
@@ -14,7 +14,7 @@
     "example": "example"
   },
   "scripts": {
-    "test": "grunt",
+    "test": "mocha",
     "coverage": "NODE_ENV=testing ./node_modules/.bin/istanbul cover --dir test/coverage -x 'example/**' ./node_modules/.bin/_mocha"
   },
   "repository": {
@@ -26,21 +26,18 @@
   "license": "MIT",
   "devDependencies": {
     "cookie-parser": "1.4.3",
-    "express": "4.14.0",
-    "grunt": "1.0.1",
-    "grunt-mocha-cli": "3.0.0",
-    "grunt-release": "0.14.0",
+    "express": "4.16.4",
     "i18n": "0.8.3",
     "istanbul": "0.4.5",
-    "mocha": "3.2.0",
-    "rewire": "2.5.2",
-    "supertest": "2.0.1"
+    "mocha": "5.2.0",
+    "rewire": "4.0.1",
+    "supertest": "3.3.0"
   },
   "dependencies": {
-    "bluebird": "^3.5.1",
-    "handlebars": "4.0.11",
-    "js-beautify": "1.7.5",
-    "lodash": "^4.17.10",
-    "readdirp": "2.1.0"
+    "bluebird": "^3.5.3",
+    "handlebars": "4.0.12",
+    "js-beautify": "1.8.8",
+    "lodash": "^4.17.11",
+    "readdirp": "2.2.1"
   }
 }

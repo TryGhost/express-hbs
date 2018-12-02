@@ -11,13 +11,6 @@ module.exports = function configureGrunt(grunt) {
       all: {
         src: ['test/*.js']
       }
-    },
-
-    release: {
-      github: {
-        repo: 'barc/express-hbs',
-        accessTokenVar: 'GITHUB_ACCESS_TOKEN'
-      }
     }
   });
 
@@ -27,7 +20,6 @@ module.exports = function configureGrunt(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-mocha-cli');
-  grunt.loadNpmTasks('grunt-release');
 
   // Run tests
   grunt.registerTask('default', ['mochacli:all', 'setProductionEnv', 'mochacli:all']);
