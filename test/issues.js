@@ -409,3 +409,22 @@ describe('issue-84', function () {
     render(dirname + '/index.hbs', {cache: true, settings: {views: dirname + '/views'}}, check);
   });
 });
+
+describe('issue-144', function() {
+  var dirname =  path.join(__dirname, 'issues/144');
+
+  it('should repalce with async helpers even special string like $\'', function(done) {
+    var hb = hbs.create()
+    hb.registerAsyncHelper('special_string', function(_, resultcb) {
+      setTimeout(function() {
+        resultcb(new hbs.SafeString('<p><code>\'$example$\'</code> abcd</p>'));
+      }, 1)
+    });
+    var render = hb.express3({});
+    var locals = H.createLocals('express3', dirname, {});
+    render(dirname + '/index.hbs', locals, function(err, html) {
+      assert.equal('<div><p><code>\'$example$\'</code> abcd</p></div>\n', html);
+      done();
+    });
+  });
+});

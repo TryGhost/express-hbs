@@ -72,7 +72,7 @@ describe('express-hbs', function() {
 
     it('should render block content instead of default content when contentFor is declared', function(done) {
       request(app)
-        .get('/')
+        .get('/replace')
         .expect(/Non-default block content/, done);
     });
 

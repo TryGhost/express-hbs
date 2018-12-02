@@ -62,6 +62,12 @@ function create(hbs, env) {
     });
   });
 
+  app.get('/replace', function(req, res) {
+    res.render('replace', {
+      title: 'express-hbs example'
+    });
+  });
+
   app.get('/fruits', function(req, res) {
     res.render('fruits/index', {
       title: 'My favorite fruits',
