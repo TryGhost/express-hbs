@@ -14,7 +14,7 @@
     "example": "example"
   },
   "scripts": {
-    "test": "grunt",
+    "test": "mocha",
     "coverage": "NODE_ENV=testing ./node_modules/.bin/istanbul cover --dir test/coverage -x 'example/**' ./node_modules/.bin/_mocha"
   },
   "repository": {
@@ -27,8 +27,6 @@
   "devDependencies": {
     "cookie-parser": "1.4.3",
     "express": "4.16.4",
-    "grunt": "1.0.3",
-    "grunt-mocha-cli": "4.0.0",
     "i18n": "0.8.3",
     "istanbul": "0.4.5",
     "mocha": "5.2.0",
