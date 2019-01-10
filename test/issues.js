@@ -429,3 +429,20 @@ describe('issue-144', function() {
     });
   });
 });
+
+describe('issue-153', function() {
+  var dirname = path.join(__dirname, 'issues/153');
+  it('should concat contentFor blocks with newline', function(done) {
+    var check = function (err, html) {
+      if (err) {
+        done(err);
+      }
+      assert.equal('1\n2', html.trim());
+      done();
+    }
+    var hb = hbs.create()
+    var render = hb.express3({});
+    var locals = H.createLocals('express3', dirname, { });
+    render(dirname + '/index.hbs', locals, check);
+  });
+});
