@@ -5,7 +5,7 @@ function stripWs(s) {
 function createLocals(which, viewsDir, locals) {
   if (!locals) locals = {};
   var opts = {};
-  if (which === 'express3') {
+  if (which === 'express3' || which === 'express4') {
     opts.settings = {
       views: viewsDir
     };
