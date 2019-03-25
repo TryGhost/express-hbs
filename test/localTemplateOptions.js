@@ -4,8 +4,8 @@ var path = require('path');
 var hbs = require('..');
 var H = require('./helpers');
 
-describe('dynamic template options', function () {
-  var dirname = path.join(__dirname, 'dynamicTemplateOptions');
+describe('local template options', function () {
+  var dirname = path.join(__dirname, 'localTemplateOptions');
 
   describe('express3', function () {
 
