@@ -34,6 +34,32 @@ describe('dynamic template options', function () {
         done(err);
       });
     });
+
+    it('removes _templateOptions from the locals data', function (done) {
+      var instance = hbs.create();
+      var render = instance.express3({});
+      instance.updateTemplateOptions({
+          data: {
+            greeting: 'Hello,',
+            firstName: 'Freddy',
+            lastName: 'Krueger'
+          } 
+      });
+
+      var locals = H.createLocals('express3', dirname, {
+        _templateOptions: {
+          data: {
+            lastName: 'Mercury'
+          } 
+        } 
+      });
+
+      render(path.join(dirname, 'data-access-template.hbs'), locals, function (err, html) {
+        assert.ifError(err);
+        assert.strictEqual(H.stripWs(html), H.stripWs('')); 
+        done(err);
+      });
+    });
   });
 
   describe('express4', function () {
@@ -60,6 +86,32 @@ describe('dynamic template options', function () {
       render(path.join(dirname, 'template.hbs'), locals, function (err, html) {
         assert.ifError(err);
         assert.strictEqual(H.stripWs(html), H.stripWs('Hello, Freddy Mercury')); 
+        done(err);
+      });
+    });
+
+    it('removes _templateOptions from the locals data', function (done) {
+      var instance = hbs.create();
+      var render = instance.express3({});
+      instance.updateTemplateOptions({
+          data: {
+            greeting: 'Hello,',
+            firstName: 'Freddy',
+            lastName: 'Krueger'
+          } 
+      });
+
+      var locals = H.createLocals('express3', dirname, {
+        _templateOptions: {
+          data: {
+            lastName: 'Mercury'
+          } 
+        } 
+      });
+
+      render(path.join(dirname, 'data-access-template.hbs'), locals, function (err, html) {
+        assert.ifError(err);
+        assert.strictEqual(H.stripWs(html), H.stripWs('')); 
         done(err);
       });
     });
