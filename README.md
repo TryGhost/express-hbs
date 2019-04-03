@@ -185,6 +185,12 @@ Create isolated engine instances with their own cache system and handlebars engi
     var instance1 = hbs.create();
     var instance2 = hbs.create();
 
+## Template options
+
+Template options can be set in 3 ways. When setting global template options they can be [passed as config on creation of an instance](https://github.com/barc/express-hbs#usage), and they can also be updated used the `updateTemplateOptions(templateOptions)` method of an instance. To set template options for an individual request they can be set on `res.locals` using the helper method `updateLocalTemplateOptions(locals, templateOptions)`.
+
+Both of these methods have a companion method `getTemplateOptions()` and `getLocalTemplateOptions(locals)`, which should be used when extending or merging the current options.
+
 ## Example
 
 in File `app.js`
