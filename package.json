@@ -39,6 +39,7 @@
   "dependencies": {
     "handlebars": "4.0.13",
     "js-beautify": "1.6.8",
+    "lodash": "4.17.11",
     "readdirp": "2.1.0"
   }
 }
