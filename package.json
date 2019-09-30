@@ -35,9 +35,9 @@
   },
   "dependencies": {
     "bluebird": "^3.5.3",
-    "handlebars": "^4.4.0",
+    "handlebars": "^4.3.0",
     "js-beautify": "1.8.8",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.12",
     "readdirp": "2.2.1"
   }
 }
