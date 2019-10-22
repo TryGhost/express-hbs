@@ -15,7 +15,7 @@
   },
   "scripts": {
     "test": "mocha",
-    "coverage": "NODE_ENV=testing ./node_modules/.bin/istanbul cover --dir test/coverage -x 'example/**' ./node_modules/.bin/_mocha"
+    "coverage": "nyc npm run test"
   },
   "repository": {
     "type": "git",
@@ -28,8 +28,8 @@
     "cookie-parser": "1.4.3",
     "express": "4.16.4",
     "i18n": "0.8.3",
-    "istanbul": "0.4.5",
     "mocha": "5.2.0",
+    "nyc": "14.1.1",
     "rewire": "4.0.1",
     "supertest": "3.3.0"
   },
