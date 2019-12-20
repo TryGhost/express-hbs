@@ -36,8 +36,10 @@
   "dependencies": {
     "bluebird": "^3.5.3",
     "handlebars": "4.5.3",
-    "js-beautify": "1.8.8",
     "lodash": "4.17.15",
     "readdirp": "2.2.1"
+  },
+  "optionalDependencies": {
+    "js-beautify": "1.8.8"
   }
 }
