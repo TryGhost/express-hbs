@@ -4,11 +4,17 @@ Express handlebars template engine with multiple layouts, blocks and cached part
 
 Open source project from [Barc](http://barc.com), instant real-time forum on any website.
 
+## v2.0.0
+
+Version 2 was a rewrite and cleanup, with no known breaking changes. Lots of bugs were fixed which may have subtly changed behaviour.
+
+Full details: https://github.com/barc/express-hbs/releases/tag/2.0.0
+
 ## v1.0.0 Breaking Changes
 
 If you're upgrading from v0.8.4 to v1.0.0 there are some potentially breaking changes to be aware of:
 
-1. Handlebars @v4.0.5 - please see the [handlebars v4.0 compatibility notes](https://github.com/wycats/handlebars.js/blob/master/release-notes.md#v400---september-1st-2015)   
+1. Handlebars @v4.0.5 - please see the [handlebars v4.0 compatibility notes](https://github.com/wycats/handlebars.js/blob/master/release-notes.md#v400---september-1st-2015)
 2. The file extension for partial files must now match the extension configured in `extname` - please see [the PR](https://github.com/barc/express-hbs/pull/88)
 
 ## Usage
@@ -206,7 +212,7 @@ var instance2 = hbs.create();
 
 ## Template options
 
-The main use case for template options is setting the handlebars "data" object - this creates global template variables accessible with an `@` prefix. 
+The main use case for template options is setting the handlebars "data" object - this creates global template variables accessible with an `@` prefix.
 
 Template options can be set in 3 ways. When setting global template options they can be [passed as config on creation of an instance](https://github.com/barc/express-hbs#usage), and they can also be updated used the `updateTemplateOptions(templateOptions)` method of an instance. To set template options for an individual request they can be set on `res.locals` using the helper method `updateLocalTemplateOptions(locals, templateOptions)`.
 
@@ -296,4 +302,3 @@ The MIT License (MIT)
 Copyright (c) 2012-2014 Barc, Inc.
 
 See file LICENSE for copying permissions.
-
