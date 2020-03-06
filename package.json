@@ -14,7 +14,9 @@
     "example": "example"
   },
   "scripts": {
+    "lint": "eslint --ext .js --cache lib/**",
     "test": "mocha",
+    "posttest": "npm run lint",
     "coverage": "nyc npm run test"
   },
   "repository": {
@@ -26,6 +28,7 @@
   "license": "MIT",
   "devDependencies": {
     "cookie-parser": "1.4.3",
+    "eslint": "^6.8.0",
     "express": "4.16.4",
     "i18n": "0.8.3",
     "mocha": "5.2.0",

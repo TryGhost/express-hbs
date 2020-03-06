@@ -33,8 +33,9 @@
     "no-unused-vars": 2,
     "quotes": [2, "single", "avoid-escape"],
     "radix": 2,
-    "space-after-keywords": [2, "always"],
-    "space-in-brackets": [2, "never"],
+    "keyword-spacing": "error",
+    "object-curly-spacing": ["error", "never"],
+    "array-bracket-spacing": ["error", "never"],
     "strict": 2,
     "wrap-iife": 2
   }
