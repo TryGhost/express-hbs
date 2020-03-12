@@ -16,8 +16,10 @@
   "scripts": {
     "lint": "eslint --ext .js --cache lib/**",
     "test": "mocha",
-    "posttest": "npm run lint",
-    "coverage": "nyc npm run test"
+    "posttest": "yarn lint",
+    "coverage": "nyc yarn test",
+    "preship": "yarn test",
+    "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then yarn publish && git push --follow-tags; fi"
   },
   "repository": {
     "type": "git",
