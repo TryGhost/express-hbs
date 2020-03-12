@@ -2,20 +2,18 @@
 
 Express handlebars template engine with multiple layouts, blocks and cached partials.
 
-Open source project from [Barc](http://barc.com), instant real-time forum on any website.
-
 ## v2.0.0
 
 Version 2 was a rewrite and cleanup, with no known breaking changes. Lots of bugs were fixed which may have subtly changed behaviour.
 
-Full details: https://github.com/barc/express-hbs/releases/tag/2.0.0
+Full details: https://github.com/TryGhost/express-hbs/releases/tag/2.0.0
 
 ## v1.0.0 Breaking Changes
 
 If you're upgrading from v0.8.4 to v1.0.0 there are some potentially breaking changes to be aware of:
 
 1. Handlebars @v4.0.5 - please see the [handlebars v4.0 compatibility notes](https://github.com/wycats/handlebars.js/blob/master/release-notes.md#v400---september-1st-2015)
-2. The file extension for partial files must now match the extension configured in `extname` - please see [the PR](https://github.com/barc/express-hbs/pull/88)
+2. The file extension for partial files must now match the extension configured in `extname` - please see [the PR](https://github.com/TryGhost/express-hbs/pull/88)
 
 ## Usage
 
@@ -292,13 +290,11 @@ Once everything's installed, just run:
 
 Inspiration and code from [donpark/hbs](https://github.com/donpark/hbs)
 
-Big thanks to all [CONTRIBUTORS](https://github.com/barc/express-hbs/contributors)
+Big thanks to all [CONTRIBUTORS](https://github.com/TryGhost/express-hbs/contributors)
 
 
 ## License
 
 The MIT License (MIT)
 
-Copyright (c) 2012-2014 Barc, Inc.
-
-See file LICENSE for copying permissions.
+Copyright (c) 2012-2020 Barc, Inc., Ghost Foundation - Released under the [MIT license](LICENSE).
