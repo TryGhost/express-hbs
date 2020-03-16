@@ -42,7 +42,7 @@
     "bluebird": "^3.5.3",
     "handlebars": "4.7.3",
     "lodash": "4.17.15",
-    "readdirp": "2.2.1"
+    "readdirp": "3.3.0"
   },
   "optionalDependencies": {
     "js-beautify": "1.10.3"
