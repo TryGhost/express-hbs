@@ -29,6 +29,7 @@
   "author": "Mario Gutierrez <mario@barc.com>",
   "license": "MIT",
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "cookie-parser": "1.4.5",
     "eslint": "6.8.0",
     "express": "4.17.1",
@@ -39,11 +40,10 @@
     "supertest": "4.0.2"
   },
   "dependencies": {
-    "bluebird": "^3.5.3",
     "handlebars": "4.7.6",
-    "lodash.get": "^4.17.15",
-    "lodash.assignin": "^4.17.15",
-    "lodash.merge": "^4.17.15",
+    "lodash.assignin": "^4.2.0",
+    "lodash.get": "^4.4.2",
+    "lodash.merge": "^4.6.2",
     "readdirp": "3.4.0"
   },
   "optionalDependencies": {
