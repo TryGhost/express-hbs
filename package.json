@@ -40,11 +40,11 @@
     "supertest": "4.0.2"
   },
   "dependencies": {
-    "handlebars": "4.7.6",
+    "handlebars": "^4.7.6",
     "lodash.assignin": "^4.2.0",
     "lodash.get": "^4.4.2",
     "lodash.merge": "^4.6.2",
-    "readdirp": "3.4.0"
+    "readdirp": "^3.4.0"
   },
   "optionalDependencies": {
     "js-beautify": "1.11.0"
