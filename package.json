@@ -41,7 +41,7 @@
   "dependencies": {
     "bluebird": "^3.5.3",
     "handlebars": "4.7.6",
-    "lodash": "4.17.18",
+    "lodash": "4.17.19",
     "readdirp": "3.4.0"
   },
   "optionalDependencies": {
