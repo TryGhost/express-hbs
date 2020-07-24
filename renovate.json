@@ -1,5 +1,6 @@
 {
   "extends": [
-    "@tryghost:quietJS"
+    "@tryghost:quietJS",
+    "@tryghost:automergeDevDependencies"
   ]
 }
