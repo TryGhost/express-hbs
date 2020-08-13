@@ -45,6 +45,6 @@
     "readdirp": "3.4.0"
   },
   "optionalDependencies": {
-    "js-beautify": "1.11.0"
+    "js-beautify": "1.12.0"
   }
 }
