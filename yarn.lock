@@ -1274,10 +1274,10 @@ http-errors@~1.7.2:
     statuses ">= 1.5.0 < 2"
     toidentifier "1.0.0"
 
-i18n@0.11.1:
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/i18n/-/i18n-0.11.1.tgz#f06a37afbb37bd3e9714ce15f436dccc6146ded2"
-  integrity sha512-j9JGOlvbUatVU5cXua+AHilotkt0wRI4ZEhkyh/v/tKcwbtMjpauxjrBcFBqTCz+Ew6Xr7cCJkA+4DLYQB1YUg==
+i18n@0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/i18n/-/i18n-0.12.0.tgz#d33137d5f1baeb0ea4feaa9022d4e42586856f62"
+  integrity sha512-PAxVHNs/hCB/RXNWvImbmUxkKsaUfFLxA6TJiDPVHvzPRueJEVDTGnWeSuxQylhGGmYhFWEj/mGeumaQenUfsg==
   dependencies:
     debug "*"
     make-plural "^6.2.1"
