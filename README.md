@@ -99,6 +99,10 @@ There are three ways to use a layout, listed in precedence order
 
 2.  As an option to render
 
+    ## ⚠️ This creates a potential security vulnerability:
+
+    Do not use this option in conjunction with passing user submitted data to res.render e.g. `res.render('index', req.query)`. This allows users to read arbitrary files from your filesystem!
+
     ```js
     res.render('veggies', {
       title: 'My favorite veggies',
