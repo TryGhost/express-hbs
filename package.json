@@ -36,7 +36,7 @@
     "mocha": "8.4.0",
     "nyc": "15.1.0",
     "rewire": "5.0.0",
-    "supertest": "6.1.4"
+    "supertest": "6.1.5"
   },
   "dependencies": {
     "bluebird": "^3.5.3",
