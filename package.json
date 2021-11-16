@@ -29,7 +29,7 @@
   "author": "Mario Gutierrez <mario@barc.com>",
   "license": "MIT",
   "devDependencies": {
-    "cookie-parser": "1.4.5",
+    "cookie-parser": "1.4.6",
     "eslint": "7.32.0",
     "express": "4.17.1",
     "i18n": "0.13.3",
