@@ -1366,10 +1366,10 @@ http-errors@1.8.1:
     statuses ">= 1.5.0 < 2"
     toidentifier "1.0.1"
 
-i18n@0.14.0:
-  version "0.14.0"
-  resolved "https://registry.yarnpkg.com/i18n/-/i18n-0.14.0.tgz#99986661c33dcedfc91674404166a6887f81e2e1"
-  integrity sha512-81eeeMjQm9LQdeMCx38dkGuMIbiXw1sDKSj9g+uKsaMwz63AP2/676YCY9MWS+KBbwTVrFLWVRfBfU/xARe3QA==
+i18n@0.14.1:
+  version "0.14.1"
+  resolved "https://registry.yarnpkg.com/i18n/-/i18n-0.14.1.tgz#c960da9c8901e891d7b0b19495a096fe0a963bc2"
+  integrity sha512-Mu7JS17Fv52jwBJ6q7ssIBlYi+ARkeBTehTV/brlVH0x5u6YzsK8l9fANE8CqUjVBoSEdVa+2vYPB0RF/QF58g==
   dependencies:
     "@messageformat/core" "^3.0.0"
     debug "^4.3.3"
