@@ -73,7 +73,13 @@ function create(hbs, env) {
   app.use(cookieParser());
 
   app.get('/', function (req, res) {
-    res.render('index', {
+    res.render('index-working', {
+      message: 'Hello,',
+      username: req.cookies.user
+    });
+  });
+  app.get('/broken', function (req, res) {
+    res.render('index-broken', {
       message: 'Hello,',
       username: req.cookies.user
     });

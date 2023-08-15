@@ -1,0 +1,18 @@
+{{#contentFor "title"}}
+{{message}} {{{user username}}}
+{{/contentFor}}
+<span id="text">This should welcome {{username}}.</span>
+<a href="/user/{{username}}"></div>
+<div class="pages">
+  {{#pages filter="tags:test"}}
+  <div class="page">
+    <span class="title">{{title}}</title>
+      <div class="top-comments">
+        {{#comments top="3" page=id}}
+	  <p>{{user "egg"}}</p>
+	  <span class="subject">{{subject}}</span>-<span class="auther">{{auther}}</span>
+        {{/comments}}
+      </div>
+  </div>
+  {{/pages}}
+</div>
