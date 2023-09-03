@@ -3,6 +3,10 @@
     "node": true
   },
 
+  "parserOptions": {
+    "ecmaVersion": 2022,
+  },
+
   "globals": {
     "describe": true,
     "beforeEach": true,
