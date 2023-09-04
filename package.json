@@ -39,7 +39,6 @@
     "supertest": "6.3.3"
   },
   "dependencies": {
-    "bluebird": "^3.5.3",
     "handlebars": "^4.7.7",
     "lodash": "^4.17.21",
     "readdirp": "^3.6.0"
