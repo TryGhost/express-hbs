@@ -9,7 +9,8 @@ describe('non-express', function() {
 
     it ('should use viewsDir options', function(done) {
       var render = hbs.create().express3({
-        viewsDir: dirname
+        viewsDir: dirname,
+        restrictLayoutsTo: dirname
       });
       var locals = H.createLocals('express3', dirname);
 
@@ -22,7 +23,8 @@ describe('non-express', function() {
     it ('should work with layoutsDir', function(done) {
       var render = hbs.create().express3({
         viewsDir: dirname,
-        layoutsDir: dirname + '/layouts'
+        layoutsDir: dirname + '/layouts',
+        restrictLayoutsTo: dirname
       });
       var locals = H.createLocals('express3', dirname, {layout: 'default.hbs'});
 

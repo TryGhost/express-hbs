@@ -20,7 +20,8 @@ function create(hbs, env) {
   // Hook in express-hbs and tell it where known directories reside
   app.engine('hbs', hbs.express4({
     partialsDir: [relative('views/partials'), relative('views/partials-other')],
-    defaultLayout: relative('views/layout/default.hbs')
+    defaultLayout: relative('views/layout/default.hbs'),
+    restrictLayoutsTo: viewsDir
   }));
   app.set('view engine', 'hbs');
   app.set('views', viewsDir);

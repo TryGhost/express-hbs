@@ -1,5 +1,6 @@
 var request = require('supertest');
 var assert = require('assert');
+var path = require('path');
 var hbs = require('..');
 
 
@@ -65,6 +66,7 @@ describe('layouts', function() {
 
     it ('should process template-specified layout without option', function(done) {
       var render = hbs.create().express3({
+        restrictLayoutsTo: dirname
       });
       var locals = createLocals('express3', dirname);
 
@@ -76,6 +78,7 @@ describe('layouts', function() {
 
     it ('should allow options.layout to be specified', function(done) {
       var render = hbs.create().express3({
+        restrictLayoutsTo: dirname
       });
       var locals = createLocals('express3', dirname, { layout: 'layouts/default' });
 
@@ -85,8 +88,23 @@ describe('layouts', function() {
       });
     });
 
+    it('should error when using a layout outside of the restrictLayoutsTo', function(done) {
+      var render = hbs.create().express3({
+        restrictLayoutsTo: path.resolve(path.join(__dirname, '../'))
+      });
+      var locals = createLocals('express3', dirname, {layout: '/Users/egg/Code/Ghost/ghost/core/package.json'});
+
+      render(dirname + '/aside.hbs', locals, function (err, html) {
+        if (!err) {
+          return done(new Error('We expect an error when reading'));
+        }
+        return done();
+      });
+    });
+
     it ('should not process template-specified layout when options.layout is falsy', function(done) {
       var render = hbs.create().express3({
+        restrictLayoutsTo: dirname
       });
       var locals = createLocals('express3', dirname, { layout: false });
 

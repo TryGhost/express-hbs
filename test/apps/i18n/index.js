@@ -31,7 +31,8 @@ function create(hbs, env) {
 
   // Hook in express-hbs and tell it where known directories reside
   app.engine('hbs', hbs.express3({
-    i18n: i18n
+    i18n: i18n,
+    restrictLayoutsTo: viewsDir
   }));
   app.set('view engine', 'hbs');
   app.set('views', viewsDir);

@@ -19,7 +19,8 @@ app.use(express.static(relative('public')));
 app.engine('hbs', hbs.express4({
   partialsDir: [relative('views/partials'), relative('views/partials-other')],
   layoutsDir: relative('views/layout'),
-  defaultLayout: relative('views/layout/default.hbs')
+  defaultLayout: relative('views/layout/default.hbs'),
+  restrictLayoutsTo: relative('views/layout')
 }));
 app.set('view engine', 'hbs');
 app.set('views', relative('views'));

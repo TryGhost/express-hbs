@@ -43,6 +43,7 @@ hbs.express4({
   partialsDir: "{String/Array} [Required] Path to partials templates, one or several directories",
 
   // OPTIONAL settings
+  restrictLayoutsTo: "{String} Absolute path to a directory to restrict layout directive reading from",
   blockHelperName: "{String} Override 'block' helper name.",
   contentHelperName: "{String} Override 'contentFor' helper name.",
   defaultLayout: "{String} Absolute path to default layout template",
@@ -99,9 +100,9 @@ There are three ways to use a layout, listed in precedence order
 
 2.  As an option to render
 
-    ## ⚠️ This creates a potential security vulnerability:
+    ## ⚠️ This creates a potential security vulnerability if used without a `restrictLayoutsTo`:
 
-    Do not use this option in conjunction with passing user submitted data to res.render e.g. `res.render('index', req.query)`. This allows users to read arbitrary files from your filesystem!
+    The `restrictLayoutsTo` option will restrict reading layouts to a particular directory, if you do not pass this option then do not use the `layout` option in conjunction with passing user submitted data to res.render e.g. `res.render('index', req.query)`. This allows users to read arbitrary files from your filesystem!
 
     ```js
     res.render('veggies', {

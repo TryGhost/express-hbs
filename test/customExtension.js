@@ -11,7 +11,8 @@ describe('custom extension for partials view', function() {
   var dirname = path.join(__dirname, 'views/customExtension');
   var render = hbs.create().express4({
       extname: '.server.view.html',
-      partialsDir: dirname + '/partialsDir'
+      partialsDir: dirname + '/partialsDir',
+      restrictLayoutsTo: dirname
   });
 
   it('should allow rendering multiple partials with custom extension', function(done) {

@@ -11,7 +11,9 @@ describe('local template options', function () {
 
     it('merges res.locals._templateOptions with the self._templateOptions', function (done) {
       var instance = hbs.create();
-      var render = instance.express3({});
+      var render = instance.express3({
+        restrictLayoutsTo: dirname
+      });
       instance.updateTemplateOptions({
           data: {
             greeting: 'Hello,',
@@ -37,7 +39,9 @@ describe('local template options', function () {
 
     it('removes _templateOptions from the locals data', function (done) {
       var instance = hbs.create();
-      var render = instance.express3({});
+      var render = instance.express3({
+        restrictLayoutsTo: dirname
+      });
       instance.updateTemplateOptions({
           data: {
             greeting: 'Hello,',
@@ -66,7 +70,9 @@ describe('local template options', function () {
 
     it('merges res.locals._templateOptions with the self._templateOptions', function (done) {
       var instance = hbs.create();
-      var render = instance.express4({});
+      var render = instance.express4({
+        restrictLayoutsTo: dirname
+      });
       instance.updateTemplateOptions({
           data: {
             greeting: 'Hello,',
@@ -92,7 +98,9 @@ describe('local template options', function () {
 
     it('removes _templateOptions from the locals data', function (done) {
       var instance = hbs.create();
-      var render = instance.express3({});
+      var render = instance.express3({
+        restrictLayoutsTo: dirname
+      });
       instance.updateTemplateOptions({
           data: {
             greeting: 'Hello,',

@@ -10,7 +10,7 @@ describe('options', function() {
 
   it('should pretty print HTML', function(done) {
     var hb = hbs.create();
-    var render = hb.express3({beautify: true});
+    var render = hb.express3({beautify: true, restrictLayoutsTo: dirname});
     var locals = H.createLocals('express3', dirname, {});
 
     render(dirname + '/index.hbs', locals, function(err, html) {

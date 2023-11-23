@@ -9,7 +9,9 @@ describe('issue-22 template', function() {
   var dirname = path.join(__dirname, 'issues/22');
 
   it('should use multiple layouts with caching', function(done) {
-    var render = hbs.create().express3({});
+    var render = hbs.create().express3({
+      restrictLayoutsTo: dirname
+    });
     var locals1 = H.createLocals('express3', dirname, { layout: 'layout1', cache: true });
     var locals2 = H.createLocals('express3', dirname, { layout: 'layout2', cache: true });
 
@@ -30,7 +32,8 @@ describe('issue-23', function() {
 
   it('should not pass an empty or missing partial to handlebars', function(done) {
     var render = hbs.create().express3({
-      partialsDir: [dirname + '/partials']
+      partialsDir: [dirname + '/partials'],
+      restrictLayoutsTo: dirname
     });
 
     function check(err, html) {
@@ -43,7 +46,8 @@ describe('issue-23', function() {
 
   it('should handle empty string', function(done) {
     var render = hbs.create().express3({
-      partialsDir: [dirname + '/partials']
+      partialsDir: [dirname + '/partials'],
+      restrictLayoutsTo: dirname
     });
 
     function check(err, html) {
@@ -58,7 +62,8 @@ describe('issue-23', function() {
   it('should register empty partial', function(done) {
     var hb = hbs.create();
     var render = hb.express3({
-      partialsDir: [dirname + '/partials']
+      partialsDir: [dirname + '/partials'],
+      restrictLayoutsTo: dirname
     });
     hb.handlebars.registerPartial('emptyPartial', '');
 
@@ -82,7 +87,8 @@ describe('issue-23', function() {
   it('should register partial that results in empty string (comment)', function(done) {
     var hb = hbs.create();
     var render = hb.express3({
-      partialsDir: [dirname + '/partials']
+      partialsDir: [dirname + '/partials'],
+      restrictLayoutsTo: dirname
     });
     // this fails
     //hb.handlebars.registerPartial('emptyComment', '{{! just a comment}}');
@@ -110,7 +116,8 @@ describe('issue-23', function() {
 describe('issue-21', function() {
   var dirname =  path.join(__dirname, 'issues/21');
   var render = hbs.create().express3({
-    layoutsDir: dirname + '/views/layouts'
+    layoutsDir: dirname + '/views/layouts',
+    restrictLayoutsTo: dirname
   });
 
   it('should allow specifying layouts without the parent dir', function(done) {
@@ -158,7 +165,9 @@ describe('issue-21', function() {
 
   it('should treat layouts relative to views directory if layoutsDir is not passed', function(done) {
     var dirname =  path.join(__dirname, 'issues/21');
-    var render = hbs.create().express3();
+    var render = hbs.create().express3({
+      restrictLayoutsTo: dirname
+    });
 
     function check(err, html) {
       assert.ifError(err);
@@ -177,7 +186,9 @@ describe('issue-49', function() {
 
   it('should report filename with error', function(done) {
     var hb = hbs.create()
-    var render = hb.express3({});
+    var render = hb.express3({
+      restrictLayoutsTo: dirname
+    });
     var locals = H.createLocals('express3', dirname, {});
     render(dirname + '/error.hbs', locals, function(err, html) {
       assert(err.stack.indexOf('[error.hbs]') > 0);
@@ -187,7 +198,9 @@ describe('issue-49', function() {
 
   it('should report relative filename with error', function(done) {
     var hb = hbs.create()
-    var render = hb.express3({});
+    var render = hb.express3({
+      restrictLayoutsTo: dirname
+    });
     var locals = H.createLocals('express3', dirname, {});
     render(dirname + '/front/error.hbs', locals, function(err, html) {
       assert(err.stack.indexOf('[front/error.hbs]') > 0);
@@ -198,7 +211,8 @@ describe('issue-49', function() {
   it('should report filename with partial error', function(done) {
     var hb = hbs.create()
     var render = hb.express3({
-      partialsDir: dirname + '/partials'
+      partialsDir: dirname + '/partials',
+      restrictLayoutsTo: dirname
     });
     var locals = H.createLocals('express3', dirname, {});
     render(dirname + '/partial.hbs', locals, function(err, html) {
@@ -210,7 +224,8 @@ describe('issue-49', function() {
   it('should report filename with layout error', function(done) {
     var hb = hbs.create()
     var render = hb.express3({
-      partialsDir: dirname + '/partials'
+      partialsDir: dirname + '/partials',
+      restrictLayoutsTo: dirname
     });
     var locals = H.createLocals('express3', dirname, {});
     render(dirname + '/index.hbs', locals, function(err, html) {
@@ -231,7 +246,9 @@ describe('issue-53', function() {
         resultcb(++res);
       }, 1)
     });
-    var render = hb.express3({});
+    var render = hb.express3({
+      restrictLayoutsTo: dirname
+    });
     var locals = H.createLocals('express3', dirname, {});
     render(dirname + '/index.hbs', locals, function(err, html) {
       assert.ifError(err);
@@ -253,7 +270,8 @@ describe('issue-59', function() {
     hb.registerAsyncHelper("async", async);
 
     var render = hb.express3({
-      viewsDir: dirname
+      viewsDir: dirname,
+      restrictLayoutsTo: dirname
     });
     var locals = H.createLocals('express3', dirname);
 
@@ -272,7 +290,8 @@ describe('issue-59', function() {
     hb.registerAsyncHelper('async', async);
 
     var render = hb.express3({
-      viewsDir: dirname
+      viewsDir: dirname,
+      restrictLayoutsTo: dirname
     });
     var locals = H.createLocals('express3', dirname);
 
@@ -290,6 +309,7 @@ describe('issue-73', function() {
     var render = hb.express3({
       viewsDir: dirname,
       partialsDir: dirname + '/partials',
+      restrictLayoutsTo: dirname,
       onCompile: function(eh, source, filename) {
         var options;
         if (filename && filename.indexOf('partials')) {
@@ -329,7 +349,8 @@ describe('issue-62', function() {
     hb.registerAsyncHelper("async", async);
 
     var render = hb.express3({
-      viewsDir: dirname
+      viewsDir: dirname,
+      restrictLayoutsTo: dirname
     });
     var locals = H.createLocals('express3', dirname);
 
@@ -359,7 +380,8 @@ describe('issue-62', function() {
     hb.registerAsyncHelper("async", async);
 
     var render = hb.express3({
-      viewsDir: dirname
+      viewsDir: dirname,
+      restrictLayoutsTo: dirname
     });
     var locals = H.createLocals('express3', dirname);
 
@@ -380,7 +402,8 @@ describe('issue-76', function() {
     var hb = hbs.create();
 
     var render = hb.express3({
-      partialsDir: dirname
+      partialsDir: dirname,
+      restrictLayoutsTo: dirname
     });
 
     hb.cachePartials(function (err) {
@@ -396,7 +419,8 @@ describe('issue-84', function () {
 
   it('should render deeply nested partials', function (done) {
     var render = hbs.create().express3({
-      partialsDir: [dirname + '/partials']
+      partialsDir: [dirname + '/partials'],
+      restrictLayoutsTo: dirname
     });
 
     function check(err, html) {
@@ -421,7 +445,9 @@ describe('issue-144', function() {
         resultcb(new hbs.SafeString('<p><code>\'$example$\'</code> abcd</p>'));
       }, 1)
     });
-    var render = hb.express3({});
+    var render = hb.express3({
+      restrictLayoutsTo: dirname
+    });
     var locals = H.createLocals('express3', dirname, {});
     render(dirname + '/index.hbs', locals, function(err, html) {
       assert.equal('<div><p><code>\'$example$\'</code> abcd</p></div>\n', html);
@@ -441,7 +467,9 @@ describe('issue-153', function() {
       done();
     }
     var hb = hbs.create()
-    var render = hb.express3({});
+    var render = hb.express3({
+      restrictLayoutsTo: dirname
+    });
     var locals = H.createLocals('express3', dirname, { });
     render(dirname + '/index.hbs', locals, check);
   });

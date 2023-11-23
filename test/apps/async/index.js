@@ -65,7 +65,8 @@ function create(hbs, env) {
 
   // Hook in express-hbs and tell it where known directories reside
   app.engine('hbs', hbs.express4({
-    defaultLayout: path.join(viewsDir, "layout.hbs")
+    defaultLayout: path.join(viewsDir, 'layout.hbs'),
+    restrictLayoutsTo: viewsDir
   }));
   app.set('view engine', 'hbs');
   app.set('views', viewsDir);

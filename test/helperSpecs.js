@@ -15,7 +15,8 @@ describe('helpers', function() {
       var hb = hbs.create();
       hb.registerHelper("sync", sync);
       var render = hb.express3({
-        viewsDir: dirname
+        viewsDir: dirname,
+        restrictLayoutsTo: dirname
       });
       var locals = H.createLocals('express3', dirname);
 
@@ -38,7 +39,8 @@ describe('helpers', function() {
       hb.registerAsyncHelper("async", async);
 
       var render = hb.express3({
-        viewsDir: dirname
+        viewsDir: dirname,
+        restrictLayoutsTo: dirname
       });
       var locals = H.createLocals('express3', dirname);
 

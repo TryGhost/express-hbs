@@ -10,7 +10,9 @@ describe('multiple directories', function() {
 
   beforeEach(function() {
     app = express();
-    app.engine('hbs', hbs.express3());
+    app.engine('hbs', hbs.express3({
+      restrictLayoutsTo: './test/views/multiple'
+    }));
     app.set('view engine', 'hbs');
     app.get('/test1', function (req, res) {
       res.render('test1');
