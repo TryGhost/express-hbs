@@ -47,7 +47,7 @@
     "js-beautify": "^1.13.11"
   }, 
   "overrides": {
-    "express-hbs": {
+    "js-beautify": {
       "cross-spawn": "7.0.5"
     }
   }
