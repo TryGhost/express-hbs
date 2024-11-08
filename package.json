@@ -45,5 +45,10 @@
   },
   "optionalDependencies": {
     "js-beautify": "^1.13.11"
+  }, 
+  "overrides": {
+    "express-hbs": {
+      "cross-spawn": "7.0.5"
+    }
   }
 }
