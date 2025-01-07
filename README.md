@@ -302,4 +302,4 @@ Big thanks to all [CONTRIBUTORS](https://github.com/TryGhost/express-hbs/contrib
 
 The MIT License (MIT)
 
-Copyright (c) 2012-2023 Barc, Inc., Ghost Foundation - Released under the [MIT license](LICENSE).
+Copyright (c) 2012-2025 Barc, Inc., Ghost Foundation - Released under the [MIT license](LICENSE).
