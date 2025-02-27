@@ -341,10 +341,10 @@
   resolved "https://registry.yarnpkg.com/@ungap/structured-clone/-/structured-clone-1.3.0.tgz#d06bbb384ebcf6c505fde1c3d0ed4ddffe0aaff8"
   integrity sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==
 
-abbrev@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-3.0.0.tgz#c29a6337e167ac61a84b41b80461b29c5c271a27"
-  integrity sha512-+/kfrslGQ7TNV2ecmQwMJj/B65g5KVq1/L3SGVZ3tCYGqlzFuFCGBZJtMP99wH3NpEUyAjn0zPdPUg0D+DwrOA==
+abbrev@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-2.0.0.tgz#cf59829b8b4f03f89dda2771cb7f3653828c89bf"
+  integrity sha512-6/mh1E2u2YgEsCHdY0Yx5oW+61gZU+1vXaoiHHrpKeuRNNgFvS+/jrwHiQhB5apAf5oB7UB7E19ol2R2LKH8hQ==
 
 accepts@~1.3.8:
   version "1.3.8"
@@ -715,7 +715,7 @@ cookiejar@^2.1.4:
   resolved "https://registry.yarnpkg.com/cookiejar/-/cookiejar-2.1.4.tgz#ee669c1fea2cf42dc31585469d193fef0d65771b"
   integrity sha512-LDx6oHrK+PhzLKJU9j5S7/Y3jM/mUHvD/DeI1WQmJn652iPC5Y4TBzC9l+5OMOXlyTTA+SmVUPm0HQUwpD5Jqw==
 
-cross-spawn@^7.0.0, cross-spawn@^7.0.2, cross-spawn@^7.0.3:
+cross-spawn@^7.0.0, cross-spawn@^7.0.2, cross-spawn@^7.0.3, cross-spawn@^7.0.6:
   version "7.0.6"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.6.tgz#8a58fe78f00dcd70c370451759dfbfaf03e8ee9f"
   integrity sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==
@@ -1189,11 +1189,11 @@ foreground-child@^2.0.0:
     signal-exit "^3.0.2"
 
 foreground-child@^3.1.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/foreground-child/-/foreground-child-3.3.0.tgz#0ac8644c06e431439f8561db8ecf29a7b5519c77"
-  integrity sha512-Ld2g8rrAyMYFXBhEqMz8ZAHBi4J4uS1i/CxGMDnjyFWddMXLVcDp051DZfu+t7+ab7Wv6SMqpWmyFIj5UbfFvg==
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/foreground-child/-/foreground-child-3.3.1.tgz#32e8e9ed1b68a3497befb9ac2b6adf92a638576f"
+  integrity sha512-gIXjKqtFuWEgzFRJA9WCQeSJLZDjgJUOMCMzxtvFq/37KojM1BFGufqsCy0r4qSQmYLsZYMeyRqzIWOMup03sw==
   dependencies:
-    cross-spawn "^7.0.0"
+    cross-spawn "^7.0.6"
     signal-exit "^4.0.1"
 
 form-data@^4.0.0:
@@ -1629,15 +1629,15 @@ jackspeak@^3.1.2:
     "@pkgjs/parseargs" "^0.11.0"
 
 js-beautify@^1.13.11:
-  version "1.15.3"
-  resolved "https://registry.yarnpkg.com/js-beautify/-/js-beautify-1.15.3.tgz#25ef18e9a0fda0b7fd5896b28bfb6ce0e642643c"
-  integrity sha512-rKKGuyTxGNlyN4EQKWzNndzXpi0bOl8Gl8YQAW1as/oMz0XhD6sHJO1hTvoBDOSzKuJb9WkwoAb34FfdkKMv2A==
+  version "1.15.4"
+  resolved "https://registry.yarnpkg.com/js-beautify/-/js-beautify-1.15.4.tgz#f579f977ed4c930cef73af8f98f3f0a608acd51e"
+  integrity sha512-9/KXeZUKKJwqCXUdBxFJ3vPh467OCckSBmYDwSK/EtV090K+iMJ7zx2S3HLVDIWFQdqMIsZWbnaGiba18aWhaA==
   dependencies:
     config-chain "^1.1.13"
     editorconfig "^1.0.4"
     glob "^10.4.2"
     js-cookie "^3.0.5"
-    nopt "^8.0.0"
+    nopt "^7.2.1"
 
 js-cookie@^3.0.5:
   version "3.0.5"
@@ -1930,12 +1930,12 @@ node-releases@^2.0.19:
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.19.tgz#9e445a52950951ec4d177d843af370b411caf314"
   integrity sha512-xxOWJsBKtzAq7DY0J+DTzuz58K8e7sJbdgwkbMWQe8UYB6ekmsQ45q0M/tJDsGaZmbC+l7n57UV8Hl5tHxO9uw==
 
-nopt@^8.0.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/nopt/-/nopt-8.1.0.tgz#b11d38caf0f8643ce885818518064127f602eae3"
-  integrity sha512-ieGu42u/Qsa4TFktmaKEwM6MQH0pOWnaB3htzh0JRtx84+Mebc0cbZYN5bC+6WTZ4+77xrL9Pn5m7CV6VIkV7A==
+nopt@^7.2.1:
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/nopt/-/nopt-7.2.1.tgz#1cac0eab9b8e97c9093338446eddd40b2c8ca1e7"
+  integrity sha512-taM24ViiimT/XntxbPyJQzCG+p4EKOpgD3mxFwW38mGjVUrfERQOeY4EDHjdnptttfHuHQXFx+lTP08Q+mLa/w==
   dependencies:
-    abbrev "^3.0.0"
+    abbrev "^2.0.0"
 
 normalize-path@^3.0.0, normalize-path@~3.0.0:
   version "3.0.0"
