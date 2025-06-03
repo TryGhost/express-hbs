@@ -2235,10 +2235,10 @@ reusify@^1.0.4:
   resolved "https://registry.yarnpkg.com/reusify/-/reusify-1.1.0.tgz#0fe13b9522e1473f51b558ee796e08f11f9b489f"
   integrity sha512-g6QUff04oZpHs0eG5p83rFLhHeV00ug/Yf9nZM6fLeUrPguBTkTQOdpAWWspMh55TZfVQDPaN3NQJfbVRAxdIw==
 
-rewire@7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/rewire/-/rewire-7.0.0.tgz#41db5482370c88758ffc9a719f7c92a761fa8fbf"
-  integrity sha512-DyyNyzwMtGYgu0Zl/ya0PR/oaunM+VuCuBxCuhYJHHaV0V+YvYa3bBGxb5OZ71vndgmp1pYY8F4YOwQo1siRGw==
+rewire@8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/rewire/-/rewire-8.0.0.tgz#f4538b74f54e7b045a21132663b837f30bb82ec2"
+  integrity sha512-30aZREqOFlNkNFbv6aSen7TMaS+jAKh2O+EH8EB1/THhgzZ/vIwqh0cDgyud1v+fanFinxXF//Q9SJEBwc/mHg==
   dependencies:
     eslint "^8.47.0"
 

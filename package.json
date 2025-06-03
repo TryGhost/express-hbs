@@ -35,7 +35,7 @@
     "i18n": "0.15.1",
     "mocha": "10.8.2",
     "nyc": "15.1.0",
-    "rewire": "7.0.0",
+    "rewire": "8.0.0",
     "supertest": "7.1.1"
   },
   "dependencies": {
