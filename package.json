@@ -45,5 +45,10 @@
   },
   "optionalDependencies": {
     "js-beautify": "^1.13.11"
+  }, 
+  "overrides": {
+    "js-beautify": {
+      "cross-spawn": "7.0.5"
+    }
   }
 }
