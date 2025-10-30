@@ -1438,10 +1438,10 @@ http-errors@2.0.0:
     statuses "2.0.1"
     toidentifier "1.0.1"
 
-i18n@0.15.2:
-  version "0.15.2"
-  resolved "https://registry.yarnpkg.com/i18n/-/i18n-0.15.2.tgz#0f73b9d3545c2a7b00ea34d134d0c2d5b75aa38b"
-  integrity sha512-mdBxCfC651UL/hNizIQgB1NHwbBKjlrPcsoTzd/X8rNbJlS1FMF//TOyHEVFg9Dxo0RcrI2ZKt1AFTNe3Q40og==
+i18n@0.15.3:
+  version "0.15.3"
+  resolved "https://registry.yarnpkg.com/i18n/-/i18n-0.15.3.tgz#1f5fb46e13ac48edc4c21b3f0b97fee4d75ae8af"
+  integrity sha512-tW/AA5R4lJZLnd60Agcd0PfXB1C2G7UqTrdNewuv/SIYdxcHkCE8w4Zx1SgCjJ+2BLuAAGIG/KXb/xNYF1lO5Q==
   dependencies:
     "@messageformat/core" "^3.4.0"
     debug "^4.4.3"
