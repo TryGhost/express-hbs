@@ -1,6 +1,5 @@
 {
   "extends": [
-    "@tryghost:quietJS",
-    "@tryghost:automergeDevDependencies"
+    "github>TryGhost/renovate-config"
   ]
 }
