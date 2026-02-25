@@ -88,6 +88,20 @@ describe('layouts', function() {
       });
     });
 
+    it ('should allow absolute layout path when restrictLayoutsTo is relative', function(done) {
+      var render = hbs.create().express3({
+        restrictLayoutsTo: path.relative(process.cwd(), dirname)
+      });
+      var locals = createLocals('express3', dirname, {
+        layout: path.resolve(path.join(dirname, 'layouts/default'))
+      });
+
+      render(dirname + '/aside.hbs', locals, function(err, html) {
+        assert.equal('<dld>aside</dld>', stripWs(html));
+        done();
+      });
+    });
+
     it('should error when using a layout outside of the restrictLayoutsTo', function(done) {
       var render = hbs.create().express3({
         restrictLayoutsTo: path.resolve(path.join(__dirname, '../'))
@@ -95,6 +109,22 @@ describe('layouts', function() {
       var locals = createLocals('express3', dirname, {layout: '/Users/egg/Code/Ghost/ghost/core/package.json'});
 
       render(dirname + '/aside.hbs', locals, function (err, html) {
+        if (!err) {
+          return done(new Error('We expect an error when reading'));
+        }
+        return done();
+      });
+    });
+
+    it('should error when layout path only matches restrictLayoutsTo as a prefix', function(done) {
+      var render = hbs.create().express3({
+        restrictLayoutsTo: dirname
+      });
+      var locals = createLocals('express3', dirname, {
+        layout: path.resolve(path.join(__dirname, 'views/disableLayoutDirectiveEvil/layouts/default'))
+      });
+
+      render(dirname + '/aside.hbs', locals, function(err, html) {
         if (!err) {
           return done(new Error('We expect an error when reading'));
         }
