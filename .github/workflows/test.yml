@@ -27,3 +27,13 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn lint
       - run: yarn coverage
+
+  all-tests-pass:
+    name: All tests pass
+    if: always()
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify all required jobs succeeded
+        if: needs.build.result != 'success'
+        run: exit 1
