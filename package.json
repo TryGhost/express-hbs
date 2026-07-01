@@ -10,6 +10,9 @@
     "partials"
   ],
   "main": "index.js",
+  "engines": {
+    "node": ">=20"
+  },
   "directories": {
     "example": "example"
   },
@@ -17,7 +20,7 @@
     "lint": "eslint --ext .js --cache lib/**",
     "test": "mocha",
     "posttest": "yarn lint",
-    "coverage": "nyc yarn test",
+    "coverage": "nyc --check-coverage mocha",
     "preship": "yarn test",
     "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then yarn publish && git push --follow-tags; fi"
   },
