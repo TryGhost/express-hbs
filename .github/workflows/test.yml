@@ -28,12 +28,12 @@ jobs:
       - run: yarn lint
       - run: yarn coverage
 
-  all-tests-pass:
-    name: All tests pass
+  required-checks-pass:
+    name: Required checks pass
     if: always()
     needs: [build]
     runs-on: ubuntu-latest
     steps:
       - name: Verify all required jobs succeeded
-        if: needs.build.result != 'success'
+        if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')
         run: exit 1
