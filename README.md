@@ -1,6 +1,17 @@
 # express-hbs
 
-Express handlebars template engine with multiple layouts, blocks and cached partials.
+Express Handlebars template engine for Express apps, with nested layouts,
+named content blocks, cached partials, i18n helpers, and asynchronous helpers.
+
+`express-hbs` exposes Express-compatible view engine functions and a shared
+Handlebars instance. It is used by apps that want Handlebars templates with
+layout inheritance and block-style content regions while keeping the familiar
+`app.engine()` integration.
+
+## Requirements
+
+- Node.js 20 or later
+- pnpm 10 when working on this repository
 
 ## v2.0.0
 
@@ -17,7 +28,8 @@ If you're upgrading from v0.8.4 to v1.0.0 there are some potentially breaking ch
 
 ## Usage
 
-To use with express 4.
+Register the engine with Express using `hbs.express4()`.
+
 ```js
 var hbs = require('express-hbs');
 
@@ -28,7 +40,9 @@ app.engine('hbs', hbs.express4({
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 ```
-To use with express 3 is the same as above, except use hbs.express3
+
+`hbs.express3()` is still available for legacy apps and accepts the same
+options:
 
 ```js
 app.engine('hbs', hbs.express3({
@@ -36,7 +50,7 @@ app.engine('hbs', hbs.express3({
 }));
 ```
 
-Options for `#express3` and `#express4`
+Options for `express3()` and `express4()`:
 
 ```js
 hbs.express4({
@@ -67,15 +81,15 @@ hbs.express4({
 
 ## Syntax
 
-To mark where layout should insert page
+To mark where a layout should insert page content:
 
     {{{body}}}
 
-To declare a block placeholder in layout
+To declare a block placeholder in a layout:
 
     {{{block "pageScripts"}}}
 
-To define block content in a page
+To define block content in a page:
 
     {{#contentFor "pageScripts"}}
       CONTENT HERE
@@ -83,7 +97,7 @@ To define block content in a page
 
 ## Layouts
 
-There are three ways to use a layout, listed in precedence order
+There are three ways to use a layout, listed in precedence order:
 
 1.  Declarative within a page. Use handlebars comment
 
@@ -100,9 +114,10 @@ There are three ways to use a layout, listed in precedence order
 
 2.  As an option to render
 
-    ## ⚠️ This creates a potential security vulnerability if used without a `restrictLayoutsTo`:
-
-    The `restrictLayoutsTo` option will restrict reading layouts to a particular directory, if you do not pass this option then do not use the `layout` option in conjunction with passing user submitted data to res.render e.g. `res.render('index', req.query)`. This allows users to read arbitrary files from your filesystem!
+    ⚠️ Passing user-controlled data into the `layout` option can read arbitrary
+    files unless `restrictLayoutsTo` confines layout resolution to a safe
+    directory. Do not call `res.render('index', req.query)` or similar without
+    setting `restrictLayoutsTo`.
 
     ```js
     res.render('veggies', {
@@ -112,7 +127,8 @@ There are three ways to use a layout, listed in precedence order
     });
     ```
 
-    This option also allows for layout suppression (both the default layout and when specified declaratively in a page) by passing in a falsey Javascript value as the value of the `layout` property:
+    This option also allows layout suppression, including the default layout and
+    template-declared layouts, by passing a falsey JavaScript value:
 
     ```js
     res.render('veggies', {
@@ -215,9 +231,12 @@ var instance2 = hbs.create();
 
 ## Template options
 
-The main use case for template options is setting the handlebars "data" object - this creates global template variables accessible with an `@` prefix.
+The main use case for template options is setting the Handlebars `data` object,
+which creates global template variables accessible with an `@` prefix.
 
-Template options can be set in 3 ways. When setting global template options they can be [passed as config on creation of an instance](https://github.com/barc/express-hbs#usage), and they can also be updated used the `updateTemplateOptions(templateOptions)` method of an instance. To set template options for an individual request they can be set on `res.locals` using the helper method `updateLocalTemplateOptions(locals, templateOptions)`.
+Template options can be passed when creating an engine instance, updated with
+`updateTemplateOptions(templateOptions)`, or set for one request with
+`updateLocalTemplateOptions(locals, templateOptions)` on `res.locals`.
 
 Both of these methods have a companion method `getTemplateOptions()` and `getLocalTemplateOptions(locals)`, which should be used when extending or merging the current options.
 
@@ -280,6 +299,7 @@ pnpm install
 node example/app.js
 ```
 
+The example server listens on <http://localhost:3000>.
 
 ## Testing
 
@@ -288,6 +308,14 @@ Install dependencies and run the test suite:
 ```sh
 pnpm install
 pnpm test
+```
+
+Useful maintainer commands:
+
+```sh
+pnpm lint          # oxlint plus oxfmt --check
+pnpm lint:fix      # apply safe lint fixes and formatting
+pnpm coverage      # mocha under nyc with enforced coverage thresholds
 ```
 
 
