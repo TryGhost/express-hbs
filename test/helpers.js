@@ -7,7 +7,7 @@ function createLocals(which, viewsDir, locals) {
   var opts = {};
   if (which === 'express3' || which === 'express4') {
     opts.settings = {
-      views: viewsDir
+      views: viewsDir,
     };
     opts.cache = process.env.NODE_ENV === 'production';
     for (var k in locals) {
@@ -20,5 +20,5 @@ function createLocals(which, viewsDir, locals) {
 
 module.exports = {
   createLocals: createLocals,
-  stripWs: stripWs
+  stripWs: stripWs,
 };

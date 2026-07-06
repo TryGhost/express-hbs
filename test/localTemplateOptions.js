@@ -8,31 +8,30 @@ describe('local template options', function () {
   var dirname = path.join(__dirname, 'localTemplateOptions');
 
   describe('express3', function () {
-
     it('merges res.locals._templateOptions with the self._templateOptions', function (done) {
       var instance = hbs.create();
       var render = instance.express3({
-        restrictLayoutsTo: dirname
+        restrictLayoutsTo: dirname,
       });
       instance.updateTemplateOptions({
-          data: {
-            greeting: 'Hello,',
-            firstName: 'Freddy',
-            lastName: 'Krueger'
-          } 
+        data: {
+          greeting: 'Hello,',
+          firstName: 'Freddy',
+          lastName: 'Krueger',
+        },
       });
 
       var locals = H.createLocals('express3', dirname, {
         _templateOptions: {
           data: {
-            lastName: 'Mercury'
-          } 
-        } 
+            lastName: 'Mercury',
+          },
+        },
       });
 
       render(path.join(dirname, 'template.hbs'), locals, function (err, html) {
         assert.ifError(err);
-        assert.strictEqual(H.stripWs(html), H.stripWs('Hello, Freddy Mercury')); 
+        assert.strictEqual(H.stripWs(html), H.stripWs('Hello, Freddy Mercury'));
         done(err);
       });
     });
@@ -40,58 +39,57 @@ describe('local template options', function () {
     it('removes _templateOptions from the locals data', function (done) {
       var instance = hbs.create();
       var render = instance.express3({
-        restrictLayoutsTo: dirname
+        restrictLayoutsTo: dirname,
       });
       instance.updateTemplateOptions({
-          data: {
-            greeting: 'Hello,',
-            firstName: 'Freddy',
-            lastName: 'Krueger'
-          } 
+        data: {
+          greeting: 'Hello,',
+          firstName: 'Freddy',
+          lastName: 'Krueger',
+        },
       });
 
       var locals = H.createLocals('express3', dirname, {
         _templateOptions: {
           data: {
-            lastName: 'Mercury'
-          } 
-        } 
+            lastName: 'Mercury',
+          },
+        },
       });
 
       render(path.join(dirname, 'data-access-template.hbs'), locals, function (err, html) {
         assert.ifError(err);
-        assert.strictEqual(H.stripWs(html), H.stripWs('')); 
+        assert.strictEqual(H.stripWs(html), H.stripWs(''));
         done(err);
       });
     });
   });
 
   describe('express4', function () {
-
     it('merges res.locals._templateOptions with the self._templateOptions', function (done) {
       var instance = hbs.create();
       var render = instance.express4({
-        restrictLayoutsTo: dirname
+        restrictLayoutsTo: dirname,
       });
       instance.updateTemplateOptions({
-          data: {
-            greeting: 'Hello,',
-            firstName: 'Freddy',
-            lastName: 'Krueger'
-          } 
+        data: {
+          greeting: 'Hello,',
+          firstName: 'Freddy',
+          lastName: 'Krueger',
+        },
       });
 
       var locals = H.createLocals('express4', dirname, {
         _templateOptions: {
           data: {
-            lastName: 'Mercury'
-          } 
-        } 
+            lastName: 'Mercury',
+          },
+        },
       });
 
       render(path.join(dirname, 'template.hbs'), locals, function (err, html) {
         assert.ifError(err);
-        assert.strictEqual(H.stripWs(html), H.stripWs('Hello, Freddy Mercury')); 
+        assert.strictEqual(H.stripWs(html), H.stripWs('Hello, Freddy Mercury'));
         done(err);
       });
     });
@@ -99,27 +97,27 @@ describe('local template options', function () {
     it('removes _templateOptions from the locals data', function (done) {
       var instance = hbs.create();
       var render = instance.express3({
-        restrictLayoutsTo: dirname
+        restrictLayoutsTo: dirname,
       });
       instance.updateTemplateOptions({
-          data: {
-            greeting: 'Hello,',
-            firstName: 'Freddy',
-            lastName: 'Krueger'
-          } 
+        data: {
+          greeting: 'Hello,',
+          firstName: 'Freddy',
+          lastName: 'Krueger',
+        },
       });
 
       var locals = H.createLocals('express3', dirname, {
         _templateOptions: {
           data: {
-            lastName: 'Mercury'
-          } 
-        } 
+            lastName: 'Mercury',
+          },
+        },
       });
 
       render(path.join(dirname, 'data-access-template.hbs'), locals, function (err, html) {
         assert.ifError(err);
-        assert.strictEqual(H.stripWs(html), H.stripWs('')); 
+        assert.strictEqual(H.stripWs(html), H.stripWs(''));
         done(err);
       });
     });
