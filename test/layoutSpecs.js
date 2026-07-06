@@ -3,7 +3,6 @@ var assert = require('assert');
 var path = require('path');
 var hbs = require('..');
 
-
 function stripWs(s) {
   return s.replace(/\s+/g, '');
 }
@@ -13,7 +12,7 @@ function createLocals(which, viewsDir, locals) {
   var opts = {};
   if (which === 'express3') {
     opts.settings = {
-      views: viewsDir
+      views: viewsDir,
     };
     opts.cache = process.env.NODE_ENV === 'production';
     opts.settings.views = viewsDir;
@@ -25,74 +24,74 @@ function createLocals(which, viewsDir, locals) {
   return opts;
 }
 
-describe('layouts', function() {
+describe('layouts', function () {
   var app;
 
-  beforeEach(function() {
+  beforeEach(function () {
     var example = require('../example/app');
     app = example.create(hbs.create());
   });
 
-
-  describe('layoutsDir', function() {
+  describe('layoutsDir', function () {
     var app;
 
-    beforeEach(function() {
+    beforeEach(function () {
       app = require('../example/app-layoutsDir');
     });
 
-    it('should render layout declared in markup', function(done) {
+    it('should render layout declared in markup', function (done) {
       request(app)
         .get('/fruits')
         .expect(/DECLARATIVE LAYOUT/, done);
     });
 
-    it('should allow specifying layout in locals without dir', function(done) {
+    it('should allow specifying layout in locals without dir', function (done) {
       request(app)
         .get('/veggies')
         .expect(/PROGRAMMATIC LAYOUT/, done);
     });
 
-    it('should still allow specifying layout in locals with dir', function(done) {
+    it('should still allow specifying layout in locals with dir', function (done) {
       request(app)
         .get('/veggies/explicit-dir')
         .expect(/PROGRAMMATIC LAYOUT/, done);
     });
   });
 
-
-  describe('options.layout', function() {
+  describe('options.layout', function () {
     var dirname = __dirname + '/views/disableLayoutDirective';
 
-    it ('should process template-specified layout without option', function(done) {
+    it('should process template-specified layout without option', function (done) {
       var render = hbs.create().express3({
-        restrictLayoutsTo: dirname
+        restrictLayoutsTo: dirname,
       });
       var locals = createLocals('express3', dirname);
 
-      render(dirname + '/index.hbs', locals, function(err, html) {
+      render(dirname + '/index.hbs', locals, function (err, html) {
         assert.equal('<dld>dld</dld>', stripWs(html));
         done();
       });
     });
 
-    it ('should allow options.layout to be specified', function(done) {
+    it('should allow options.layout to be specified', function (done) {
       var render = hbs.create().express3({
-        restrictLayoutsTo: dirname
+        restrictLayoutsTo: dirname,
       });
       var locals = createLocals('express3', dirname, { layout: 'layouts/default' });
 
-      render(dirname + '/aside.hbs', locals, function(err, html) {
+      render(dirname + '/aside.hbs', locals, function (err, html) {
         assert.equal('<dld>aside</dld>', stripWs(html));
         done();
       });
     });
 
-    it('should error when using a layout outside of the restrictLayoutsTo', function(done) {
+    it('should error when using a layout outside of the restrictLayoutsTo', function (done) {
       var render = hbs.create().express3({
-        restrictLayoutsTo: path.resolve(path.join(__dirname, '../'))
+        restrictLayoutsTo: path.resolve(path.join(__dirname, '../')),
       });
-      var locals = createLocals('express3', dirname, {layout: '/Users/egg/Code/Ghost/ghost/core/package.json'});
+      var locals = createLocals('express3', dirname, {
+        layout: '/Users/egg/Code/Ghost/ghost/core/package.json',
+      });
 
       render(dirname + '/aside.hbs', locals, function (err, html) {
         if (!err) {
@@ -102,17 +101,16 @@ describe('layouts', function() {
       });
     });
 
-    it ('should not process template-specified layout when options.layout is falsy', function(done) {
+    it('should not process template-specified layout when options.layout is falsy', function (done) {
       var render = hbs.create().express3({
-        restrictLayoutsTo: dirname
+        restrictLayoutsTo: dirname,
       });
       var locals = createLocals('express3', dirname, { layout: false });
 
-      render(dirname + '/index.hbs', locals, function(err, html) {
+      render(dirname + '/index.hbs', locals, function (err, html) {
         assert.equal('dld', stripWs(html));
         done();
       });
     });
   });
-
 });
