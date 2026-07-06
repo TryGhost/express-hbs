@@ -5,14 +5,18 @@ on:
   push:
     branches:
       - main
-      - 'renovate/*'
 
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
@@ -37,6 +41,7 @@ jobs:
     if: always()
     needs: [build]
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Verify all required jobs succeeded
         if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')
