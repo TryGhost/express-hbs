@@ -24,7 +24,7 @@
     "posttest": "pnpm lint",
     "coverage": "nyc --check-coverage mocha",
     "preship": "pnpm test",
-    "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then pnpm publish && git push --follow-tags; fi"
+    "ship": "pro-ship"
   },
   "repository": {
     "type": "git",
@@ -45,6 +45,7 @@
     "supertest": "7.2.2"
   },
   "dependencies": {
+    "@tryghost/pro-ship": "1.1.5",
     "handlebars": "4.7.9",
     "lodash": "4.18.1",
     "readdirp": "3.6.0"
