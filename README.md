@@ -275,16 +275,20 @@ File `views/index.hbs`
 
 To run example project
 
-    pnpm install
-    node example/app.js
+```sh
+pnpm install
+node example/app.js
+```
 
 
 ## Testing
 
 Install dependencies and run the test suite:
 
-    pnpm install
-    pnpm test
+```sh
+pnpm install
+pnpm test
+```
 
 
 ## Credits
