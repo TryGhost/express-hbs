@@ -275,20 +275,16 @@ File `views/index.hbs`
 
 To run example project
 
-    npm install -d
+    pnpm install
     node example/app.js
 
 
 ## Testing
 
-The test suite requires the `grunt-cli` package:
+Install dependencies and run the test suite:
 
-    npm install -g grunt-cli
-    npm install -d
-
-Once everything's installed, just run:
-
-    npm test
+    pnpm install
+    pnpm test
 
 
 ## Credits

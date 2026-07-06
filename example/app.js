@@ -1,5 +1,5 @@
 'use strict';
-// npm install express express-hbs
+// pnpm add express express-hbs
 
 function create(hbs, env) {
   if (env) process.env.NODE_ENV = env;

@@ -19,10 +19,10 @@
   "scripts": {
     "lint": "eslint --ext .js --cache lib/**",
     "test": "mocha",
-    "posttest": "yarn lint",
+    "posttest": "pnpm lint",
     "coverage": "nyc --check-coverage mocha",
-    "preship": "yarn test",
-    "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then yarn publish && git push --follow-tags; fi"
+    "preship": "pnpm test",
+    "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then pnpm publish && git push --follow-tags; fi"
   },
   "repository": {
     "type": "git",
@@ -48,5 +48,6 @@
   },
   "optionalDependencies": {
     "js-beautify": "^2.0.0"
-  }
+  },
+  "packageManager": "pnpm@10.34.3+sha512.f2c531b08829d7be7f03c90addc266615f9c5477463e4bf1d275cb263ce9ea57cf0d5599110d94649a9bb3fed9f0b5efcea74a7016b61532a24cb9ad87860c1d"
 }
