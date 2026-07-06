@@ -1,4 +1,4 @@
-// npm install express express-hbs
+// pnpm add express express-hbs
 
 'use strict';
 
