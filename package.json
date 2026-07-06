@@ -48,7 +48,7 @@
     "@tryghost/pro-ship": "1.1.5",
     "handlebars": "4.7.9",
     "lodash": "4.18.1",
-    "readdirp": "3.6.0"
+    "readdirp": "5.0.0"
   },
   "optionalDependencies": {
     "js-beautify": "^2.0.0"
