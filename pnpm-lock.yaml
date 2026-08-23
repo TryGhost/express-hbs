@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@tryghost/pro-ship':
-        specifier: 1.1.7
-        version: 1.1.7
+        specifier: 1.1.8
+        version: 1.1.8
       handlebars:
         specifier: 4.7.9
         version: 4.7.9
@@ -481,13 +481,13 @@ packages:
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
 
-  '@tryghost/pro-ship@1.1.7':
-    resolution: {integrity: sha512-pF06n43ZssCV1rjy/B6MQcempQc7Kij46/odeiJZHoP9GAOPhTLfmq0zSdQp9WE4vhHGHdwboee9Z7gSszCD9g==}
+  '@tryghost/pro-ship@1.1.8':
+    resolution: {integrity: sha512-wcra+OZXtHjwuuTh9WRvJCU+fiwOfHPTXSerJ9SHMrTr8LWfUTpmxSQex6YfWT1QtGW7sDCn7jqo2X53ggDqtQ==}
     engines: {node: '>=20.20.0'}
     hasBin: true
 
-  '@tryghost/root-utils@2.3.2':
-    resolution: {integrity: sha512-tUyMS4xJUceE62JjZIjWAXCeoVlbNHWF2dIy6xJkaYgeHw4oZ5YoKMu9Mzqa7TPHIapU+BxwdWV0HvMj9dZGlA==}
+  '@tryghost/root-utils@2.3.8':
+    resolution: {integrity: sha512-n12HsmW0mms6hlfYYSOcsJ9um6jifBvBFXJak2yPBySSmoTZpCgPezG9JlTXtPjG+4VmfvKaOE7NxlbEJyegiw==}
 
   '@types/estree@1.0.9':
     resolution: {integrity: sha512-GhdPgy1el4/ImP05X05Uw4cw2/M93BCUmnEvWZNStlCzEKME4Fkk+YpoA5OiHNQmoS7Cafb8Xa3Pya8m1Qrzeg==}
@@ -821,6 +821,7 @@ packages:
   eslint@9.39.5:
     resolution: {integrity: sha512-DgZS62aPLXKlnxILS/AYCoRvHaZeXceIzlXPkkGGzJWSow1aEk0lbTlxUSlyjC8jcaKxAdOnTDz+o1JFSBsyjw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -2092,12 +2093,12 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@tryghost/pro-ship@1.1.7':
+  '@tryghost/pro-ship@1.1.8':
     dependencies:
-      '@tryghost/root-utils': 2.3.2
+      '@tryghost/root-utils': 2.3.8
       semver: 7.8.5
 
-  '@tryghost/root-utils@2.3.2':
+  '@tryghost/root-utils@2.3.8':
     dependencies:
       caller: 1.1.0
       find-root: 1.1.0
