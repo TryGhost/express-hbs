@@ -28,8 +28,8 @@ importers:
         specifier: 5.2.1
         version: 5.2.1
       i18n:
-        specifier: 0.15.3
-        version: 0.15.3
+        specifier: 0.15.4
+        version: 0.15.4
       mocha:
         specifier: 12.0.0
         version: 12.0.0
@@ -972,8 +972,8 @@ packages:
     resolution: {integrity: sha512-4FbRdAX+bSdmo4AUFuS0WNiPz8NgFt+r8ThgNWmlrjQjt1Q7ZR9+zTlce2859x4KSXrwIsaeTqDoKQmtP8pLmQ==}
     engines: {node: '>= 0.8'}
 
-  i18n@0.15.3:
-    resolution: {integrity: sha512-tW/AA5R4lJZLnd60Agcd0PfXB1C2G7UqTrdNewuv/SIYdxcHkCE8w4Zx1SgCjJ+2BLuAAGIG/KXb/xNYF1lO5Q==}
+  i18n@0.15.4:
+    resolution: {integrity: sha512-rR122qceQidRpn/oJE16fC1rNtYUZsrgpQ8vKkFgu6hTgcM/s0yMBsGpj0Nbe2df8gh3Fb10AeEyWFZZZatvPg==}
     engines: {node: '>=10'}
 
   iconv-lite@0.7.3:
@@ -2510,7 +2510,7 @@ snapshots:
       statuses: 2.0.2
       toidentifier: 1.0.1
 
-  i18n@0.15.3:
+  i18n@0.15.4:
     dependencies:
       '@messageformat/core': 3.4.0
       debug: 4.4.3(supports-color@8.1.1)
