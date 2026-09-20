@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@tryghost/pro-ship':
-        specifier: 1.1.8
-        version: 1.1.8
+        specifier: 1.1.9
+        version: 1.1.9
       handlebars:
         specifier: 4.7.9
         version: 4.7.9
@@ -473,13 +473,13 @@ packages:
   '@paralleldrive/cuid2@2.3.1':
     resolution: {integrity: sha512-XO7cAxhnTZl0Yggq6jOgjiOHhbgcO4NqFqwSmQpjK3b6TEE6Uj/jfSk6wzYyemh3+I0sHirKSetjQwn5cZktFw==}
 
-  '@tryghost/pro-ship@1.1.8':
-    resolution: {integrity: sha512-wcra+OZXtHjwuuTh9WRvJCU+fiwOfHPTXSerJ9SHMrTr8LWfUTpmxSQex6YfWT1QtGW7sDCn7jqo2X53ggDqtQ==}
+  '@tryghost/pro-ship@1.1.9':
+    resolution: {integrity: sha512-2DvlpT5P7v8bOizXTtL7/Flmc9wAK3eycroxgMTQWlpFaVlXjmOnuOnFGEeT8JGAdY/F5kk9tLDmb+x43TXbJQ==}
     engines: {node: '>=20.20.0'}
     hasBin: true
 
-  '@tryghost/root-utils@2.3.8':
-    resolution: {integrity: sha512-n12HsmW0mms6hlfYYSOcsJ9um6jifBvBFXJak2yPBySSmoTZpCgPezG9JlTXtPjG+4VmfvKaOE7NxlbEJyegiw==}
+  '@tryghost/root-utils@2.3.14':
+    resolution: {integrity: sha512-VmHSaPdjTCQNOTNvpLTmphi+TdorWbGbjgqTeCYFPgsWw3XUlByWaERYe3PV2JOmd2XeAhpG2KCegrmnPWMlKA==}
 
   '@types/estree@1.0.9':
     resolution: {integrity: sha512-GhdPgy1el4/ImP05X05Uw4cw2/M93BCUmnEvWZNStlCzEKME4Fkk+YpoA5OiHNQmoS7Cafb8Xa3Pya8m1Qrzeg==}
@@ -2004,12 +2004,12 @@ snapshots:
     dependencies:
       '@noble/hashes': 1.8.0
 
-  '@tryghost/pro-ship@1.1.8':
+  '@tryghost/pro-ship@1.1.9':
     dependencies:
-      '@tryghost/root-utils': 2.3.8
+      '@tryghost/root-utils': 2.3.14
       semver: 7.8.5
 
-  '@tryghost/root-utils@2.3.8':
+  '@tryghost/root-utils@2.3.14':
     dependencies:
       caller: 1.1.0
       find-root: 1.1.0
