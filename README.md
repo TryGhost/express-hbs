@@ -11,7 +11,7 @@ layout inheritance and block-style content regions while keeping the familiar
 ## Requirements
 
 - Node.js 20 or later
-- pnpm 10 when working on this repository
+- the pinned pnpm version when working on this repository
 
 ## v2.0.0
 
