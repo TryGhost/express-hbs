@@ -35,23 +35,23 @@
   "license": "MIT",
   "devDependencies": {
     "cookie-parser": "1.4.7",
-    "express": "5.2.1",
-    "i18n": "0.15.3",
-    "mocha": "11.8.0",
+    "express": "5.3.0",
+    "i18n": "0.15.4",
+    "mocha": "12.0.3",
     "nyc": "18.0.0",
-    "oxfmt": "0.61.0",
-    "oxlint": "1.76.0",
+    "oxfmt": "0.75.0",
+    "oxlint": "1.90.0",
     "rewire": "9.0.1",
-    "supertest": "7.2.2"
+    "supertest": "7.3.1"
   },
   "dependencies": {
-    "@tryghost/pro-ship": "1.1.7",
-    "handlebars": "4.7.9",
+    "@tryghost/pro-ship": "1.1.9",
+    "handlebars": "4.7.10",
     "lodash": "4.18.1",
     "readdirp": "3.6.0"
   },
   "optionalDependencies": {
     "js-beautify": "^2.0.0"
   },
-  "packageManager": "pnpm@10.34.5+sha512.a4ee05f2f73658255bd6a89859c065a45c28a57daefae2c893a168ee2b73168c37b91e83e57ea67654ad03f03031746430e8bce38e362e042605fb8abc80192e"
+  "packageManager": "pnpm@10.34.9+sha512.f49b5a8ea0fdedb44bb3c0c1d6575092a53c2950d95b7ad15df11f17974877a2de3a01c07e934e9b28ce716e51c09a94962c7306d09be2e1e4b18a8c8762fd32"
 }
