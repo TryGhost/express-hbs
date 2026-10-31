@@ -5,9 +5,9 @@
   ],
   "packageRules": [
     {
-      "description": "Keep pnpm on 10.x while this repo supports Node 20; pnpm 11 requires Node 22.13 or newer.",
+      "description": "Keep pnpm on the reviewed 12.x release line; its native executable supports Node 20.",
       "matchPackageNames": ["pnpm"],
-      "allowedVersions": "<11"
+      "allowedVersions": "<13"
     }
   ]
 }
