@@ -488,3 +488,39 @@ describe('issue-153', function () {
     render(dirname + '/index.hbs', locals, check);
   });
 });
+
+describe('issue-225', function () {
+  it('should allow sync-completing async helpers with compile()', function () {
+    var hb = hbs.create();
+    hb.registerAsyncHelper('testAsync', function (key, cb) {
+      cb('ok');
+    });
+
+    var t = hb.compile('Hello {{testAsync}}!');
+    assert.equal(t({}), 'Hello ok!');
+  });
+
+  it('should still support options hash with compile()', function () {
+    var hb = hbs.create();
+    hb.registerAsyncHelper('testAsync', function (c, o, cb) {
+      cb(o.hash.prefix + c);
+    });
+
+    var t = hb.compile('Hello {{testAsync "world" prefix="->"}}!');
+    assert.equal(t({}), 'Hello -&gt;world!');
+  });
+
+  it('should error when async helpers do not complete synchronously without Express', function () {
+    var hb = hbs.create();
+    hb.registerAsyncHelper('testAsync', function (key, cb) {
+      setTimeout(function () {
+        cb('ok');
+      }, 1);
+    });
+
+    var t = hb.compile('Hello {{testAsync}}!');
+    assert.throws(function () {
+      t({});
+    }, /did not complete synchronously/);
+  });
+});
