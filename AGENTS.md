@@ -5,7 +5,7 @@ the public API and usage examples before changing behavior.
 
 ## Commands
 
-Use the pnpm version pinned in package.json on Node.js 20 or later.
+Use the pnpm version pinned in package.json on Node.js 22 or later.
 
 ```sh
 pnpm install --frozen-lockfile

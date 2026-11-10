@@ -10,7 +10,7 @@ layout inheritance and block-style content regions while keeping the familiar
 
 ## Requirements
 
-- Node.js 20 or later
+- Node.js 22 or later
 - the pinned pnpm version when working on this repository
 
 ## v2.0.0
