@@ -101,6 +101,36 @@ describe('layouts', function () {
       });
     });
 
+    it('should allow a layout inside a relative restrictLayoutsTo', function (done) {
+      var render = hbs.create().express3({
+        restrictLayoutsTo: path.relative(process.cwd(), dirname),
+      });
+      var locals = createLocals('express3', dirname, { layout: 'layouts/default' });
+
+      render(dirname + '/aside.hbs', locals, function (err, html) {
+        if (err) return done(err);
+        assert.equal('<dld>aside</dld>', stripWs(html));
+        done();
+      });
+    });
+
+    it('should error when a layout is in a sibling directory sharing the restrictLayoutsTo prefix', function (done) {
+      var restrictLayoutsTo = path.join(dirname, 'lay');
+      var render = hbs.create().express3({
+        restrictLayoutsTo: restrictLayoutsTo,
+      });
+      var locals = createLocals('express3', dirname, { layout: 'layouts/default' });
+
+      render(dirname + '/aside.hbs', locals, function (err) {
+        assert.ok(err, 'expected an error');
+        assert.ok(
+          err.message.includes('does not reside in ' + restrictLayoutsTo),
+          'unexpected error: ' + err.message,
+        );
+        done();
+      });
+    });
+
     it('should not process template-specified layout when options.layout is falsy', function (done) {
       var render = hbs.create().express3({
         restrictLayoutsTo: dirname,
