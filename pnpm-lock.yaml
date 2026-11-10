@@ -167,8 +167,8 @@ importers:
   .:
     dependencies:
       '@tryghost/pro-ship':
-        specifier: 1.1.9
-        version: 1.1.9
+        specifier: 2.0.1
+        version: 2.0.1
       handlebars:
         specifier: 4.7.10
         version: 4.7.10
@@ -634,13 +634,13 @@ packages:
   '@paralleldrive/cuid2@2.3.1':
     resolution: {integrity: sha512-XO7cAxhnTZl0Yggq6jOgjiOHhbgcO4NqFqwSmQpjK3b6TEE6Uj/jfSk6wzYyemh3+I0sHirKSetjQwn5cZktFw==}
 
-  '@tryghost/pro-ship@1.1.9':
-    resolution: {integrity: sha512-2DvlpT5P7v8bOizXTtL7/Flmc9wAK3eycroxgMTQWlpFaVlXjmOnuOnFGEeT8JGAdY/F5kk9tLDmb+x43TXbJQ==}
-    engines: {node: '>=20.20.0'}
+  '@tryghost/pro-ship@2.0.1':
+    resolution: {integrity: sha512-zlDkQHU0VWzwaZmRATjioFlDPyeZF6f1gpA5oAeT+72AZc8k2PI7SeWELLosVm2dj7Qm2TFPr2MowfyYB8Uydg==}
+    engines: {node: '>=22.12.0'}
     hasBin: true
 
-  '@tryghost/root-utils@2.3.14':
-    resolution: {integrity: sha512-VmHSaPdjTCQNOTNvpLTmphi+TdorWbGbjgqTeCYFPgsWw3XUlByWaERYe3PV2JOmd2XeAhpG2KCegrmnPWMlKA==}
+  '@tryghost/root-utils@2.3.19':
+    resolution: {integrity: sha512-PIFzf2FUBiDe9H7UZ5om1yX/LgIpl7L96dtcgxahGqEhss5/OLVePaPTAray+VV3Nx7o/VM5HTOVPvuGai3mSw==}
 
   '@types/estree@1.0.10':
     resolution: {integrity: sha512-lTyOMnOcmRBzdCv6/4zUZCrEhV0xrqQiUZBZtVcbmLHBXKLnN8q89v/wKRF/Q0HbwVsqbIG3o5HDoFl9sduM+g==}
@@ -1622,11 +1622,6 @@ packages:
     resolution: {integrity: sha512-GYrCADwpu6yV5OAvchkQ27Z5wwMxWAEMg5NNWjyHh/5DboFFqbdbvYNIvZouQpxXyeMPoTOh0vdPYKlf0ZswdQ==}
     hasBin: true
 
-  semver@7.8.5:
-    resolution: {integrity: sha512-Y7/KDsb8LjooZpwaqGyulO6DQlksgCncchHGk+sZIY4SBvUocMBEFH5Ur1fI4dV+Jvl0w6cjvucaIi40puRioA==}
-    engines: {node: '>=10'}
-    hasBin: true
-
   semver@7.8.6:
     resolution: {integrity: sha512-9lpSSU4Mly3mrtruwLs1eLK6+gzbzqeBFwRNjIjE+9LuDpWdYctrQlQ3ej1Ilgi7gknpsTRnPoLP8DpCHqHIJw==}
     engines: {node: '>=10'}
@@ -2166,12 +2161,12 @@ snapshots:
     dependencies:
       '@noble/hashes': 1.8.0
 
-  '@tryghost/pro-ship@1.1.9':
+  '@tryghost/pro-ship@2.0.1':
     dependencies:
-      '@tryghost/root-utils': 2.3.14
-      semver: 7.8.5
+      '@tryghost/root-utils': 2.3.19
+      semver: 7.8.6
 
-  '@tryghost/root-utils@2.3.14':
+  '@tryghost/root-utils@2.3.19':
     dependencies:
       caller: 1.1.0
       find-root: 1.1.0
@@ -3199,8 +3194,6 @@ snapshots:
   safer-buffer@2.1.2: {}
 
   semver@6.3.2: {}
-
-  semver@7.8.5: {}
 
   semver@7.8.6: {}
 
