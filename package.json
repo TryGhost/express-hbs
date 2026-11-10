@@ -34,6 +34,7 @@
   "author": "Mario Gutierrez <mario@barc.com>",
   "license": "MIT",
   "devDependencies": {
+    "@tryghost/pro-ship": "2.0.1",
     "cookie-parser": "1.4.7",
     "express": "5.3.0",
     "i18n": "0.15.4",
@@ -45,10 +46,9 @@
     "supertest": "7.3.2"
   },
   "dependencies": {
-    "@tryghost/pro-ship": "2.0.1",
-    "handlebars": "4.7.10",
-    "lodash": "4.18.1",
-    "readdirp": "3.6.0"
+    "handlebars": "^4.7.10",
+    "lodash": "^4.18.1",
+    "readdirp": "^3.6.0"
   },
   "optionalDependencies": {
     "js-beautify": "^2.0.0"
