@@ -1,6 +1,13 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "@tryghost:quietJS",
-    "@tryghost:automergeDevDependencies"
+    "local>TryGhost/renovate-config"
+  ],
+  "packageRules": [
+    {
+      "description": "Keep caret ranges on published dependencies so consumers can dedupe; bump the floor to the tested version",
+      "matchDepTypes": ["dependencies", "optionalDependencies"],
+      "rangeStrategy": "bump"
+    }
   ]
 }

@@ -7,7 +7,6 @@
  *
  */
 
-
 function create(hbs, env) {
   'use strict';
 
@@ -26,14 +25,17 @@ function create(hbs, env) {
   i18n.configure({
     locales: ['en', 'fr'],
     cookie: 'locale',
-    directory: __dirname + '/locales'
+    directory: __dirname + '/locales',
   });
 
   // Hook in express-hbs and tell it where known directories reside
-  app.engine('hbs', hbs.express3({
-    i18n: i18n,
-    restrictLayoutsTo: viewsDir
-  }));
+  app.engine(
+    'hbs',
+    hbs.express3({
+      i18n: i18n,
+      restrictLayoutsTo: viewsDir,
+    }),
+  );
   app.set('view engine', 'hbs');
   app.set('views', viewsDir);
 
@@ -45,7 +47,7 @@ function create(hbs, env) {
 
   app.get('/', function (req, res) {
     res.render('index', {
-      array: [1, 2]
+      array: [1, 2],
     });
   });
 

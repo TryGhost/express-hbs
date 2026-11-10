@@ -5,14 +5,17 @@ var assert = require('assert');
 var express = require('express');
 var hbs = require('..');
 
-describe('multiple directories', function() {
+describe('multiple directories', function () {
   var app;
 
-  beforeEach(function() {
+  beforeEach(function () {
     app = express();
-    app.engine('hbs', hbs.express3({
-      restrictLayoutsTo: './test/views/multiple'
-    }));
+    app.engine(
+      'hbs',
+      hbs.express3({
+        restrictLayoutsTo: './test/views/multiple',
+      }),
+    );
     app.set('view engine', 'hbs');
     app.get('/test1', function (req, res) {
       res.render('test1');
@@ -28,7 +31,7 @@ describe('multiple directories', function() {
     });
   });
 
-  it('should handle single folder', function(done) {
+  it('should handle single folder', function (done) {
     app.set('views', './test/views/multiple/views1');
     request(app)
       .get('/test1')
@@ -40,7 +43,7 @@ describe('multiple directories', function() {
       });
   });
 
-  it('should handle multiple folders', function(done) {
+  it('should handle multiple folders', function (done) {
     app.set('views', ['./test/views/multiple/views1', './test/views/multiple/views2']);
     request(app)
       .get('/test2')
@@ -52,9 +55,8 @@ describe('multiple directories', function() {
       });
   });
 
-  describe('should handle multiple folders in specific order', function() {
-
-    it('views1, views2', function(done) {
+  describe('should handle multiple folders in specific order', function () {
+    it('views1, views2', function (done) {
       app.set('views', ['./test/views/multiple/views1', './test/views/multiple/views2']);
       request(app)
         .get('/collide')
@@ -66,7 +68,7 @@ describe('multiple directories', function() {
         });
     });
 
-    it('views2, views1', function(done) {
+    it('views2, views1', function (done) {
       app.set('views', ['./test/views/multiple/views2', './test/views/multiple/views1']);
       request(app)
         .get('/collide')
@@ -77,43 +79,37 @@ describe('multiple directories', function() {
           done();
         });
     });
-
   });
 
-  /* eslint-disable no-unused-vars */
-  describe('should report the filename in error', function() {
-
-    it('should report from first folder', function(done) {
+  describe('should report the filename in error', function () {
+    it('should report from first folder', function (done) {
       app.set('views', ['./test/views/multiple/views1', './test/views/multiple/views2']);
-      app.use(function(err, req, res, next) {
+      app.use(function (err, req, res, next) {
         res.status(500).send(err.stack);
       });
 
       request(app)
-      .get('/error')
-      .end(function(err, res) {
-        assert.ifError(err);
-        assert(res.error.text.indexOf('views1/error.hbs]') > 0);
-        done();
-      });
+        .get('/error')
+        .end(function (err, res) {
+          assert.ifError(err);
+          assert(res.error.text.indexOf('views1/error.hbs]') > 0);
+          done();
+        });
     });
 
-
-    it('should report from second folder', function(done) {
+    it('should report from second folder', function (done) {
       app.set('views', ['./test/views/multiple/views2', './test/views/multiple/views1']);
-      app.use(function(err, req, res, next) {
+      app.use(function (err, req, res, next) {
         res.status(500).send(err.stack);
       });
 
       request(app)
-      .get('/error')
-      .end(function(err, res) {
-        assert.ifError(err);
-        assert(res.error.text.indexOf('views2/error.hbs]') > 0);
-        done();
-      });
+        .get('/error')
+        .end(function (err, res) {
+          assert.ifError(err);
+          assert(res.error.text.indexOf('views2/error.hbs]') > 0);
+          done();
+        });
     });
   });
-  /* eslint-enable no-unused-vars */
-
 });
