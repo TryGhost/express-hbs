@@ -42,7 +42,7 @@
     "oxfmt": "0.76.0",
     "oxlint": "1.91.0",
     "rewire": "9.0.1",
-    "supertest": "7.3.1"
+    "supertest": "7.3.2"
   },
   "dependencies": {
     "@tryghost/pro-ship": "1.1.9",
