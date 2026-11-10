@@ -2,12 +2,5 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "local>TryGhost/renovate-config"
-  ],
-  "packageRules": [
-    {
-      "description": "Keep pnpm on the reviewed 12.x release line; its native executable supports Node 20.",
-      "matchPackageNames": ["pnpm"],
-      "allowedVersions": "<13"
-    }
   ]
 }
