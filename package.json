@@ -10,6 +10,10 @@
     "partials"
   ],
   "main": "index.js",
+  "files": [
+    "index.js",
+    "lib"
+  ],
   "engines": {
     "node": ">=22"
   },
