@@ -22,7 +22,7 @@ describe('resolver', function () {
   it('detects cached helper ids in raw and escaped form', function () {
     var cache = { '__aSyNcId__<_abcdefgh__': Promise.resolve('') };
     function escape(s) {
-      return s.replace('<', '&lt;');
+      return s.replace(/</g, '&lt;');
     }
     assert.equal(resolver.hasResolvers('a __aSyNcId__<_abcdefgh__ b', cache, escape), true);
     assert.equal(resolver.hasResolvers('a __aSyNcId__&lt;_abcdefgh__ b', cache, escape), true);
