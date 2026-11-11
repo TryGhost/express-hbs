@@ -13,6 +13,22 @@ describe('resolver', function () {
     assert.equal(resolver.hasResolvers('rendered output'), false);
   });
 
+  it('ignores prefix text that is not a cached helper id', function () {
+    var cache = { '__aSyNcId__<_abcdefgh__': Promise.resolve('') };
+    assert.equal(resolver.hasResolvers('x __aSyNcId__ y', cache), false);
+    assert.equal(resolver.hasResolvers('__aSyNcId__<_zzzzzzzz__', cache), false);
+  });
+
+  it('detects cached helper ids in raw and escaped form', function () {
+    var cache = { '__aSyNcId__<_abcdefgh__': Promise.resolve('') };
+    function escape(s) {
+      return s.replace(/</g, '&lt;');
+    }
+    assert.equal(resolver.hasResolvers('a __aSyNcId__<_abcdefgh__ b', cache, escape), true);
+    assert.equal(resolver.hasResolvers('a __aSyNcId__&lt;_abcdefgh__ b', cache, escape), true);
+    assert.equal(resolver.hasResolvers('a __aSyNcId__&lt;_abcdefgh__ b', cache), false);
+  });
+
   it('resolves asynchronous helper output with its context', function (done) {
     var cache = {};
     var id = resolver.resolve(
