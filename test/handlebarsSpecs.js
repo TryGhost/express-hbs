@@ -92,4 +92,23 @@ describe('express-hbs', function() {
       assert(hbs !== hbs2 && hbs !== hbs3 && hbs2 !== hbs3);
     });
   });
+
+  describe('compile', function () {
+    it('should pad a template that ends with its only closing tag', function () {
+      var hb = hbs.create();
+      hb.onCompile = function (exhbs, source) {
+        return source;
+      };
+      assert.equal(hb.compile('{{! comment }}'), '{{! comment }} ');
+    });
+
+    it('should not pad a one-character template', function () {
+      var hb = hbs.create();
+      hb.onCompile = function (exhbs, source) {
+        return source;
+      };
+      assert.equal(hb.compile('x'), 'x');
+      assert.equal(hb.compile(''), '');
+    });
+  });
 });
