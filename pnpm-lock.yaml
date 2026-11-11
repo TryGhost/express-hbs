@@ -177,8 +177,8 @@ importers:
         version: 3.6.0
     devDependencies:
       '@tryghost/pro-ship':
-        specifier: 2.0.1
-        version: 2.0.1
+        specifier: 2.0.2
+        version: 2.0.2
       cookie-parser:
         specifier: 1.4.7
         version: 1.4.7
@@ -634,13 +634,13 @@ packages:
   '@paralleldrive/cuid2@2.3.1':
     resolution: {integrity: sha512-XO7cAxhnTZl0Yggq6jOgjiOHhbgcO4NqFqwSmQpjK3b6TEE6Uj/jfSk6wzYyemh3+I0sHirKSetjQwn5cZktFw==}
 
-  '@tryghost/pro-ship@2.0.1':
-    resolution: {integrity: sha512-zlDkQHU0VWzwaZmRATjioFlDPyeZF6f1gpA5oAeT+72AZc8k2PI7SeWELLosVm2dj7Qm2TFPr2MowfyYB8Uydg==}
+  '@tryghost/pro-ship@2.0.2':
+    resolution: {integrity: sha512-MPB+e8dpz8+RyR3597vFbLJOsb9yHQ0LzQyOcpmfct4EJspBCTFsdSOf6lvXH6x2wnr/UWKpP3q3s8XYTMCBvg==}
     engines: {node: '>=22.12.0'}
     hasBin: true
 
-  '@tryghost/root-utils@2.3.19':
-    resolution: {integrity: sha512-PIFzf2FUBiDe9H7UZ5om1yX/LgIpl7L96dtcgxahGqEhss5/OLVePaPTAray+VV3Nx7o/VM5HTOVPvuGai3mSw==}
+  '@tryghost/root-utils@2.3.20':
+    resolution: {integrity: sha512-C+DsVB4FouSYmX6dfHwU6X3mHi78G4NfuafwODwVfCiBoYn0G6XfPq4EAFC+LRAyxRs112MbyR/YALxz9oh+Nw==}
 
   '@types/estree@1.0.10':
     resolution: {integrity: sha512-lTyOMnOcmRBzdCv6/4zUZCrEhV0xrqQiUZBZtVcbmLHBXKLnN8q89v/wKRF/Q0HbwVsqbIG3o5HDoFl9sduM+g==}
@@ -2161,12 +2161,12 @@ snapshots:
     dependencies:
       '@noble/hashes': 1.8.0
 
-  '@tryghost/pro-ship@2.0.1':
+  '@tryghost/pro-ship@2.0.2':
     dependencies:
-      '@tryghost/root-utils': 2.3.19
+      '@tryghost/root-utils': 2.3.20
       semver: 7.8.6
 
-  '@tryghost/root-utils@2.3.19':
+  '@tryghost/root-utils@2.3.20':
     dependencies:
       caller: 1.1.0
       find-root: 1.1.0

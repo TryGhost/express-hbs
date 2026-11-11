@@ -38,7 +38,7 @@
   "author": "Mario Gutierrez <mario@barc.com>",
   "license": "MIT",
   "devDependencies": {
-    "@tryghost/pro-ship": "2.0.1",
+    "@tryghost/pro-ship": "2.0.2",
     "cookie-parser": "1.4.7",
     "express": "5.3.0",
     "i18n": "0.15.4",
