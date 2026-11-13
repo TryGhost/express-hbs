@@ -41,6 +41,25 @@ hbs.registerAsyncHelper('withOptionsSatisfies', function (context, options, cb) 
 const typedHelper: hbs.AsyncHelperWithOptions = async (_context, options, cb) => cb(options.data);
 hbs.registerAsyncHelper('typedHelper', typedHelper);
 
+// Promise helpers infer `context` and `options` from one signature.
+hbs.registerPromiseHelper('fetchTitle', async function (context, options) {
+  const fallback: string = options.hash.fallback;
+  return new hbs.SafeString(String(context ?? fallback));
+});
+hbs.registerPromiseHelper('inferredOptions', async (_context, options) => {
+  // @ts-expect-error options is inferred as HelperOptions, not any
+  return options.notAnOption;
+});
+hbs.registerPromiseHelper('plainValue', (context) => context);
+// Extra template params use the variadic overload.
+hbs.registerPromiseHelper('join', async (a: string, b: string, options: Handlebars.HelperOptions) =>
+  [a, b].join(options.hash.sep),
+);
+const typedPromiseHelper: hbs.PromiseHelper = async (_context, options) => options.data;
+hbs.registerPromiseHelper('typedPromiseHelper', typedPromiseHelper);
+// @ts-expect-error fn must be a function
+hbs.registerPromiseHelper('notAFunction', 'nope');
+
 hbs.registerHelper({
   upper: (text: string) => text.toUpperCase(),
   lower: (text: string) => text.toLowerCase(),

@@ -74,6 +74,12 @@ declare namespace hbs {
     cb: AsyncHelperCallback,
   ) => void;
 
+  /**
+   * Promise helper. Handlebars passes `(...params, options)`; this type covers
+   * the common one-param form so TypeScript can infer every parameter.
+   */
+  type PromiseHelper = (this: any, context: any, options: Handlebars.HelperOptions) => unknown;
+
   interface ExpressHbs {
     handlebars: HandlebarsEnvironment;
     SafeString: typeof Handlebars.SafeString;
@@ -103,6 +109,22 @@ declare namespace hbs {
      */
     registerAsyncHelper(name: string, fn: AsyncHelper): void;
     registerAsyncHelper(name: string, fn: AsyncHelperWithOptions): void;
+    /**
+     * Register a helper whose return value, or the value its promise resolves
+     * to, is rendered. A rejection or thrown error fails the render, and
+     * `null`/`undefined` render as an empty string. It is called like a sync
+     * helper, with the template params followed by `options`.
+     *
+     * The result is only usable as output: subexpressions and block conditions
+     * such as `{{#if (helper)}}` see a placeholder string, not the resolved value.
+     *
+     * @example
+     * hbs.registerPromiseHelper('readFile', async function (filename, options) {
+     *   return new hbs.SafeString(await fs.promises.readFile(filename, 'utf8'));
+     * });
+     */
+    registerPromiseHelper(name: string, fn: PromiseHelper): void;
+    registerPromiseHelper(name: string, fn: (this: any, ...args: any[]) => unknown): void;
     registerPartial(name: string, source: string, filename?: string): void;
     compile(source: string, filename?: string): CompiledTemplate;
 
