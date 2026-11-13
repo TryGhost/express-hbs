@@ -127,3 +127,163 @@ describe('async', function () {
     });
   });
 });
+
+describe('registerPromiseHelper', function () {
+  var dirname = __dirname + '/views/promiseHelpers';
+
+  function render(hb, file, locals, cb) {
+    var engine = hb.express4({ viewsDir: dirname });
+    engine(dirname + '/' + file, H.createLocals('express4', dirname, locals), function (err, html) {
+      cb(err, html && html.trim());
+    });
+  }
+
+  function delay(value) {
+    return new Promise(function (resolve) {
+      setTimeout(function () {
+        resolve(value);
+      }, 1);
+    });
+  }
+
+  it('renders resolved promises, plain values, and empty output for null/undefined', function (done) {
+    var hb = hbs.create();
+    hb.registerPromiseHelper('later', async function (name) {
+      await delay();
+      return 'hi ' + name;
+    });
+    hb.registerPromiseHelper('plain', function () {
+      return 42;
+    });
+    hb.registerPromiseHelper('nothing', async function () {});
+    render(hb, 'output.hbs', { name: 'ann' }, function (err, html) {
+      if (err) return done(err);
+      assert.equal(html, 'hi ann|42||');
+      done();
+    });
+  });
+
+  it('escapes strings in {{ }} but not in {{{ }}}, and never escapes SafeString', function (done) {
+    var hb = hbs.create();
+    hb.registerPromiseHelper('html', function () {
+      return delay('<b>&</b>');
+    });
+    hb.registerPromiseHelper('safe', function () {
+      return delay(new hb.SafeString('<i>safe</i>'));
+    });
+    render(hb, 'escape.hbs', {}, function (err, html) {
+      if (err) return done(err);
+      assert.equal(html, '&lt;b&gt;&amp;&lt;/b&gt;|<b>&</b>|<i>safe</i>|<i>safe</i>');
+      done();
+    });
+  });
+
+  it('resolves nested promise helpers inside block output', function (done) {
+    var hb = hbs.create();
+    hb.registerPromiseHelper('outer', async function (options) {
+      await delay();
+      return new hb.SafeString(options.fn(this));
+    });
+    hb.registerPromiseHelper('inner', async function (value) {
+      await delay();
+      return 'in-' + value;
+    });
+    render(hb, 'nested.hbs', {}, function (err, html) {
+      if (err) return done(err);
+      assert.equal(html, '[in-x|in-y]');
+      done();
+    });
+  });
+
+  it('calls the helper with the template context as `this`', function (done) {
+    var hb = hbs.create();
+    hb.registerPromiseHelper('whoami', async function () {
+      return this.name;
+    });
+    render(hb, 'context.hbs', { user: { name: 'joe' } }, function (err, html) {
+      if (err) return done(err);
+      assert.equal(html, 'joe');
+      done();
+    });
+  });
+
+  it('passes params and options like a sync helper', function (done) {
+    var hb = hbs.create();
+    hb.registerPromiseHelper('join', async function (a, b, options) {
+      return [a, b].join(options.hash.sep);
+    });
+    hb.registerPromiseHelper('noParams', async function (options) {
+      return options.name;
+    });
+    render(hb, 'params.hbs', {}, function (err, html) {
+      if (err) return done(err);
+      assert.equal(html, 'a-b|noParams');
+      done();
+    });
+  });
+
+  it('fails the render when the promise rejects', function (done) {
+    var hb = hbs.create();
+    hb.registerPromiseHelper('ok', function () {
+      return delay('fine');
+    });
+    hb.registerPromiseHelper('fail', async function () {
+      await delay();
+      throw new Error('rejected');
+    });
+    render(hb, 'error.hbs', {}, function (err, html) {
+      assert.equal(err && err.message, 'rejected');
+      assert.equal(html, undefined);
+      done();
+    });
+  });
+
+  it('fails the render when the helper throws synchronously', function (done) {
+    var hb = hbs.create();
+    hb.registerPromiseHelper('ok', function () {
+      return 'fine';
+    });
+    hb.registerPromiseHelper('fail', function () {
+      throw new Error('thrown');
+    });
+    render(hb, 'error.hbs', {}, function (err) {
+      assert.equal(err && err.message, 'thrown');
+      done();
+    });
+  });
+
+  it('throws when no resolver cache is available', function () {
+    var hb = hbs.create();
+    hb.registerPromiseHelper('later', function () {
+      return 'x';
+    });
+    assert.throws(function () {
+      hb.handlebars.compile('{{later}}')({});
+    }, /Could not find resolver cache in async helper later/);
+  });
+
+  // Why this is a separate method: callback-style async helpers are often `async`
+  // functions whose returned promise settles (to undefined) before `cb` is called.
+  // registerAsyncHelper must keep ignoring that promise or those helpers would
+  // silently render nothing.
+  it('leaves registerAsyncHelper ignoring the promise an async callback helper returns', function (done) {
+    var hb = hbs.create();
+    var returned;
+    hb.registerAsyncHelper('legacy', function (value, cb) {
+      returned = (async function () {
+        setTimeout(function () {
+          cb('cb-' + value);
+        }, 5);
+      })();
+      return returned;
+    });
+    render(hb, 'legacy.hbs', {}, function (err, html) {
+      if (err) return done(err);
+      assert.equal(html, 'cb-x');
+      returned.then(function (value) {
+        assert.equal(value, undefined);
+        done();
+      }, done);
+    });
+  });
+});

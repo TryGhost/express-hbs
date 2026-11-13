@@ -103,6 +103,12 @@ hbs.registerAsyncHelper('lookup', function (context, options, cb) {
 } satisfies hbs.AsyncHelperWithOptions);
 ```
 
+Promise helpers infer `context` and `options` without `satisfies`:
+
+```ts
+hbs.registerPromiseHelper('lookup', async (context, options) => options.hash.fallback ?? context);
+```
+
 ## Syntax
 
 To mark where a layout should insert page content:
@@ -213,6 +219,36 @@ in markup
 ```
 {{{readFile 'tos.txt'}}}
 ```
+
+The value returned by an async helper is ignored; only `cb` delivers output.
+
+### Promise helpers
+
+`registerPromiseHelper` renders whatever the helper returns, waiting for it when
+it is a promise, so `async` functions work directly. The helper is called like a
+synchronous helper: template params first, then `options`.
+
+```js
+hbs.registerPromiseHelper('readFile', async function(filename, options) {
+  var content = await fs.promises.readFile(path.join(viewsDir, filename), 'utf8');
+  return new hbs.SafeString(content);
+});
+```
+
+in markup
+```
+{{readFile 'tos.txt'}}
+```
+
+- A rejected promise or a thrown error fails the render and is passed to the
+  render callback.
+- `null` and `undefined` render as an empty string.
+- Strings are escaped in `{{ }}` and not in `{{{ }}}`; return `hbs.SafeString`
+  to skip escaping.
+
+Use `registerAsyncHelper` for callback-style helpers. It does not wait for a
+returned promise, because an `async function (context, cb)` that calls `cb`
+later returns a promise that resolves to `undefined` first.
 
 
 ## i18n support
