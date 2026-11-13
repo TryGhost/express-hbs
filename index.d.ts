@@ -51,7 +51,7 @@ declare namespace hbs {
      * Passing user-controlled data here can read arbitrary files unless
      * `restrictLayoutsTo` is set.
      */
-    layout?: string | null | false;
+    layout?: string | null | false | 0;
     [key: string]: any;
   }
 
@@ -83,6 +83,7 @@ declare namespace hbs {
     express4(options?: Options): Engine;
 
     registerHelper(name: string, fn: Handlebars.HelperDelegate): void;
+    registerHelper(helpers: Handlebars.HelperDeclareSpec): void;
     /**
      * Register a helper that delivers its result later via `cb(result)`. The
      * helper receives `options` only when it declares three parameters.

@@ -41,6 +41,11 @@ hbs.registerAsyncHelper('withOptionsSatisfies', function (context, options, cb) 
 const typedHelper: hbs.AsyncHelperWithOptions = async (_context, options, cb) => cb(options.data);
 hbs.registerAsyncHelper('typedHelper', typedHelper);
 
+hbs.registerHelper({
+  upper: (text: string) => text.toUpperCase(),
+  lower: (text: string) => text.toLowerCase(),
+});
+
 // Template options.
 hbs.updateTemplateOptions({ data: { foo: 1 } });
 const opts = hbs.getTemplateOptions();
@@ -74,3 +79,9 @@ themeEngine.handlebars.logger.level = 0;
 themeEngine.handlebars.createFrame({});
 void themeEngine.handlebars.partials['name'];
 defaultHbs.Utils.escapeExpression('<');
+
+// Every falsy layout value suppresses layouts.
+engine(__dirname + '/b.hbs', { layout: false }, () => {});
+engine(__dirname + '/c.hbs', { layout: 0 }, () => {});
+// @ts-expect-error layout must be a string or a falsy value
+engine(__dirname + '/d.hbs', { layout: 1 }, () => {});
