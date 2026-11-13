@@ -83,11 +83,22 @@ declare namespace hbs {
     express4(options?: Options): Engine;
 
     registerHelper(name: string, fn: Handlebars.HelperDelegate): void;
-    /** Register a helper whose result is delivered asynchronously via `cb(result)`. */
     /**
      * Register a helper that delivers its result later via `cb(result)`. The
-     * helper receives `options` only when it declares three parameters;
-     * annotate them when using that form.
+     * helper receives `options` only when it declares three parameters.
+     *
+     * TypeScript infers parameter types for the `(context, cb)` form. For the
+     * `(context, options, cb)` form, add `satisfies hbs.AsyncHelperWithOptions`
+     * to the function so its parameters are inferred.
+     *
+     * @example
+     * hbs.registerAsyncHelper('readFile', function (filename, cb) {
+     *   fs.readFile(filename, 'utf8', (err, content) => cb(content));
+     * });
+     *
+     * hbs.registerAsyncHelper('lookup', function (context, options, cb) {
+     *   cb(options.hash.fallback ?? context);
+     * } satisfies hbs.AsyncHelperWithOptions);
      */
     registerAsyncHelper(name: string, fn: AsyncHelper): void;
     registerAsyncHelper(name: string, fn: AsyncHelperWithOptions): void;

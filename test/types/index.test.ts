@@ -34,6 +34,12 @@ hbs.registerAsyncHelper(
     cb(options.hash.value ?? context);
   },
 );
+// Options form inferred via `satisfies`, as documented.
+hbs.registerAsyncHelper('withOptionsSatisfies', function (context, options, cb) {
+  cb(options.hash.value ?? context);
+} satisfies hbs.AsyncHelperWithOptions);
+const typedHelper: hbs.AsyncHelperWithOptions = async (_context, options, cb) => cb(options.data);
+hbs.registerAsyncHelper('typedHelper', typedHelper);
 
 // Template options.
 hbs.updateTemplateOptions({ data: { foo: 1 } });

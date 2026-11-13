@@ -93,6 +93,16 @@ app.engine('hbs', hbs.express4({ partialsDir: __dirname + '/views/partials' }));
 Supporting types such as `hbs.Options` and `hbs.AsyncHelperCallback` are
 available on the `hbs` namespace.
 
+Async helpers come in two forms, `(context, cb)` and `(context, options, cb)`.
+TypeScript infers parameter types for the first form only. For the second, add
+`satisfies hbs.AsyncHelperWithOptions` so the parameters are inferred:
+
+```ts
+hbs.registerAsyncHelper('lookup', function (context, options, cb) {
+  cb(options.hash.fallback ?? context);
+} satisfies hbs.AsyncHelperWithOptions);
+```
+
 ## Syntax
 
 To mark where a layout should insert page content:
