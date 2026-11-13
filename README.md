@@ -79,6 +79,20 @@ hbs.express4({
 });
 ```
 
+## TypeScript
+
+Type declarations ship with the package (`index.d.ts`), so no `@types` package
+is needed:
+
+```ts
+import hbs = require('express-hbs');
+
+app.engine('hbs', hbs.express4({ partialsDir: __dirname + '/views/partials' }));
+```
+
+Supporting types such as `hbs.Options` and `hbs.AsyncHelperCallback` are
+available on the `hbs` namespace.
+
 ## Syntax
 
 To mark where a layout should insert page content:

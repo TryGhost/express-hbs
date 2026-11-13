@@ -10,8 +10,10 @@
     "partials"
   ],
   "main": "index.js",
+  "types": "index.d.ts",
   "files": [
     "index.js",
+    "index.d.ts",
     "lib"
   ],
   "engines": {
@@ -21,7 +23,8 @@
     "example": "example"
   },
   "scripts": {
-    "lint": "oxlint --quiet && oxfmt --check .",
+    "lint": "oxlint --quiet && oxfmt --check . && pnpm lint:types",
+    "lint:types": "tsc -p test/types",
     "lint:fix": "oxlint --fix && oxfmt .",
     "format": "oxfmt .",
     "test": "mocha",
@@ -39,6 +42,8 @@
   "license": "MIT",
   "devDependencies": {
     "@tryghost/pro-ship": "2.0.4",
+    "@types/express": "5.0.6",
+    "@types/node": "26.6.6",
     "cookie-parser": "1.4.7",
     "express": "5.3.0",
     "i18n": "0.15.4",
@@ -47,7 +52,8 @@
     "oxfmt": "0.76.0",
     "oxlint": "1.91.0",
     "rewire": "9.0.1",
-    "supertest": "7.3.2"
+    "supertest": "7.3.2",
+    "typescript": "7.0.2"
   },
   "dependencies": {
     "handlebars": "^4.7.10",

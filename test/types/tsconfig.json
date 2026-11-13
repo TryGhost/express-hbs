@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "noEmit": true,
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "target": "es2022",
+    "types": [
+      "node"
+    ],
+    "esModuleInterop": true
+  },
+  "files": [
+    "index.test.ts"
+  ]
+}
