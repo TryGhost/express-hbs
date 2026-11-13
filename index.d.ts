@@ -115,6 +115,9 @@ declare namespace hbs {
      * `null`/`undefined` render as an empty string. It is called like a sync
      * helper, with the template params followed by `options`.
      *
+     * The result is only usable as output: subexpressions and block conditions
+     * such as `{{#if (helper)}}` see a placeholder string, not the resolved value.
+     *
      * @example
      * hbs.registerPromiseHelper('readFile', async function (filename, options) {
      *   return new hbs.SafeString(await fs.promises.readFile(filename, 'utf8'));

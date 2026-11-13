@@ -245,6 +245,11 @@ in markup
 - `null` and `undefined` render as an empty string.
 - Strings are escaped in `{{ }}` and not in `{{{ }}}`; return `hbs.SafeString`
   to skip escaping.
+- The result is only available as output. Like async helpers, a promise helper
+  returns a placeholder that is replaced after rendering, so subexpressions and
+  block conditions such as `{{#if (enabled)}}` or `{{upper (readFile 'a')}}`
+  see the placeholder string, not the resolved value. Do that work inside the
+  helper instead.
 
 Use `registerAsyncHelper` for callback-style helpers. It does not wait for a
 returned promise, because an `async function (context, cb)` that calls `cb`

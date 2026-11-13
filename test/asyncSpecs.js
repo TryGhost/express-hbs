@@ -238,6 +238,24 @@ describe('registerPromiseHelper', function () {
     });
   });
 
+  [undefined, null, 0, '', false].forEach(function (reason) {
+    it('fails the render when the promise rejects with ' + String(reason), function (done) {
+      var hb = hbs.create();
+      hb.registerPromiseHelper('ok', function () {
+        return 'fine';
+      });
+      hb.registerPromiseHelper('fail', function () {
+        return Promise.reject(reason);
+      });
+      render(hb, 'error.hbs', {}, function (err, html) {
+        assert.ok(err instanceof Error);
+        assert.equal(err.message, 'Async helper failed with ' + String(reason));
+        assert.equal(html, undefined);
+        done();
+      });
+    });
+  });
+
   it('fails the render when the helper throws synchronously', function (done) {
     var hb = hbs.create();
     hb.registerPromiseHelper('ok', function () {
@@ -252,6 +270,23 @@ describe('registerPromiseHelper', function () {
     });
   });
 
+  // Handlebars evaluates subexpressions and block conditions synchronously, so they
+  // see the (truthy) placeholder id, never the resolved value. Output only.
+  it('does not resolve before subexpressions or block conditions see the value', function (done) {
+    var hb = hbs.create();
+    hb.registerPromiseHelper('enabled', async function () {
+      return false;
+    });
+    hb.registerHelper('kind', function (value) {
+      return typeof value;
+    });
+    render(hb, 'subexpression.hbs', {}, function (err, html) {
+      if (err) return done(err);
+      assert.equal(html, 'yes|string');
+      done();
+    });
+  });
+
   it('throws when no resolver cache is available', function () {
     var hb = hbs.create();
     hb.registerPromiseHelper('later', function () {
@@ -260,6 +295,18 @@ describe('registerPromiseHelper', function () {
     assert.throws(function () {
       hb.handlebars.compile('{{later}}')({});
     }, /Could not find resolver cache in async helper later/);
+  });
+
+  it('fails the render when a callback helper throws a falsy value', function (done) {
+    var hb = hbs.create();
+    hb.registerAsyncHelper('legacy', function () {
+      throw undefined;
+    });
+    render(hb, 'legacy.hbs', {}, function (err) {
+      assert.ok(err instanceof Error);
+      assert.equal(err.message, 'Async helper failed with undefined');
+      done();
+    });
   });
 
   // Why this is a separate method: callback-style async helpers are often `async`
