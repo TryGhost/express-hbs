@@ -30,7 +30,7 @@ declare namespace hbs {
     /** i18n object; registers the `__` and `__n` helpers. */
     i18n?: I18n;
     /** Path to layout templates. */
-    layoutsDir?: string | string[];
+    layoutsDir?: string;
     /** Views directory used when not rendering through Express. */
     viewsDir?: string | string[];
     /** Options passed to every compiled template call. */
