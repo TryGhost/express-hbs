@@ -32,5 +32,19 @@ describe('non-express', function () {
         done();
       });
     });
+
+    it('should fall back to viewsDir when locals have no settings', function (done) {
+      var render = hbs.create().express3({
+        viewsDir: dirname,
+        layoutsDir: dirname + '/layouts',
+        restrictLayoutsTo: dirname,
+      });
+
+      render(dirname + '/sub/lay.hbs', { layout: 'default.hbs' }, function (err, html) {
+        if (err) return done(err);
+        assert.equal('<vd>lay</vd>', H.stripWs(html));
+        done();
+      });
+    });
   });
 });
