@@ -9,4 +9,4 @@ minimumReleaseAgeExclude:
 # test-exclude, js-beautify, editorconfig) only use APIs the patched majors keep.
 overrides:
   'glob@13': 14.0.4
-  'minimatch@10': 11.0.5
+  'minimatch@10': 11.0.8
