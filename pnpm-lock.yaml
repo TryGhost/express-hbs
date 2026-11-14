@@ -164,7 +164,7 @@ settings:
 
 overrides:
   glob@13: 14.0.4
-  minimatch@10: 11.0.5
+  minimatch@10: 11.0.8
 
 importers:
 
@@ -1527,6 +1527,10 @@ packages:
     resolution: {integrity: sha512-snPlVppFcYWfLLFQGhDxUyBcHNtMlWmn3jtj7pEaO+DP8pqL0IvAzXhMYmn1z9ASNtgmwLBdFxSf4tMUB0OTKA==}
     engines: {node: 20 || >=22}
 
+  minimatch@11.0.8:
+    resolution: {integrity: sha512-nFQuYSTVrGvysVBps5Ih+0BdnYFN/Cj3C816r6+p7yK+FHrVLGE4O4N9AFwykrlNlvM2HYt+Rad1Uiro6h88Ig==}
+    engines: {node: 20 || >=22}
+
   minimatch@3.1.5:
     resolution: {integrity: sha512-VgjWUsnnT6n+NUk6eZq77zeFdpW2LWDzP6zFGrCbHXiYNul5Dzqk2HHQ5uFH2DNW5Xbp8+jVzaeNt94ssEEl4w==}
 
@@ -2655,7 +2659,7 @@ snapshots:
     dependencies:
       '@one-ini/wasm': 0.2.1
       commander: 14.0.3
-      minimatch: 11.0.5
+      minimatch: 11.0.8
       semver: 7.8.6
     optional: true
 
@@ -3156,6 +3160,11 @@ snapshots:
       '@isaacs/nonrecursive-glob-match': 1.1.0
       brace-expansion: 5.0.12
 
+  minimatch@11.0.8:
+    dependencies:
+      '@isaacs/nonrecursive-glob-match': 1.1.0
+      brace-expansion: 5.0.12
+
   minimatch@3.1.5:
     dependencies:
       brace-expansion: 1.1.21
@@ -3175,7 +3184,7 @@ snapshots:
       is-path-inside: 4.0.0
       is-unicode-supported: 0.1.0
       js-yaml: 5.5.0
-      minimatch: 11.0.5
+      minimatch: 11.0.8
       ms: 2.1.3
       picocolors: 1.1.1
       serialize-javascript: 7.1.4
@@ -3577,7 +3586,7 @@ snapshots:
     dependencies:
       '@istanbuljs/schema': 0.1.6
       glob: 14.0.4
-      minimatch: 11.0.5
+      minimatch: 11.0.8
 
   tinypool@2.2.0: {}
 
