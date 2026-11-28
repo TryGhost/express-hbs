@@ -43,7 +43,7 @@
   "devDependencies": {
     "@tryghost/pro-ship": "2.0.4",
     "@types/express": "5.0.6",
-    "@types/node": "26.6.6",
+    "@types/node": "26.6.7",
     "cookie-parser": "1.4.7",
     "express": "5.3.0",
     "i18n": "0.15.4",
